@@ -14,7 +14,7 @@ struct ContentView: View {
 				.tabItem { Label("For You", systemImage: "books.vertical.fill") }
 			
 			SearchView()
-				.tabItem { Label("Finished", systemImage: "book.closed.fill") }
+				.tabItem { Label("Search", systemImage: "doc.text.magnifyingglass") }
 			
 			ToReadView()
 				.tabItem { Label("To read", systemImage: "book.fill") }

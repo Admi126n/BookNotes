@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Listed books based on user search input (provided by Google Books API)
+/// Listed books based on user search input (provided by Google Books API).
 struct SearchView: View {
     var body: some View {
 		VStack {

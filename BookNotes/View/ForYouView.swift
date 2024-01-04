@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Books propositions based on finished and favourite books (provided by Google Books API)
+/// Books propositions based on finished and favourite books (provided by Google Books API).
 struct ForYouView: View {
     var body: some View {
 		VStack {
