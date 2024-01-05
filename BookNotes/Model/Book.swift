@@ -30,13 +30,4 @@ class Book {
 			self.rating = rating
 		}
 	}
-	
-	static let example = Book(
-		title: "Zen The Art Of Simple Living",
-		author: "Shunmyo Masuno",
-		genre: "philosophy",
-		finished: true,
-		readDate: .now,
-		rating: 5
-	)
 }
