@@ -59,5 +59,13 @@ struct ToReadView: View {
 }
 
 #Preview {
-    ToReadView()
+	do {
+		let config = ModelConfiguration(isStoredInMemoryOnly: true)
+		let container = try ModelContainer(for: Book.self, configurations: config)
+		
+		return ToReadView()
+			.modelContainer(container)
+	} catch {
+		return Text("Failed to create container, \(error.localizedDescription)")
+	}
 }

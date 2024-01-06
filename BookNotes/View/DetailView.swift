@@ -10,19 +10,31 @@ import SwiftUI
 
 /// Book detail view.
 struct DetailView: View {
-	@Bindable var book: Book
+	@State var book: Book
+	@State private var showingSheet = false
 	
     var body: some View {
 		VStack {
+			Spacer()
+			
 			Text(book.title)
 				.font(.title)
 			
 			Text(book.author)
 			
+			Spacer()
+			
 			if !book.finished {
-				Toggle("Is finished", isOn: $book.finished)
-					.padding()
+				Button("Mark as finished") {
+					showingSheet = true
+				}
+				.buttonStyle(.borderedProminent)
+				.padding()
 			}
+		}
+		.sheet(isPresented: $showingSheet) {
+			MarkAsFinishedView(book: $book)
+				.interactiveDismissDisabled()
 		}
     }
 	
