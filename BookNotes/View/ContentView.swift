@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+	@ObservedObject var favourites = Favourites()
+	
     var body: some View {
 		TabView {
 			ForYouView()
@@ -22,6 +24,7 @@ struct ContentView: View {
 			FinishedView()
 				.tabItem { Label("Finished", systemImage: "book.closed.fill") }
 		}
+		.environmentObject(favourites)
     }
 }
 

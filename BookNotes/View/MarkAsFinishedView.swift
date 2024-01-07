@@ -13,7 +13,7 @@ struct MarkAsFinishedView: View {
 	@Binding var book: Book
 	
 	@State private var notes = ""
-	@State private var rating = 3
+	@State private var rating = 2
 	
 	var body: some View {
 		NavigationStack {

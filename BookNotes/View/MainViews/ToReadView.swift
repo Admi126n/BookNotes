@@ -10,6 +10,7 @@ import SwiftUI
 
 /// List of books to read.
 struct ToReadView: View {
+	@EnvironmentObject var favourites: Favourites
 	@Environment(\.modelContext) var modelContext
 	@Query var books: [Book]
 	@State private var showingSheet = false
@@ -18,23 +19,42 @@ struct ToReadView: View {
 		books.filter { !$0.finished }
 	}
 	
-    var body: some View {
+	var body: some View {
 		NavigationStack {
 			List {
 				ForEach(filteredBooks) { book in
-					NavigationLink(book.title) {
-						DetailView(of: book)
+					NavigationLink(value: book) {
+						HStack {
+							Text(book.title)
+							
+							Spacer()
+							
+							if favourites.contains(book) {
+								Image(systemName: "heart.fill")
+									.foregroundStyle(.red)
+							}
+						}
+					}
+					.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+						DeleteButton {
+							modelContext.delete(book)
+						}
+					}
+					.swipeActions(edge: .leading, allowsFullSwipe: true) {
+						if favourites.contains(book) {
+							RemoveFromFavouritesButton {
+								favourites.remove(book)
+							}
+						} else {
+							AddToFavouritesButton {
+								favourites.add(book)
+							}
+						}
 					}
 				}
-				.onDelete(perform: removeBook)
-				.swipeActions(edge: .leading, allowsFullSwipe: true) {
-					Button {
-						print("favourite")
-					} label: {
-						Label("favourite", systemImage: "star")
-					}
-					.tint(.yellow)
-				}
+			}
+			.navigationDestination(for: Book.self) { book in
+				DetailView(of: book)
 			}
 			.navigationTitle("To read")
 			.toolbar {
@@ -47,13 +67,6 @@ struct ToReadView: View {
 			.sheet(isPresented: $showingSheet) {
 				AddBookView()
 			}
-		}
-    }
-	
-	private func removeBook(_ indexSet: IndexSet) {
-		for index in indexSet {
-			let book = books[index]
-			modelContext.delete(book)
 		}
 	}
 }

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		665F72FB2B49AD2B0000955D /* MarkAsFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */; };
 		669AF26C2B4883DC00310430 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669AF26B2B4883DC00310430 /* AddBookView.swift */; };
+		66CF06AF2B4B09B200DAB6AC /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06AE2B4B09B200DAB6AC /* Favourites.swift */; };
+		66CF06B12B4B492E00DAB6AC /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06B02B4B492E00DAB6AC /* DeleteButton.swift */; };
+		66CF06B42B4B49AF00DAB6AC /* AddToFavouritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06B32B4B49AF00DAB6AC /* AddToFavouritesButton.swift */; };
+		66CF06B62B4B49BA00DAB6AC /* RemoveFromFavouritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06B52B4B49BA00DAB6AC /* RemoveFromFavouritesButton.swift */; };
 		66DDF55C2B47105600355825 /* BookNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF55B2B47105600355825 /* BookNotesApp.swift */; };
 		66DDF55E2B47105600355825 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF55D2B47105600355825 /* ContentView.swift */; };
 		66DDF5602B47105700355825 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66DDF55F2B47105700355825 /* Assets.xcassets */; };
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAsFinishedView.swift; sourceTree = "<group>"; };
 		669AF26B2B4883DC00310430 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
+		66CF06AE2B4B09B200DAB6AC /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
+		66CF06B02B4B492E00DAB6AC /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
+		66CF06B32B4B49AF00DAB6AC /* AddToFavouritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavouritesButton.swift; sourceTree = "<group>"; };
+		66CF06B52B4B49BA00DAB6AC /* RemoveFromFavouritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromFavouritesButton.swift; sourceTree = "<group>"; };
 		66DDF5582B47105600355825 /* BookNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66DDF55B2B47105600355825 /* BookNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNotesApp.swift; sourceTree = "<group>"; };
 		66DDF55D2B47105600355825 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +67,16 @@
 				66DDF56E2B4712F500355825 /* ToReadView.swift */,
 			);
 			path = MainViews;
+			sourceTree = "<group>";
+		};
+		66CF06B22B4B498E00DAB6AC /* SwipeButtons */ = {
+			isa = PBXGroup;
+			children = (
+				66CF06B32B4B49AF00DAB6AC /* AddToFavouritesButton.swift */,
+				66CF06B02B4B492E00DAB6AC /* DeleteButton.swift */,
+				66CF06B52B4B49BA00DAB6AC /* RemoveFromFavouritesButton.swift */,
+			);
+			path = SwipeButtons;
 			sourceTree = "<group>";
 		};
 		66DDF54F2B47105600355825 = {
@@ -106,6 +124,7 @@
 				669AF26B2B4883DC00310430 /* AddBookView.swift */,
 				66DDF57A2B47582200355825 /* DetailView.swift */,
 				665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */,
+				66CF06B22B4B498E00DAB6AC /* SwipeButtons */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -114,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				66DDF5722B474F8C00355825 /* Book.swift */,
+				66CF06AE2B4B09B200DAB6AC /* Favourites.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,10 +220,14 @@
 				66DDF57B2B47582200355825 /* DetailView.swift in Sources */,
 				66DDF56F2B4712F500355825 /* ToReadView.swift in Sources */,
 				66DDF55E2B47105600355825 /* ContentView.swift in Sources */,
+				66CF06B62B4B49BA00DAB6AC /* RemoveFromFavouritesButton.swift in Sources */,
 				66DDF5732B474F8C00355825 /* Book.swift in Sources */,
 				66DDF55C2B47105600355825 /* BookNotesApp.swift in Sources */,
 				66DDF56D2B47129700355825 /* FinishedView.swift in Sources */,
+				66CF06AF2B4B09B200DAB6AC /* Favourites.swift in Sources */,
+				66CF06B42B4B49AF00DAB6AC /* AddToFavouritesButton.swift in Sources */,
 				665F72FB2B49AD2B0000955D /* MarkAsFinishedView.swift in Sources */,
+				66CF06B12B4B492E00DAB6AC /* DeleteButton.swift in Sources */,
 				66DDF5712B47162D00355825 /* SearchView.swift in Sources */,
 				66DDF56B2B47120B00355825 /* ForYouView.swift in Sources */,
 				669AF26C2B4883DC00310430 /* AddBookView.swift in Sources */,

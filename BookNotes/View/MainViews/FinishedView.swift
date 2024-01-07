@@ -10,6 +10,7 @@ import SwiftUI
 
 /// List of all finished books with favourites marked.
 struct FinishedView: View {
+	@EnvironmentObject var favourites: Favourites
 	@Environment(\.modelContext) var modelContext
 	@Query var books: [Book]
 	
@@ -21,30 +22,48 @@ struct FinishedView: View {
 		NavigationStack {
 			List {
 				ForEach(filteredBooks) { book in
-					NavigationLink {
-						DetailView(of: book)
-					} label: {
-						VStack(alignment: .leading) {
-							Text(book.title)
-								.fontDesign(.serif)
+					NavigationLink(value: book) {
+						HStack {
+							VStack(alignment: .leading) {
+								Text(book.title)
+									.fontDesign(.serif)
+								
+								Text(book.author)
+									.font(.caption)
+							}
 							
-							Text(book.author)
-								.font(.caption)
+							Spacer()
+							
+							if favourites.contains(book) {
+								Image(systemName: "heart.fill")
+									.foregroundStyle(.red)
+							}
+						}
+					}
+					.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+						DeleteButton {
+							modelContext.delete(book)
+						}
+					}
+					.swipeActions(edge: .leading, allowsFullSwipe: true) {
+						if favourites.contains(book) {
+							RemoveFromFavouritesButton {
+								favourites.remove(book)
+							}
+						} else {
+							AddToFavouritesButton {
+								favourites.add(book)
+							}
 						}
 					}
 				}
-				.onDelete(perform: removeBook)
+			}
+			.navigationDestination(for: Book.self) { book in
+				DetailView(of: book)
 			}
 			.navigationTitle("Finished")
 		}
     }
-	
-	private func removeBook(_ indexSet: IndexSet) {
-		for index in indexSet {
-			let book = books[index]
-			modelContext.delete(book)
-		}
-	}
 }
 
 #Preview {
