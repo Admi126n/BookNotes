@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		664C9D012B4C5EB800D846F6 /* SharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C9D002B4C5EB800D846F6 /* SharedView.swift */; };
 		665F72FB2B49AD2B0000955D /* MarkAsFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */; };
 		669AF26C2B4883DC00310430 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669AF26B2B4883DC00310430 /* AddBookView.swift */; };
 		66CF06AF2B4B09B200DAB6AC /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06AE2B4B09B200DAB6AC /* Favourites.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		664C9D002B4C5EB800D846F6 /* SharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedView.swift; sourceTree = "<group>"; };
 		665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAsFinishedView.swift; sourceTree = "<group>"; };
 		669AF26B2B4883DC00310430 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		66CF06AE2B4B09B200DAB6AC /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				669AF26B2B4883DC00310430 /* AddBookView.swift */,
 				66DDF57A2B47582200355825 /* DetailView.swift */,
 				665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */,
+				664C9D002B4C5EB800D846F6 /* SharedView.swift */,
 				66CF06B22B4B498E00DAB6AC /* SwipeButtons */,
 			);
 			path = View;
@@ -224,6 +227,7 @@
 				66DDF5732B474F8C00355825 /* Book.swift in Sources */,
 				66DDF55C2B47105600355825 /* BookNotesApp.swift in Sources */,
 				66DDF56D2B47129700355825 /* FinishedView.swift in Sources */,
+				664C9D012B4C5EB800D846F6 /* SharedView.swift in Sources */,
 				66CF06AF2B4B09B200DAB6AC /* Favourites.swift in Sources */,
 				66CF06B42B4B49AF00DAB6AC /* AddToFavouritesButton.swift in Sources */,
 				665F72FB2B49AD2B0000955D /* MarkAsFinishedView.swift in Sources */,

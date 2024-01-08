@@ -22,14 +22,18 @@ struct FinishedView: View {
 		NavigationStack {
 			List {
 				ForEach(filteredBooks) { book in
-					NavigationLink(value: book) {
+					NavigationLink() {
+						DetailView(of: book)
+					} label: {
 						HStack {
 							VStack(alignment: .leading) {
 								Text(book.title)
 									.fontDesign(.serif)
+									.font(.headline)
 								
 								Text(book.author)
 									.font(.caption)
+									.foregroundStyle(.secondary)
 							}
 							
 							Spacer()
@@ -43,6 +47,7 @@ struct FinishedView: View {
 					.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 						DeleteButton {
 							modelContext.delete(book)
+							favourites.remove(book)
 						}
 					}
 					.swipeActions(edge: .leading, allowsFullSwipe: true) {
@@ -57,9 +62,6 @@ struct FinishedView: View {
 						}
 					}
 				}
-			}
-			.navigationDestination(for: Book.self) { book in
-				DetailView(of: book)
 			}
 			.navigationTitle("Finished")
 		}

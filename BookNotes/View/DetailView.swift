@@ -12,34 +12,62 @@ import SwiftUI
 struct DetailView: View {
 	@State var book: Book
 	@State private var showingSheet = false
+	@State private var renderedImage = Image(systemName: "book")
 	
-    var body: some View {
-		VStack {
-			Spacer()
-			
-			Text(book.title)
-				.font(.title)
-			
-			Text(book.author)
-			
-			Spacer()
-			
-			if !book.finished {
-				Button("Mark as finished") {
-					showingSheet = true
+	var body: some View {
+		NavigationStack {
+			VStack {
+				Spacer()
+				
+				Text(book.title)
+					.font(.title)
+				
+				Text(book.author)
+				
+				Spacer()
+				
+				if !book.finished {
+					Button("Mark as finished") {
+						showingSheet = true
+					}
+					.buttonStyle(.borderedProminent)
+					.padding()
 				}
-				.buttonStyle(.borderedProminent)
-				.padding()
 			}
+			
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					ShareLink(
+						"Share",
+						item: renderedImage,
+						message: Text("Check out this book!"),
+						preview: SharePreview(
+							Text("My book"),
+							icon: renderedImage
+						)
+					)
+				}
+			}
+			.sheet(isPresented: $showingSheet) {
+				MarkAsFinishedView(book: $book)
+					.interactiveDismissDisabled()
+			}
+			.onAppear {
+				getSharedImage()
+			}
+			.navigationBarTitleDisplayMode(.inline)
 		}
-		.sheet(isPresented: $showingSheet) {
-			MarkAsFinishedView(book: $book)
-				.interactiveDismissDisabled()
-		}
-    }
+	}
 	
 	init(of book: Book) {
 		self.book = book
+	}
+	
+	@MainActor func getSharedImage() {
+		let sharedView = SharedView(of: book)
+		if let safeImage = sharedView.render() {
+			renderedImage = safeImage
+		}
 	}
 }
 
