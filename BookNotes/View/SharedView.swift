@@ -22,11 +22,20 @@ struct SharedView: View {
 				.foregroundStyle(.secondary)
 			
 			if book.finished {
-				Text("My rating: \(book.rating!) of 5")
+				RatingView(rating: .constant(book.rating))
+					.padding(.top, 3)
 			}
 		}
-		.background(.white)
-    }
+		.padding()
+		.background(
+			RadialGradient(
+				colors: [.white, .gray],
+				center: .center,
+				startRadius: 70,
+				endRadius: book.finished ? 200 : 100
+			)
+		)
+	}
 	
 	init(of book: Book, _ displayScale: CGFloat = 4.0) {
 		self.book = book
@@ -50,7 +59,7 @@ struct SharedView: View {
 		let config = ModelConfiguration(isStoredInMemoryOnly: true)
 		let container = try ModelContainer(for: Book.self, configurations: config)
 		
-		let book = Book(title: "Example", author: "Example", genre: "fantasy", finished: false)
+		let book = Book(title: "Example", author: "Example", genre: "fantasy")
 		
 		return SharedView(of: book)
 			.modelContainer(container)

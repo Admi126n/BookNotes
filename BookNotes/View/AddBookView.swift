@@ -15,6 +15,10 @@ struct AddBookView: View {
 	@State private var title = ""
 	@State private var author = ""
 	
+	var disableSave: Bool {
+		title.isEmpty || author.isEmpty
+	}
+	
     var body: some View {
 		NavigationStack {
 			Form {
@@ -26,11 +30,12 @@ struct AddBookView: View {
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					Button("Save") {
-						let book = Book(title: title, author: author, genre: "fantasy", finished: false)
+						let book = Book(title: title, author: author, genre: "fantasy")
 						
 						modelContext.insert(book)
 						dismiss()
 					}
+					.disabled(disableSave)
 				}
 			}
 		}

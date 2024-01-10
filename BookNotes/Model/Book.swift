@@ -12,22 +12,27 @@ import SwiftData
 class Book {
 	var author: String
 	var genre: String
-	var title: String
+	var title: String = ""
 	var notes: String?
-	var finished: Bool
+	var finished: Bool = false
 	var readDate: Date?
-	var rating: Int?
+	var rating: Int = 3
 	
-	init(title: String, author: String, genre: String, finished: Bool, readDate: Date? = nil, notes: String? = nil, rating: Int? = nil) {
+	/// Init for unfinished books
+	init(title: String, author: String, genre: String) {
 		self.title = title
 		self.author = author
 		self.genre = genre
-		self.finished = finished
+	}
+	
+	/// Init for finished books
+	init(title: String, author: String, genre: String, readDate: Date, notes: String? = nil, rating: Int = 1) {
+		self.title = title
+		self.author = author
+		self.genre = genre
+		self.finished = true
 		self.notes = notes
-		
-		if finished {
-			self.readDate = readDate
-			self.rating = rating
-		}
+		self.rating = rating
+		self.readDate = readDate
 	}
 }

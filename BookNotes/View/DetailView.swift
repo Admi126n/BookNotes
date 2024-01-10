@@ -32,6 +32,8 @@ struct DetailView: View {
 					}
 					.buttonStyle(.borderedProminent)
 					.padding()
+				} else {
+					RatingView(rating: .constant(book.rating))
 				}
 			}
 			
@@ -49,7 +51,7 @@ struct DetailView: View {
 				}
 			}
 			.sheet(isPresented: $showingSheet) {
-				MarkAsFinishedView(book: $book)
+				MarkAsFinishedView(book: book)
 					.interactiveDismissDisabled()
 			}
 			.onAppear {
@@ -76,7 +78,7 @@ struct DetailView: View {
 		let config = ModelConfiguration(isStoredInMemoryOnly: true)
 		let container = try ModelContainer(for: Book.self, configurations: config)
 		
-		let book = Book(title: "Example", author: "Example", genre: "fantasy", finished: false)
+		let book = Book(title: "Example", author: "Example", genre: "fantasy")
 		
 		return DetailView(of: book)
 			.modelContainer(container)
