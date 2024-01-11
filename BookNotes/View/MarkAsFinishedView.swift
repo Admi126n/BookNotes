@@ -12,13 +12,11 @@ struct MarkAsFinishedView: View {
 	@Environment(\.dismiss) var dismiss
 	@State var book: Book
 	
-	@State private var notes = ""
-	
 	var body: some View {
 		NavigationStack {
 			Form {
 				Section("Notes for book") {
-					TextEditor(text: $notes)
+					TextEditor(text: $book.notes)
 				}
 				
 				Section("Book rating") {
@@ -35,10 +33,7 @@ struct MarkAsFinishedView: View {
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					Button("Save") {
-						book.notes = notes
-						book.readDate = .now
-						book.finished = true
-						
+						book.markAsFinished()
 						dismiss()
 					}
 				}

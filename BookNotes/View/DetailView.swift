@@ -16,27 +16,45 @@ struct DetailView: View {
 	
 	var body: some View {
 		NavigationStack {
-			VStack {
-				Spacer()
-				
+			VStack(alignment: .leading) {
 				Text(book.title)
-					.font(.title)
+					.font(.largeTitle)
+					.fontDesign(.serif)
+					.bold()
 				
-				Text(book.author)
+				Text("by \(book.author)")
+					.foregroundStyle(.secondary)
+					.font(.headline)
+					.padding(.bottom, 20)
 				
-				Spacer()
+				Text("Your notes:")
+					.font(.headline)
 				
-				if !book.finished {
-					Button("Mark as finished") {
-						showingSheet = true
+				TextEditor(text: $book.notes)
+					.scrollContentBackground(.hidden)
+					.background(.textEditorBackground)
+					.clipShape(.rect(cornerRadius: 10))
+				
+				HStack {
+					Spacer()
+					
+					if book.finished {
+						VStack {
+							RatingView(rating: .constant(book.rating))
+							
+							Text("Finished on \(book.readDate!.formatted(date: .abbreviated, time: .omitted))")
+						}
+					} else {
+						Button("Mark as finished") {
+							showingSheet = true
+						}
+						.buttonStyle(.borderedProminent)
 					}
-					.buttonStyle(.borderedProminent)
-					.padding()
-				} else {
-					RatingView(rating: .constant(book.rating))
+					
+					Spacer()
 				}
 			}
-			
+			.padding()
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					ShareLink(

@@ -13,9 +13,9 @@ class Book {
 	var author: String
 	var genre: String
 	var title: String = ""
-	var notes: String?
-	var finished: Bool = false
-	var readDate: Date?
+	var notes: String = ""
+	private(set) var finished: Bool = false
+	private(set) var readDate: Date?
 	var rating: Int = 3
 	
 	/// Init for unfinished books
@@ -26,7 +26,7 @@ class Book {
 	}
 	
 	/// Init for finished books
-	init(title: String, author: String, genre: String, readDate: Date, notes: String? = nil, rating: Int = 1) {
+	init(title: String, author: String, genre: String, readDate: Date, notes: String = "", rating: Int = 1) {
 		self.title = title
 		self.author = author
 		self.genre = genre
@@ -34,5 +34,10 @@ class Book {
 		self.notes = notes
 		self.rating = rating
 		self.readDate = readDate
+	}
+	
+	func markAsFinished() {
+		readDate = .now
+		finished = true
 	}
 }

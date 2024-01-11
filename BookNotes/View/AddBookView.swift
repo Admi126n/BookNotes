@@ -23,7 +23,10 @@ struct AddBookView: View {
 		NavigationStack {
 			Form {
 				TextField("Title", text: $title)
+					.textInputAutocapitalization(.words)
+				
 				TextField("Author", text: $author)
+					.textInputAutocapitalization(.words)
 			}
 			.navigationTitle("Add book")
 			.toolbarTitleDisplayMode(.inline)
