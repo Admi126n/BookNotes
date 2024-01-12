@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MarkAsFinishedView: View {
 	@Environment(\.dismiss) var dismiss
+	@FocusState var textEditorFocused: Bool
 	@State var book: Book
 	
 	var body: some View {
@@ -17,6 +18,7 @@ struct MarkAsFinishedView: View {
 			Form {
 				Section("Notes for book") {
 					TextEditor(text: $book.notes)
+						.focused($textEditorFocused)
 				}
 				
 				Section("Book rating") {
@@ -35,6 +37,20 @@ struct MarkAsFinishedView: View {
 					Button("Save") {
 						book.markAsFinished()
 						dismiss()
+					}
+				}
+				
+				ToolbarItem(placement: .topBarLeading) {
+					Button("Cancel") {
+						dismiss()
+					}
+				}
+				
+				ToolbarItemGroup(placement: .keyboard) {
+					Spacer()
+					
+					Button("Done") {
+						textEditorFocused = false
 					}
 				}
 			}

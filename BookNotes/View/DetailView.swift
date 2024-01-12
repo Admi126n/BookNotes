@@ -10,6 +10,7 @@ import SwiftUI
 
 /// Book detail view.
 struct DetailView: View {
+	@FocusState var textEditorFocused: Bool
 	@State var book: Book
 	@State private var showingSheet = false
 	@State private var renderedImage = Image(systemName: "book")
@@ -34,6 +35,7 @@ struct DetailView: View {
 					.scrollContentBackground(.hidden)
 					.background(.textEditorBackground)
 					.clipShape(.rect(cornerRadius: 10))
+					.focused($textEditorFocused)
 				
 				HStack {
 					Spacer()
@@ -67,10 +69,17 @@ struct DetailView: View {
 						)
 					)
 				}
+				
+				ToolbarItemGroup(placement: .keyboard) {
+					Spacer()
+					
+					Button("Done") {
+						textEditorFocused = false
+					}
+				}
 			}
 			.sheet(isPresented: $showingSheet) {
 				MarkAsFinishedView(book: book)
-					.interactiveDismissDisabled()
 			}
 			.onAppear {
 				getSharedImage()
