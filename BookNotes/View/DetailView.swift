@@ -23,10 +23,16 @@ struct DetailView: View {
 					.fontDesign(.serif)
 					.bold()
 				
-				Text("by \(book.author)")
-					.foregroundStyle(.secondary)
-					.font(.headline)
-					.padding(.bottom, 20)
+				HStack {
+					Text("by \(book.author)")
+					
+					Spacer()
+					
+					Text(book.genre.rawValue)
+				}
+				.foregroundStyle(.secondary)
+				.font(.headline)
+				.padding(.bottom, 20)
 				
 				Text("Your notes:")
 					.font(.headline)
@@ -105,7 +111,7 @@ struct DetailView: View {
 		let config = ModelConfiguration(isStoredInMemoryOnly: true)
 		let container = try ModelContainer(for: Book.self, configurations: config)
 		
-		let book = Book(title: "Example", author: "Example", genre: "fantasy")
+		let book = Book(title: "Example", author: "Example", genre: .scienceFiction)
 		
 		return DetailView(of: book)
 			.modelContainer(container)

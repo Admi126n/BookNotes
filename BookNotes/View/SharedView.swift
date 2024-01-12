@@ -59,7 +59,7 @@ struct SharedView: View {
 		let config = ModelConfiguration(isStoredInMemoryOnly: true)
 		let container = try ModelContainer(for: Book.self, configurations: config)
 		
-		let book = Book(title: "Example", author: "Example", genre: "fantasy")
+		let book = Book(title: "Example", author: "Example", genre: .other)
 		
 		return SharedView(of: book)
 			.modelContainer(container)

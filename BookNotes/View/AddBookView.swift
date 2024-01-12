@@ -20,6 +20,7 @@ struct AddBookView: View {
 	@FocusState private var focusedField: Field?
 	@State private var title = ""
 	@State private var author = ""
+	@State private var genre = Genre.other
 	
 	var disableSave: Bool {
 		title.isEmpty || author.isEmpty
@@ -37,6 +38,13 @@ struct AddBookView: View {
 					.textInputAutocapitalization(.words)
 					.focused($focusedField, equals: .author)
 					.submitLabel(.done)
+				
+				Picker("Genre", selection: $genre) {
+					ForEach(Genre.allCases, id: \.rawValue) { genre in
+						Text("\(genre.rawValue)")
+							.tag(genre)
+					}
+				}
 			}
 			.navigationTitle("Add book")
 			.toolbarTitleDisplayMode(.inline)
@@ -52,17 +60,15 @@ struct AddBookView: View {
 				switch focusedField {
 				case .title:
 					focusedField = .author
-				case .author:
-					addBook()
-				case nil:
-					print("")
+				default:
+					return
 				}
 			}
 		}
     }
 	
 	private func addBook() {
-		let book = Book(title: title, author: author, genre: "fantasy")
+		let book = Book(title: title, author: author, genre: genre)
 		
 		modelContext.insert(book)
 		dismiss()
