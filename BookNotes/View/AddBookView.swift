@@ -64,6 +64,9 @@ struct AddBookView: View {
 					return
 				}
 			}
+			.onAppear {
+				focusedField = .title
+			}
 		}
     }
 	

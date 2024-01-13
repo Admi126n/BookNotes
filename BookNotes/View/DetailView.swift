@@ -46,11 +46,11 @@ struct DetailView: View {
 				HStack {
 					Spacer()
 					
-					if book.finished {
+					if book.isFinished {
 						VStack {
 							RatingView(rating: .constant(book.rating))
 							
-							Text("Finished on \(book.readDate!.formatted(date: .abbreviated, time: .omitted))")
+							Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
 						}
 					} else {
 						Button("Mark as finished") {

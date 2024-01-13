@@ -21,7 +21,7 @@ struct SharedView: View {
 			Text("by \(book.author)")
 				.foregroundStyle(.secondary)
 			
-			if book.finished {
+			if book.isFinished {
 				RatingView(rating: .constant(book.rating))
 					.padding(.top, 3)
 			}
@@ -32,7 +32,7 @@ struct SharedView: View {
 				colors: [.white, .gray],
 				center: .center,
 				startRadius: 70,
-				endRadius: book.finished ? 200 : 100
+				endRadius: book.isFinished ? 200 : 100
 			)
 		)
 	}

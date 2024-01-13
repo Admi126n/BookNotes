@@ -14,9 +14,20 @@ struct ToReadView: View {
 	@Environment(\.modelContext) var modelContext
 	@Query var books: [Book]
 	@State private var showingSheet = false
+	@State private var searchText = ""
 	
 	var filteredBooks: [Book] {
-		books.filter { !$0.finished }
+		books.filter { book in
+			if searchText.isEmpty {
+				return !book.isFinished
+			} else {
+				return !book.isFinished
+				&& (book.title.localizedCaseInsensitiveContains(searchText)
+					|| book.author.localizedCaseInsensitiveContains(searchText)
+					|| book.genre.rawValue.localizedCaseInsensitiveContains(searchText)
+					)
+			}
+		}
 	}
 	
 	var body: some View {
@@ -65,6 +76,7 @@ struct ToReadView: View {
 					}
 				}
 			}
+			.searchable(text: $searchText, prompt: "Search for a title, author or genre")
 			.navigationTitle("To read")
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {

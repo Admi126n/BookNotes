@@ -5,22 +5,53 @@
 //  Created by Adam Tokarski on 04/01/2024.
 //
 
+import SwiftData
 import SwiftUI
 
 /// Listed books based on user search input (provided by Google Books API).
 struct SearchView: View {
+	@Query var books: [Book]
+	@State private var searchText = ""
+	
+	var filteredBooks: [Book] {
+		books.filter {
+			$0.title.localizedCaseInsensitiveContains(searchText)
+			|| $0.author.localizedCaseInsensitiveContains(searchText)
+			|| $0.genre.rawValue.localizedCaseInsensitiveContains(searchText)
+		}
+	}
+	
     var body: some View {
-		VStack {
-			Text("Search")
-				.italic()
-				.padding()
-			
-			Image(systemName: "doc.text.magnifyingglass")
-				.font(.title)
+		NavigationStack {
+			List(filteredBooks) { book in
+				NavigationLink {
+					DetailView(of: book)
+				} label: {
+					HStack {
+						Text(book.title)
+						
+						Spacer()
+						
+						if book.isFinished {
+							Image(systemName: "checkmark")
+								.foregroundStyle(.green)
+						}
+					}
+				}
+			}
+			.searchable(text: $searchText, prompt: "Search for a title, author or genre")
 		}
     }
 }
 
 #Preview {
-    SearchView()
+	do {
+		let config = ModelConfiguration(isStoredInMemoryOnly: true)
+		let container = try ModelContainer(for: Book.self, configurations: config)
+		
+		return SearchView()
+			.modelContainer(container)
+	} catch {
+		return Text("Failed to create container, \(error.localizedDescription)")
+	}
 }
