@@ -23,7 +23,7 @@ struct FinishedView: View {
 				return book.isFinished 
 				&& (book.title.localizedCaseInsensitiveContains(searchText)
 					|| book.author.localizedCaseInsensitiveContains(searchText)
-					|| book.genre.rawValue.localizedCaseInsensitiveContains(searchText)
+					|| book.genre.localizedCaseInsensitiveContains(searchText)
 					)
 			}
 		}

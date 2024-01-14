@@ -28,7 +28,7 @@ struct DetailView: View {
 					
 					Spacer()
 					
-					Text(book.genre.rawValue)
+					Text(book.genre)
 				}
 				.foregroundStyle(.secondary)
 				.font(.headline)

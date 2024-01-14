@@ -17,7 +17,7 @@ struct SearchView: View {
 		books.filter {
 			$0.title.localizedCaseInsensitiveContains(searchText)
 			|| $0.author.localizedCaseInsensitiveContains(searchText)
-			|| $0.genre.rawValue.localizedCaseInsensitiveContains(searchText)
+			|| $0.genre.localizedCaseInsensitiveContains(searchText)
 		}
 	}
 	

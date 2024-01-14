@@ -11,7 +11,7 @@ import SwiftData
 @Model
 class Book {
 	var author: String
-	var genre: Genre
+	var genre: String
 	var title: String = ""
 	var notes: String = ""
 	private(set) var isFinished: Bool = false
@@ -22,14 +22,14 @@ class Book {
 	init(title: String, author: String, genre: Genre) {
 		self.title = title
 		self.author = author
-		self.genre = genre
+		self.genre = genre.rawValue
 	}
 	
 	/// Init for finished books
 	init(title: String, author: String, genre: Genre, readDate: Date, notes: String = "", rating: Int = 1) {
 		self.title = title
 		self.author = author
-		self.genre = genre
+		self.genre = genre.rawValue
 		self.isFinished = true
 		self.notes = notes
 		self.rating = rating
