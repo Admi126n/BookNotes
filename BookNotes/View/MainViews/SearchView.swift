@@ -28,7 +28,7 @@ struct SearchView: View {
 					DetailView(of: book)
 				} label: {
 					HStack {
-						Text(book.title)
+						CellView(of: book)
 						
 						Spacer()
 						

@@ -37,25 +37,7 @@ struct ToReadView: View {
 					NavigationLink {
 						DetailView(of: book)
 					} label: {
-						HStack {
-							VStack(alignment: .leading) {
-								Text(book.title)
-									.fontDesign(.serif)
-									.font(.headline)
-								
-								Text(book.author)
-									.font(.caption)
-									.foregroundStyle(.secondary)
-							}
-							
-							Spacer()
-							
-							if favourites.contains(book) {
-								Image(systemName: "heart.fill")
-									.foregroundStyle(.red)
-							}
-						}
-						
+						CellView(of: book)
 					}
 					.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 						DeleteButton {
