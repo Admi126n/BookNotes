@@ -16,37 +16,35 @@ struct ToReadView: View {
 	
 	var body: some View {
 		NavigationStack {
-			List {
-				BookListView(sort: sortOrder, searchText: searchText, false)
-			}
-			.searchable(text: $searchText, prompt: "Search for a title, author or genre")
-			.navigationTitle("To read")
-			.toolbar {
-				ToolbarItem(placement: .topBarTrailing) {
-					Menu("Sort", systemImage: "arrow.up.arrow.down") {
-						Picker("Sort", selection: $sortOrder) {
-							Text("Title")
-								.tag(SortDescriptor(\Book.title))
-							
-							Text("Author")
-								.tag(SortDescriptor(\Book.author))
-							
-							Text("Genre")
-								.tag(SortDescriptor(\Book.genre))
+			BooksListView(sort: sortOrder, searchText: searchText, false)
+				.searchable(text: $searchText, prompt: "Search for a title, author or genre")
+				.navigationTitle("To read")
+				.toolbar {
+					ToolbarItem(placement: .topBarTrailing) {
+						Menu("Sort", systemImage: "arrow.up.arrow.down") {
+							Picker("Sort", selection: $sortOrder) {
+								Text("Title")
+									.tag(SortDescriptor(\Book.title))
+								
+								Text("Author")
+									.tag(SortDescriptor(\Book.author))
+								
+								Text("Genre")
+									.tag(SortDescriptor(\Book.genre))
+							}
+							.pickerStyle(.inline)
 						}
-						.pickerStyle(.inline)
+					}
+					
+					ToolbarItem(placement: .topBarTrailing) {
+						Button("Add book", systemImage: "plus") {
+							showingSheet = true
+						}
 					}
 				}
-				
-				ToolbarItem(placement: .topBarTrailing) {
-					Button("Add book", systemImage: "plus") {
-						showingSheet = true
-					}
+				.sheet(isPresented: $showingSheet) {
+					AddBookView()
 				}
-			}
-			.sheet(isPresented: $showingSheet) {
-				AddBookView()
-			}
 		}
 	}
 }
