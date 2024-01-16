@@ -5,7 +5,6 @@
 //  Created by Adam Tokarski on 04/01/2024.
 //
 
-import SwiftData
 import SwiftUI
 
 /// List of books to read.
@@ -16,7 +15,7 @@ struct ToReadView: View {
 	
 	var body: some View {
 		NavigationStack {
-			BooksListView(sort: sortOrder, searchText: searchText, false)
+			BooksListView(sortUnfinished: sortOrder, search: searchText)
 				.searchable(text: $searchText, prompt: "Search for a title, author or genre")
 				.navigationTitle("To read")
 				.toolbar {

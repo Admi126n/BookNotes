@@ -5,62 +5,43 @@
 //  Created by Adam Tokarski on 04/01/2024.
 //
 
-import SwiftData
 import SwiftUI
 
 /// List of all finished books with favourites marked.
 struct FinishedView: View {
-	@EnvironmentObject var favourites: Favourites
-	@Environment(\.modelContext) var modelContext
-	@Query var books: [Book]
 	@State private var searchText = ""
+	@State private var sortOrder = SortDescriptor(\Book.title)
 	
-	var filteredBooks: [Book] {
-		books.filter { book in
-			if searchText.isEmpty {
-				return book.isFinished
-			} else {
-				return book.isFinished 
-				&& (book.title.localizedCaseInsensitiveContains(searchText)
-					|| book.author.localizedCaseInsensitiveContains(searchText)
-					|| book.genre.localizedCaseInsensitiveContains(searchText)
-					)
-			}
-		}
-	}
-	
-    var body: some View {
+	var body: some View {
 		NavigationStack {
-			List {
-				ForEach(filteredBooks) { book in
-					NavigationLink() {
-						DetailView(of: book)
-					} label: {
-						CellView(of: book)
-					}
-					.swipeActions(edge: .trailing, allowsFullSwipe: true) {
-						DeleteButton {
-							modelContext.delete(book)
-							favourites.remove(book)
-						}
-					}
-					.swipeActions(edge: .leading, allowsFullSwipe: true) {
-						if favourites.contains(book) {
-							RemoveFromFavouritesButton {
-								favourites.remove(book)
+			BooksListView(sortFinished: sortOrder, search: searchText)
+				.searchable(text: $searchText, prompt: "Search for a title, author or genre")
+				.navigationTitle("Finished")
+				.toolbar {
+					ToolbarItem(placement: .topBarTrailing) {
+						Menu("Sort", systemImage: "arrow.up.arrow.down") {
+							Picker("Sort", selection: $sortOrder) {
+								Text("Title")
+									.tag(SortDescriptor(\Book.title))
+								
+								Text("Author")
+									.tag(SortDescriptor(\Book.author))
+								
+								Text("Genre")
+									.tag(SortDescriptor(\Book.genre))
+								
+								Text("Date")
+									.tag(SortDescriptor(\Book.finishDate!))
+								
+								Text("Rating")
+									.tag(SortDescriptor(\Book.rating, order: .reverse))
 							}
-						} else {
-							AddToFavouritesButton {
-								favourites.add(book)
-							}
+							.pickerStyle(.inline)
 						}
 					}
 				}
-			}
-			.searchable(text: $searchText, prompt: "Search for a title, author or genre")
-			.navigationTitle("Finished")
 		}
-    }
+	}
 }
 
 #Preview {

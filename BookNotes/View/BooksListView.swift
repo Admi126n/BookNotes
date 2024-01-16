@@ -46,26 +46,42 @@ struct BooksListView: View {
 		}
 	}
 	
-	init(sort: SortDescriptor<Book>, searchText: String, _ finished: Bool? = nil) {
+	init(sortAll by: SortDescriptor<Book>, search: String) {
 		_books = Query(filter: #Predicate { book in
-			if searchText.isEmpty {
-				if let finished = finished {
-					return book.isFinished == finished
-				} else {
-					return true
-				}
+			if search.isEmpty {
+				return true
 			} else {
-				if let finished = finished {
-					return book.isFinished == finished
-					&& (book.title.localizedStandardContains(searchText)
-					|| book.author.localizedStandardContains(searchText)
-						|| book.genre.localizedStandardContains(searchText))
-				} else {
-					return book.title.localizedStandardContains(searchText)
-					|| book.author.localizedStandardContains(searchText)
-				}
+				return book.title.localizedStandardContains(search)
+				|| book.author.localizedStandardContains(search)
+				|| book.genre.localizedStandardContains(search)
 			}
-		}, sort: [sort])
+		})
+	}
+	
+	init(sortFinished by: SortDescriptor<Book>, search: String) {
+		_books = Query(filter: #Predicate { book in
+			if search.isEmpty {
+				return book.isFinished
+			} else {
+				return book.isFinished
+				&& (book.title.localizedStandardContains(search)
+				|| book.author.localizedStandardContains(search)
+				|| book.genre.localizedStandardContains(search))
+			}
+		})
+	}
+	
+	init(sortUnfinished by: SortDescriptor<Book>, search: String) {
+		_books = Query(filter: #Predicate { book in
+			if search.isEmpty {
+				return !book.isFinished
+			} else {
+				return !book.isFinished
+				&& (book.title.localizedStandardContains(search)
+				|| book.author.localizedStandardContains(search)
+				|| book.genre.localizedStandardContains(search))
+			}
+		})
 	}
 }
 
