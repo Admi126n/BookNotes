@@ -9,10 +9,10 @@ import Foundation
 import SwiftData
 
 @Model
-class Book {
+class Book: Equatable {
 	var author: String
 	var genre: String
-	var title: String = ""
+	var title: String
 	var notes: String = ""
 	private(set) var isFinished: Bool = false
 	private(set) var finishDate: Date?
@@ -39,5 +39,9 @@ class Book {
 	func markAsFinished() {
 		finishDate = .now
 		isFinished = true
+	}
+	
+	static func ==(_ lhs: Book, _ rhs: Book) -> Bool {
+		lhs.author == rhs.author && lhs.title == rhs.title
 	}
 }

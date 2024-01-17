@@ -12,6 +12,7 @@ struct BooksListView: View {
 	@Environment(\.modelContext) var modelContext
 	@EnvironmentObject var favourites: Favourites
 	@Query var books: [Book]
+	private var searchTab = false
 	
 	var body: some View {
 		if books.count == 0 {
@@ -22,7 +23,16 @@ struct BooksListView: View {
 					NavigationLink {
 						DetailView(of: book)
 					} label: {
-						CellView(of: book)
+						HStack {
+							CellView(of: book)
+							
+							if searchTab, book.isFinished {
+								Spacer()
+								
+								Image(systemName: "checkmark")
+									.foregroundStyle(.green)
+							}
+						}
 					}
 					.swipeActions(edge: .trailing, allowsFullSwipe: true) {
 						DeleteButton {
@@ -47,6 +57,8 @@ struct BooksListView: View {
 	}
 	
 	init(sortAll by: SortDescriptor<Book>, search: String) {
+		self.searchTab = true
+		
 		_books = Query(filter: #Predicate { book in
 			if search.isEmpty {
 				return true

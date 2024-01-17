@@ -18,9 +18,12 @@ struct AddBookView: View {
 	@Environment(\.dismiss) var dismiss
 	@Environment(\.modelContext) var modelContext
 	@FocusState private var focusedField: Field?
+	@Query var books: [Book]
 	@State private var title = ""
 	@State private var author = ""
 	@State private var genre = Genre.other
+	@State private var showingAlert = false
+	@State private var message = ""
 	
 	var disableSave: Bool {
 		title.isEmpty || author.isEmpty
@@ -29,6 +32,7 @@ struct AddBookView: View {
     var body: some View {
 		NavigationStack {
 			Form {
+				
 				TextField("Title", text: $title)
 					.textInputAutocapitalization(.words)
 					.focused($focusedField, equals: .title)
@@ -67,11 +71,23 @@ struct AddBookView: View {
 			.onAppear {
 				focusedField = .title
 			}
+			.alert("Book already exist", isPresented: $showingAlert) { } message: {
+				Text(message)
+			}
 		}
     }
 	
 	private func addBook() {
-		let book = Book(title: title, author: author, genre: genre)
+		let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+		let trimmedAuthor = author.trimmingCharacters(in: .whitespacesAndNewlines)
+		
+		let book = Book(title: trimmedTitle, author: trimmedAuthor, genre: genre)
+		
+		guard !books.contains(book) else {
+			message = "You already have book \"\(trimmedTitle)\" by \(trimmedAuthor)"
+			showingAlert = true
+			return
+		}
 		
 		modelContext.insert(book)
 		dismiss()
