@@ -14,6 +14,7 @@
 		669525FD2B541FE20005F422 /* BooksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669525FC2B541FE20005F422 /* BooksListView.swift */; };
 		669AF26C2B4883DC00310430 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669AF26B2B4883DC00310430 /* AddBookView.swift */; };
 		66A552EE2B4F23F500577A3A /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A552ED2B4F23F500577A3A /* RatingView.swift */; };
+		66C37FD52B5848BF00C5AA7B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 66C37FD42B5848BF00C5AA7B /* Localizable.xcstrings */; };
 		66CF06AF2B4B09B200DAB6AC /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06AE2B4B09B200DAB6AC /* Favourites.swift */; };
 		66CF06B12B4B492E00DAB6AC /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06B02B4B492E00DAB6AC /* DeleteButton.swift */; };
 		66CF06B42B4B49AF00DAB6AC /* AddToFavouritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06B32B4B49AF00DAB6AC /* AddToFavouritesButton.swift */; };
@@ -39,6 +40,7 @@
 		669525FC2B541FE20005F422 /* BooksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksListView.swift; sourceTree = "<group>"; };
 		669AF26B2B4883DC00310430 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		66A552ED2B4F23F500577A3A /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		66C37FD42B5848BF00C5AA7B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		66CF06AE2B4B09B200DAB6AC /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		66CF06B02B4B492E00DAB6AC /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
 		66CF06B32B4B49AF00DAB6AC /* AddToFavouritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavouritesButton.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				66DDF55B2B47105600355825 /* BookNotesApp.swift */,
+				66C37FD42B5848BF00C5AA7B /* Localizable.xcstrings */,
 				66DDF5742B474F9B00355825 /* Model */,
 				66DDF5692B4711E900355825 /* View */,
 				66DDF5792B4756E700355825 /* ViewModel */,
@@ -203,6 +206,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pl,
 			);
 			mainGroup = 66DDF54F2B47105600355825;
 			productRefGroup = 66DDF5592B47105600355825 /* Products */;
@@ -221,6 +225,7 @@
 			files = (
 				66DDF5632B47105700355825 /* Preview Assets.xcassets in Resources */,
 				66DDF5602B47105700355825 /* Assets.xcassets in Resources */,
+				66C37FD52B5848BF00C5AA7B /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,16 +392,17 @@
 				DEVELOPMENT_TEAM = 8M6629LY4U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.BookNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -416,16 +422,17 @@
 				DEVELOPMENT_TEAM = 8M6629LY4U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.BookNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -16,7 +16,7 @@ struct MarkAsFinishedView: View {
 	var body: some View {
 		NavigationStack {
 			Form {
-				Section("Notes for book") {
+				Section("Notes") {
 					TextEditor(text: $book.notes)
 						.focused($textEditorFocused)
 				}

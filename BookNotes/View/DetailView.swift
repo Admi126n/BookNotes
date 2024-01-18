@@ -34,7 +34,7 @@ struct DetailView: View {
 				.font(.headline)
 				.padding(.bottom, 20)
 				
-				Text("Your notes:")
+				Text("Notes")
 					.font(.headline)
 				
 				TextEditor(text: $book.notes)
