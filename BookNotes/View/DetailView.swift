@@ -10,6 +10,7 @@ import SwiftUI
 
 /// Book detail view.
 struct DetailView: View {
+	@Environment(\.dismiss) var dismiss
 	@FocusState var textEditorFocused: Bool
 	@State var book: Book
 	@State private var showingSheet = false
@@ -85,17 +86,15 @@ struct DetailView: View {
 				}
 			}
 			.sheet(isPresented: $showingSheet) {
-				MarkAsFinishedView(book: book)
+				MarkAsFinishedView(book: book) {
+					dismiss()
+				}
 			}
 			.onAppear {
 				getSharedImage()
 			}
 			.navigationBarTitleDisplayMode(.inline)
 		}
-	}
-	
-	init(of book: Book) {
-		self.book = book
 	}
 	
 	@MainActor func getSharedImage() {
@@ -113,7 +112,7 @@ struct DetailView: View {
 		
 		let book = Book(title: "Example", author: "Example", genre: .scienceFiction)
 		
-		return DetailView(of: book)
+		return DetailView(book: book)
 			.modelContainer(container)
 	} catch {
 		return Text("Failed to create container, \(error.localizedDescription)")

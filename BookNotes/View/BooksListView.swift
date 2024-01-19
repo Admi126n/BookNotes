@@ -21,7 +21,7 @@ struct BooksListView: View {
 			List {
 				ForEach(books) { book in
 					NavigationLink {
-						DetailView(of: book)
+						DetailView(book: book)
 					} label: {
 						HStack {
 							CellView(of: book)
@@ -67,7 +67,7 @@ struct BooksListView: View {
 				|| book.author.localizedStandardContains(search)
 				|| book.genre.localizedStandardContains(search)
 			}
-		})
+		}, sort: [by])
 	}
 	
 	init(sortFinished by: SortDescriptor<Book>, search: String) {
@@ -80,7 +80,7 @@ struct BooksListView: View {
 				|| book.author.localizedStandardContains(search)
 				|| book.genre.localizedStandardContains(search))
 			}
-		})
+		}, sort: [by])
 	}
 	
 	init(sortUnfinished by: SortDescriptor<Book>, search: String) {
@@ -93,7 +93,7 @@ struct BooksListView: View {
 				|| book.author.localizedStandardContains(search)
 				|| book.genre.localizedStandardContains(search))
 			}
-		})
+		}, sort: [by])
 	}
 }
 
