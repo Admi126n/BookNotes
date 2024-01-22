@@ -7,35 +7,54 @@
 
 import Foundation
 
-struct ApiBook {
-	let title: String
-	let subtitle: String? = nil
-	let authors: [String]
-	let description: String? = nil
-	let categories: [String]? = nil
-	let averageRating: Float? = nil
-	let imageLink: URL? = nil
-	let price: Float? = nil
-	let currency: String? = nil
-	
-	init(title: String, authors: [String]) {
+/// Struct describing books fetched from Google Books API.
+///
+/// Struct contains `title` and `authors` but rest od fields are oprional.
+struct ApiBook: Hashable {
+	private(set) var title: String
+	private(set) var subtitle: String? = nil
+	private(set) var authors: [String]
+	private(set) var description: String? = nil
+	private(set) var categories: [String]? = nil
+	private(set) var averageRating: Float? = nil
+	private(set) var imageLink: URL? = nil
+	private(set) var price: Float? = nil
+	private(set) var currency: String? = nil
+		
+	fileprivate init?(_ bookModel: BookModel) {
+		guard let title = bookModel.volumeInfo.title, let authors = bookModel.volumeInfo.authors else {
+			return nil
+		}
+		
 		self.title = title
+		self.subtitle = bookModel.volumeInfo.subtitle
 		self.authors = authors
+		self.description = bookModel.volumeInfo.description
+		self.categories = bookModel.volumeInfo.categories
+		self.averageRating = bookModel.volumeInfo.averageRating
+		self.price = bookModel.saleInfo?.listPrice?.amount
+		self.currency = bookModel.saleInfo?.listPrice?.currencyCode
+		
+		if let imageUrl = bookModel.volumeInfo.imageLinks?.thumbnail {
+			self.imageLink = URL(string: imageUrl)
+		}
 	}
 }
 
 struct APIConnector {
 	
-	private let base = "https://www.googleapis.com/books/v1/volumes"
-	private let type = "&printType=books"
-	private let limit = "&maxResults=10"
+	private static let base = "https://www.googleapis.com/books/v1/volumes"
+	private static let type = "&printType=books"
+	private static let limit = "&maxResults=10"
+	
+	private init() { }
 	
 	/// Parses given search text for Google Books API request.
 	///
 	/// Replaces all spaces with `%20` and trimms whitespacesAndNewlines
 	/// - Parameter searchText: given search test
 	/// - Returns: search text parsed to query format
-	private func parse(_ searchText: String) -> String {
+	private static func parse(_ searchText: String) -> String {
 		var parsed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
 		parsed = parsed.components(separatedBy: " ").filter { $0 != "" }.joined(separator: "%20")
 		
@@ -45,35 +64,53 @@ struct APIConnector {
 	/// Builds Google Books API URL request for given search text
 	/// - Parameter searchText: given search text
 	/// - Returns: Google Books API URL request
-	private func buildURL(for searchText: String) -> URL {
+	private static func buildURL(for searchText: String) -> URL {
 		let query = parse(searchText)
 		
 		return URL(string: "\(base)?q=\(query)\(type)\(limit)")!
 	}
 	
-	private func getSearchResults() async -> [BookModel] {
-		let url = buildURL(for: "Clean code")
+	/// Performs request to Google Books API.
+	///
+	/// If request fails returns nil.
+	/// - Parameter query: Search text
+	/// - Returns: Fetched books data
+	private static func performURLRequest(for query: String) async -> [BookModel]? {
+		let url = buildURL(for: query)
 		
 		do {
 			let fetchedData: Items = try await url.fetchData()
 			return fetchedData.items
 		} catch {
-			print("Cannot decode")
-			return []
+			return nil
 		}
 	}
 	
-	private func getFilteredBooks(_ decodedData: [BookModel]) -> [ApiBook] {
-		var books: [ApiBook] = []
+	/// Maps `[BookModel]` into `[ApiBook]`.
+	///
+	/// All given books which don't contain title and author are omitted.
+	/// - Parameter books: Given books
+	/// - Returns: Filtered books mapped into another struct
+	private static func reduceFetched(_ books: [BookModel]) -> [ApiBook] {
+		var result: [ApiBook] = []
 		
-		for book in decodedData {
-			if let title = book.volumeInfo.title, let authors = book.volumeInfo.authors {
-				let newBook = ApiBook(title: title, authors: authors)
-				books.append(newBook)
-			}
+		for book in books where book.volumeInfo.title != nil && book.volumeInfo.authors != nil {
+			let newBook = ApiBook(book)!
+			result.append(newBook)
 		}
 		
-		return books
+		return result
+	}
+	
+	/// Performs URL request and returns fetched data.
+	/// - Parameter searchText: Given query for Google Books API
+	/// - Returns: Fetched data
+	static func getApiResults(for searchText: String) async -> [ApiBook] {
+		guard let results = await performURLRequest(for: searchText) else {
+			return []
+		}
+		
+		return reduceFetched(results)
 	}
 }
 
@@ -83,7 +120,7 @@ struct APIConnector {
 extension APIConnector {
 	
 	@available(*, deprecated, renamed: "parse", message: "method only for tests")
-	func testParse(_ searchText: String) -> String {
+	static func testParse(_ searchText: String) -> String {
 		parse(searchText)
 	}
 }

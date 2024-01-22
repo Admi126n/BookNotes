@@ -10,20 +10,10 @@ import XCTest
 
 final class BookNotesTests: XCTestCase {
 
-	var sut: APIConnector!
-	
-    override func setUp() {
-		sut = APIConnector()
-    }
-
-    override func tearDown() {
-        sut = nil
-    }
-
 	func testApiConnectorParseSearchText_WhenInputWithSpaceGiven_ShouldReplaceSpace() {
 		let searchText = "Clean code"
 		
-		let parsedInput = sut.testParse(searchText)
+		let parsedInput = APIConnector.testParse(searchText)
 		
 		XCTAssertEqual(parsedInput, "Clean%20code")
 	}
@@ -31,7 +21,7 @@ final class BookNotesTests: XCTestCase {
 	func testApiConnectorParseSearchText_WhenInputWithMultipleSpaceGiven_ShouldReplaceSpace() {
 		let searchText = "Clean   code"
 		
-		let parsedInput = sut.testParse(searchText)
+		let parsedInput = APIConnector.testParse(searchText)
 		
 		XCTAssertEqual(parsedInput, "Clean%20code")
 	}
