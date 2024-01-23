@@ -31,6 +31,9 @@
         }
       }
     },
+    "API" : {
+
+    },
     "Author" : {
       "localizations" : {
         "pl" : {
@@ -310,6 +313,9 @@
           }
         }
       }
+    },
+    "Your books" : {
+
     }
   },
   "version" : "1.0"
