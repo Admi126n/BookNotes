@@ -36,9 +36,24 @@ struct ApiBook: Hashable {
 		self.currency = bookModel.saleInfo?.listPrice?.currencyCode
 		
 		if let imageUrl = bookModel.volumeInfo.imageLinks?.thumbnail {
-			self.imageLink = URL(string: imageUrl)
+			self.imageLink = URL(string: imageUrl.replacingOccurrences(of: "http", with: "https"))
 		}
 	}
+	
+	static let example = ApiBook(
+		BookModel(
+			volumeInfo: VolumeInfo(
+				title: "Example",
+				subtitle: "Example book",
+				authors: ["Unknown 1", "Unknown 2"],
+				description: "Good example book",
+				categories: ["Fantasy", "Adventure"],
+				averageRating: 4.5,
+				imageLinks: nil),
+			saleInfo: SaleInfo(
+				listPrice: ListPrice(
+					amount: 40,
+					currencyCode: "PLN"))))!
 }
 
 struct APIConnector {

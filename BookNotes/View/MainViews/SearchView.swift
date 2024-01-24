@@ -55,14 +55,10 @@ struct SearchView: View {
 						}
 						
 						if !fetchedBooks.isEmpty {
-							Section("API") {
+							Section("Books from internet") {
 								ForEach(fetchedBooks, id: \.self) { book in
 									NavigationLink {
-										VStack {
-											Text(book.title)
-											
-											Text(book.authors, format: .list(type: .and))
-										}
+										DetailViewApi(book: book)
 									} label: {
 										Text(book.title)
 									}
