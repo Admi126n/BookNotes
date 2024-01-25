@@ -78,20 +78,27 @@ struct APIConnector {
 	
 	/// Builds Google Books API URL request for given search text
 	/// - Parameter searchText: given search text
+	/// - Parameter requestType: Search request type
 	/// - Returns: Google Books API URL request
-	private static func buildURL(for searchText: String) -> URL {
+	private static func buildURL(for searchText: String, _ requestType: RequestType) -> URL {
 		let query = parse(searchText)
 		
-		return URL(string: "\(base)?q=\(query)\(type)\(limit)")!
+		switch requestType {
+		case .author, .subject, .title:
+			return URL(string: "\(base)?q=\(requestType.rawValue)\(query)\(type)\(limit)")!
+		case .all, .defaultRequest:
+			return URL(string: "\(base)?q=\(query)\(type)\(limit)")!
+		}
 	}
 	
 	/// Performs request to Google Books API.
-	///
+	/// 
 	/// If request fails returns nil.
 	/// - Parameter query: Search text
+	/// - Parameter requestType: Search request type
 	/// - Returns: Fetched books data
-	private static func performURLRequest(for query: String) async -> [BookModel]? {
-		let url = buildURL(for: query)
+	private static func performURLRequest(for query: String, _ requestType: RequestType) async -> [BookModel]? {
+		let url = buildURL(for: query, requestType)
 		
 		do {
 			let fetchedData: Items = try await url.fetchData()
@@ -114,18 +121,38 @@ struct APIConnector {
 			result.append(newBook)
 		}
 		
-		return result
+		return result.sorted { $0.title < $1.title }
 	}
 	
 	/// Performs URL request and returns fetched data.
 	/// - Parameter searchText: Given query for Google Books API
+	/// - Parameter requestType: Search request type
 	/// - Returns: Fetched data
-	static func getApiResults(for searchText: String) async -> [ApiBook] {
-		guard let results = await performURLRequest(for: searchText) else {
-			return []
+	static func getApiResults(for searchText: String, _ requestType: RequestType = .defaultRequest) async -> [ApiBook] {
+		var output: [BookModel] = []
+		
+		switch requestType {
+		case .defaultRequest, .author, .subject, .title:
+			guard let results = await performURLRequest(for: searchText, requestType) else {
+				return []
+			}
+			
+			output += results
+		case .all:
+			if let results = await performURLRequest(for: searchText, .author) {
+				output += results
+			}
+			
+			if let results = await performURLRequest(for: searchText, .subject) {
+				output += results
+			}
+			
+			if let results = await performURLRequest(for: searchText, .title) {
+				output += results
+			}
 		}
 		
-		return reduceFetched(results)
+		return reduceFetched(output)
 	}
 }
 
