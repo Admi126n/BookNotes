@@ -7,10 +7,8 @@
 
 import SwiftUI
 
-//private(set) var imageLink: URL? = nil
-
 struct DetailViewApi: View {
-	let book: ApiBook
+	let book: APIBook
 	
 	var body: some View {
 		NavigationStack {
@@ -35,8 +33,8 @@ struct DetailViewApi: View {
 								.foregroundStyle(.secondary)
 								.font(.headline)
 							
-							if let price = book.price, let currency = book.currency {
-								Text("\(price, specifier: "%.2f") \(currency)")
+							if let price = book.price {
+								Text("\(price.amount, specifier: "%.2f") \(price.currency)")
 							}
 							
 							Spacer()
@@ -83,5 +81,5 @@ struct DetailViewApi: View {
 }
 
 #Preview {
-	DetailViewApi(book: ApiBook.example)
+	DetailViewApi(book: APIBook.example)
 }

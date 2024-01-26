@@ -12,7 +12,7 @@ import SwiftUI
 struct SearchView: View {
 	@Query var books: [Book]
 	@State private var searchText = ""
-	@State private var fetchedBooks: [ApiBook] = []
+	@State private var fetchedBooks: [APIBook] = []
 	
 	var filteredBooks: [Book] {
 		books.filter {
