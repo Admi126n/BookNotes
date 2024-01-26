@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6616A76E2B6307360065AB5D /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6616A76D2B6307360065AB5D /* RequestType.swift */; };
 		662C5DB22B51C517003DDA05 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662C5DB12B51C517003DDA05 /* Genre.swift */; };
 		664C9D012B4C5EB800D846F6 /* SharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C9D002B4C5EB800D846F6 /* SharedView.swift */; };
 		665F72FB2B49AD2B0000955D /* MarkAsFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */; };
+		667ADCEE2B5AC1B7006A1313 /* URL+fetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667ADCED2B5AC1B7006A1313 /* URL+fetchData.swift */; };
+		667ADCF12B5AC253006A1313 /* APIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667ADCF02B5AC253006A1313 /* APIConnector.swift */; };
+		667DC4162B6060160040550C /* DetailViewApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667DC4152B6060160040550C /* DetailViewApi.swift */; };
 		669525F92B5413200005F422 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669525F82B5413200005F422 /* CellView.swift */; };
 		669525FD2B541FE20005F422 /* BooksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669525FC2B541FE20005F422 /* BooksListView.swift */; };
 		669AF26C2B4883DC00310430 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669AF26B2B4883DC00310430 /* AddBookView.swift */; };
@@ -30,12 +34,27 @@
 		66DDF5732B474F8C00355825 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF5722B474F8C00355825 /* Book.swift */; };
 		66DDF5782B4756D900355825 /* ToReadView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF5772B4756D900355825 /* ToReadView-ViewModel.swift */; };
 		66DDF57B2B47582200355825 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF57A2B47582200355825 /* DetailView.swift */; };
+		66FCDC052B5D55EF0055910F /* BookNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FCDC042B5D55EF0055910F /* BookNotesTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		66FCDC062B5D55EF0055910F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66DDF5502B47105600355825 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66DDF5572B47105600355825;
+			remoteInfo = BookNotes;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		6616A76D2B6307360065AB5D /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		662C5DB12B51C517003DDA05 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		664C9D002B4C5EB800D846F6 /* SharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedView.swift; sourceTree = "<group>"; };
 		665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAsFinishedView.swift; sourceTree = "<group>"; };
+		667ADCED2B5AC1B7006A1313 /* URL+fetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+fetchData.swift"; sourceTree = "<group>"; };
+		667ADCF02B5AC253006A1313 /* APIConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConnector.swift; sourceTree = "<group>"; };
+		667DC4152B6060160040550C /* DetailViewApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewApi.swift; sourceTree = "<group>"; };
 		669525F82B5413200005F422 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		669525FC2B541FE20005F422 /* BooksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksListView.swift; sourceTree = "<group>"; };
 		669AF26B2B4883DC00310430 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
@@ -57,10 +76,19 @@
 		66DDF5722B474F8C00355825 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		66DDF5772B4756D900355825 /* ToReadView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToReadView-ViewModel.swift"; sourceTree = "<group>"; };
 		66DDF57A2B47582200355825 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		66FCDC022B5D55EF0055910F /* BookNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66FCDC042B5D55EF0055910F /* BookNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNotesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		66DDF5552B47105600355825 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66FCDBFF2B5D55EF0055910F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -81,6 +109,16 @@
 			path = MainViews;
 			sourceTree = "<group>";
 		};
+		667ADCEF2B5AC1C6006A1313 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				667ADCF02B5AC253006A1313 /* APIConnector.swift */,
+				667ADCED2B5AC1B7006A1313 /* URL+fetchData.swift */,
+				6616A76D2B6307360065AB5D /* RequestType.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		66CF06B22B4B498E00DAB6AC /* SwipeButtons */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				66DDF55A2B47105600355825 /* BookNotes */,
+				66FCDC032B5D55EF0055910F /* BookNotesTests */,
 				66DDF5592B47105600355825 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				66DDF5582B47105600355825 /* BookNotes.app */,
+				66FCDC022B5D55EF0055910F /* BookNotesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +182,7 @@
 				66A552ED2B4F23F500577A3A /* RatingView.swift */,
 				664C9D002B4C5EB800D846F6 /* SharedView.swift */,
 				66CF06B22B4B498E00DAB6AC /* SwipeButtons */,
+				667DC4152B6060160040550C /* DetailViewApi.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -152,6 +193,7 @@
 				66DDF5722B474F8C00355825 /* Book.swift */,
 				66CF06AE2B4B09B200DAB6AC /* Favourites.swift */,
 				662C5DB12B51C517003DDA05 /* Genre.swift */,
+				667ADCEF2B5AC1C6006A1313 /* Networking */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -162,6 +204,14 @@
 				66DDF5772B4756D900355825 /* ToReadView-ViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		66FCDC032B5D55EF0055910F /* BookNotesTests */ = {
+			isa = PBXGroup;
+			children = (
+				66FCDC042B5D55EF0055910F /* BookNotesTests.swift */,
+			);
+			path = BookNotesTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +234,24 @@
 			productReference = 66DDF5582B47105600355825 /* BookNotes.app */;
 			productType = "com.apple.product-type.application";
 		};
+		66FCDC012B5D55EF0055910F /* BookNotesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66FCDC082B5D55EF0055910F /* Build configuration list for PBXNativeTarget "BookNotesTests" */;
+			buildPhases = (
+				66FCDBFE2B5D55EF0055910F /* Sources */,
+				66FCDBFF2B5D55EF0055910F /* Frameworks */,
+				66FCDC002B5D55EF0055910F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66FCDC072B5D55EF0055910F /* PBXTargetDependency */,
+			);
+			name = BookNotesTests;
+			productName = BookNotesTests;
+			productReference = 66FCDC022B5D55EF0055910F /* BookNotesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -191,11 +259,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1510;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					66DDF5572B47105600355825 = {
 						CreatedOnToolsVersion = 15.1;
+					};
+					66FCDC012B5D55EF0055910F = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 66DDF5572B47105600355825;
 					};
 				};
 			};
@@ -214,6 +286,7 @@
 			projectRoot = "";
 			targets = (
 				66DDF5572B47105600355825 /* BookNotes */,
+				66FCDC012B5D55EF0055910F /* BookNotesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -226,6 +299,13 @@
 				66DDF5632B47105700355825 /* Preview Assets.xcassets in Resources */,
 				66DDF5602B47105700355825 /* Assets.xcassets in Resources */,
 				66C37FD52B5848BF00C5AA7B /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66FCDC002B5D55EF0055910F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,21 +325,41 @@
 				66DDF55C2B47105600355825 /* BookNotesApp.swift in Sources */,
 				669525FD2B541FE20005F422 /* BooksListView.swift in Sources */,
 				66DDF56D2B47129700355825 /* FinishedView.swift in Sources */,
+				667DC4162B6060160040550C /* DetailViewApi.swift in Sources */,
 				664C9D012B4C5EB800D846F6 /* SharedView.swift in Sources */,
+				667ADCF12B5AC253006A1313 /* APIConnector.swift in Sources */,
 				662C5DB22B51C517003DDA05 /* Genre.swift in Sources */,
 				66CF06AF2B4B09B200DAB6AC /* Favourites.swift in Sources */,
 				669525F92B5413200005F422 /* CellView.swift in Sources */,
 				66CF06B42B4B49AF00DAB6AC /* AddToFavouritesButton.swift in Sources */,
 				66A552EE2B4F23F500577A3A /* RatingView.swift in Sources */,
+				667ADCEE2B5AC1B7006A1313 /* URL+fetchData.swift in Sources */,
 				665F72FB2B49AD2B0000955D /* MarkAsFinishedView.swift in Sources */,
 				66CF06B12B4B492E00DAB6AC /* DeleteButton.swift in Sources */,
 				66DDF5712B47162D00355825 /* SearchView.swift in Sources */,
 				66DDF56B2B47120B00355825 /* ForYouView.swift in Sources */,
 				669AF26C2B4883DC00310430 /* AddBookView.swift in Sources */,
+				6616A76E2B6307360065AB5D /* RequestType.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66FCDBFE2B5D55EF0055910F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66FCDC052B5D55EF0055910F /* BookNotesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		66FCDC072B5D55EF0055910F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66DDF5572B47105600355825 /* BookNotes */;
+			targetProxy = 66FCDC062B5D55EF0055910F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		66DDF5642B47105700355825 /* Debug */ = {
@@ -441,6 +541,42 @@
 			};
 			name = Release;
 		};
+		66FCDC092B5D55EF0055910F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 474G49AKB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.tests.BookNotesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BookNotes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BookNotes";
+			};
+			name = Debug;
+		};
+		66FCDC0A2B5D55EF0055910F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 474G49AKB2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.tests.BookNotesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BookNotes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BookNotes";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -458,6 +594,15 @@
 			buildConfigurations = (
 				66DDF5672B47105700355825 /* Debug */,
 				66DDF5682B47105700355825 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66FCDC082B5D55EF0055910F /* Build configuration list for PBXNativeTarget "BookNotesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66FCDC092B5D55EF0055910F /* Debug */,
+				66FCDC0A2B5D55EF0055910F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

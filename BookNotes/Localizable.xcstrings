@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%.2f %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$.2f %2$@"
+          }
+        }
+      }
+    },
     "%@" : {
       "localizations" : {
         "pl" : {
@@ -31,6 +41,12 @@
         }
       }
     },
+    "Add to finished books" : {
+
+    },
+    "Add to wanted books" : {
+
+    },
     "Author" : {
       "localizations" : {
         "pl" : {
@@ -40,6 +56,9 @@
           }
         }
       }
+    },
+    "Average rating: " : {
+
     },
     "Book already exist" : {
       "localizations" : {
@@ -60,6 +79,9 @@
           }
         }
       }
+    },
+    "Books from internet" : {
+
     },
     "by %@" : {
       "localizations" : {
@@ -310,6 +332,9 @@
           }
         }
       }
+    },
+    "Your books" : {
+
     }
   },
   "version" : "1.0"
