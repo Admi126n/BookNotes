@@ -160,7 +160,19 @@ struct APIConnector {
 			}
 		}
 		
+		// TODO: - filter results to avoid duplicates
 		return reduceFetched(output)
+	}
+	
+	/// Gets and returns image data from given link.
+	/// - Parameter url: data url
+	/// - Returns: fetched data
+	static func getImageData(from url: URL) async -> Data? {
+		if let (data, _) = try? await URLSession.shared.data(from: url) {
+			return data
+		} else {
+			return nil
+		}
 	}
 }
 

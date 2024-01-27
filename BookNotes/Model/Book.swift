@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Book: Equatable {
+class Book {
 	var author: String
 	var genre: String
 	var title: String
@@ -17,6 +17,7 @@ class Book: Equatable {
 	private(set) var isFinished: Bool = false
 	private(set) var finishDate: Date?
 	var rating: Int = 3
+	private(set) var image: Data?
 	
 	/// Init for unfinished books
 	init(title: String, author: String, genre: Genre) {
@@ -41,6 +42,14 @@ class Book: Equatable {
 		isFinished = true
 	}
 	
+	func set(image data: Data) {
+		image = data
+	}
+}
+
+// MARK: - Equatable protocol
+
+extension Book: Equatable {
 	static func ==(_ lhs: Book, _ rhs: Book) -> Bool {
 		lhs.author == rhs.author && lhs.title == rhs.title
 	}

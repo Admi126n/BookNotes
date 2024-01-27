@@ -178,11 +178,11 @@
 				669525FC2B541FE20005F422 /* BooksListView.swift */,
 				669525F82B5413200005F422 /* CellView.swift */,
 				66DDF57A2B47582200355825 /* DetailView.swift */,
+				667DC4152B6060160040550C /* DetailViewApi.swift */,
 				665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */,
 				66A552ED2B4F23F500577A3A /* RatingView.swift */,
 				664C9D002B4C5EB800D846F6 /* SharedView.swift */,
 				66CF06B22B4B498E00DAB6AC /* SwipeButtons */,
-				667DC4152B6060160040550C /* DetailViewApi.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DetailViewApi: View {
+	@Environment(\.modelContext) var modelContext
+	@State private var imageData: Data?
 	let book: APIBook
 	
 	var body: some View {
@@ -63,20 +65,45 @@ struct DetailViewApi: View {
 					
 					HStack {
 						Button("Add to wanted books") {
-							
+							addToRead(book)
 						}
 						
 						Button("Add to finished books") {
 							
 						}
+						.disabled(true)
 					}
 					.buttonStyle(.borderedProminent)
-					.disabled(true)
 				}
 				.padding(.horizontal)
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
+			.task {
+				// TODO: - move to view model
+				if let imageLink = book.imageLink {
+					imageData = await APIConnector.getImageData(from: imageLink)
+				}
+			}
 		}
+	}
+	
+	// TODO: - move to view model
+	private func addToRead(_ book: APIBook) {
+		let newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		
+		if let genres = book.categories {
+			newBook.genre = genres.joined(separator: ", ")
+		}
+		
+		if let subtitle = book.subtitle {
+			newBook.notes = subtitle
+		}
+		
+		if let data = imageData {
+			newBook.set(image: data)
+		}
+		
+		modelContext.insert(newBook)
 	}
 }
 
