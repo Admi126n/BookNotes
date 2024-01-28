@@ -19,9 +19,9 @@ struct SearchView: View {
 			if searchText.isEmpty {
 				return true
 			} else {
-				return $0.title.localizedCaseInsensitiveContains(searchText)
-				|| $0.author.localizedCaseInsensitiveContains(searchText)
-				|| $0.genre.localizedCaseInsensitiveContains(searchText)
+				return $0.containsInTitle(searchText)
+				|| $0.containsInAuthors(searchText)
+				|| $0.containsInCategories(searchText)
 			}
 		}
 	}

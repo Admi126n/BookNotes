@@ -9,12 +9,12 @@ import Foundation
 
 /// Struct describing books fetched from Google Books API.
 ///
-/// Struct contains `title` and `authors` but rest od fields are oprional.
-struct APIBook: Hashable {
+/// Struct contains `title`, `authors` and `categories` but other fields are oprional.
+struct APIBook: BookDescription, Hashable {
 	private var amount: Float? = nil
 	private(set) var authors: [String]
 	private(set) var averageRating: Float? = nil
-	private(set) var categories: [String]? = nil
+	private(set) var categories: [String]
 	private var currency: String? = nil
 	private(set) var description: String? = nil
 	private(set) var imageLink: URL? = nil
@@ -30,14 +30,16 @@ struct APIBook: Hashable {
 	}
 	
 	fileprivate init?(_ bookModel: BookModel) {
-		guard let title = bookModel.volumeInfo.title, let authors = bookModel.volumeInfo.authors else {
+		guard let title = bookModel.volumeInfo.title,
+			  let authors = bookModel.volumeInfo.authors,
+			  let categories = bookModel.volumeInfo.categories else {
 			return nil
 		}
 		
 		self.amount = bookModel.saleInfo?.listPrice?.amount
 		self.authors = authors
 		self.averageRating = bookModel.volumeInfo.averageRating
-		self.categories = bookModel.volumeInfo.categories
+		self.categories = categories
 		self.currency = bookModel.saleInfo?.listPrice?.currencyCode
 		self.description = bookModel.volumeInfo.description
 		self.subtitle = bookModel.volumeInfo.subtitle
@@ -124,7 +126,9 @@ struct APIConnector {
 	private static func reduceFetched(_ books: [BookModel]) -> [APIBook] {
 		var output: [APIBook] = []
 		
-		for book in books where book.volumeInfo.title != nil && book.volumeInfo.authors != nil {
+		for book in books where book.volumeInfo.title != nil 
+			&& book.volumeInfo.authors != nil
+			&& book.volumeInfo.categories != nil {
 			let newBook = APIBook(book)!
 			output.append(newBook)
 		}

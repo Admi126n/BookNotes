@@ -18,7 +18,7 @@ struct SharedView: View {
 				.font(.title)
 				.fontDesign(.serif)
 			
-			Text("by \(book.author)")
+			Text("by \(book.authors, format: .list(type: .and))")
 				.foregroundStyle(.secondary)
 			
 			if book.isFinished {

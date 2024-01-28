@@ -17,23 +17,10 @@ struct DetailViewApi: View {
 			ScrollView {
 				VStack(alignment: .leading, spacing: 20) {
 					HStack {
-						if let imageLink = book.imageLink {
-							AsyncImage(url: imageLink) {
-								$0
-							} placeholder: {
-								ProgressView()
-							}
-						}
-						
 						VStack(alignment: .leading) {
-							Text(book.title)
-								.font(.largeTitle)
-								.fontDesign(.serif)
-								.bold()
+							Title(book)
 							
-							Text(book.authors, format: .list(type: .and))
-								.foregroundStyle(.secondary)
-								.font(.headline)
+							Authors(book)
 							
 							if let price = book.price {
 								Text("\(price.amount, specifier: "%.2f") \(price.currency)")
@@ -41,26 +28,44 @@ struct DetailViewApi: View {
 							
 							Spacer()
 						}
+						
+						Spacer()
+						
+						if let imageLink = book.imageLink {
+							AsyncImage(url: imageLink, transaction: .init(animation: .easeIn)) { phase in
+								switch phase {
+								case .empty:
+									ProgressView()
+								case .success(let image):
+									image
+								case .failure(_):
+									Image(systemName: "book.closed")
+								@unknown default:
+									Image(systemName: "book.closed")
+								}
+							}
+						}
 					}
 					
-					if let categories = book.categories {
-						Text(categories, format: .list(type: .and))
+					Categories(book)
+					
+					if let rating = book.averageRating {
+						HStack {
+							Text("Average rating")
+							
+							RatingView(rating: .constant(Int(rating)))
+						}
 					}
+					
+					Divider()
 					
 					if let subtitle = book.subtitle {
 						Text(subtitle)
+							.foregroundStyle(.secondary)
 					}
 					
 					if let description = book.description {
 						Text(description)
-					}
-					
-					if let rating = book.averageRating {
-						HStack {
-							Text("Average rating: ")
-							
-							RatingView(rating: .constant(Int(rating)))
-						}
 					}
 					
 					HStack {
@@ -91,9 +96,7 @@ struct DetailViewApi: View {
 	private func addToRead(_ book: APIBook) {
 		let newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
 		
-		if let genres = book.categories {
-			newBook.genre = genres.joined(separator: ", ")
-		}
+		newBook.categories = book.categories.sorted()
 		
 		if let subtitle = book.subtitle {
 			newBook.notes = subtitle

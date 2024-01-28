@@ -19,17 +19,14 @@ struct DetailView: View {
 	var body: some View {
 		NavigationStack {
 			VStack(alignment: .leading) {
-				Text(book.title)
-					.font(.largeTitle)
-					.fontDesign(.serif)
-					.bold()
+				Title(book)
 				
 				HStack {
-					Text("by \(book.author)")
+					Authors(book)
 					
 					Spacer()
 					
-					Text(book.genre)
+					Text(book.categories, format: .list(type: .and))
 				}
 				.foregroundStyle(.secondary)
 				.font(.headline)

@@ -19,7 +19,7 @@ struct CellView: View {
 					.fontDesign(.serif)
 					.font(.headline)
 				
-				Text(book.author)
+				Text(book.authors, format: .list(type: .and))
 					.font(.caption)
 					.foregroundStyle(.secondary)
 			}
