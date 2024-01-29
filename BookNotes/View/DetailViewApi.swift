@@ -15,7 +15,7 @@ struct DetailViewApi: View {
 	var body: some View {
 		NavigationStack {
 			ScrollView {
-				VStack(alignment: .leading, spacing: 20) {
+				VStack(alignment: .leading) {
 					HStack {
 						VStack(alignment: .leading) {
 							Title(book)
@@ -27,6 +27,8 @@ struct DetailViewApi: View {
 							}
 							
 							Spacer()
+							
+							Categories(book)
 						}
 						
 						Spacer()
@@ -37,7 +39,7 @@ struct DetailViewApi: View {
 								case .empty:
 									ProgressView()
 								case .success(let image):
-									image
+									CoverImage(image)
 								case .failure(_):
 									Image(systemName: "book.closed")
 								@unknown default:
@@ -46,8 +48,6 @@ struct DetailViewApi: View {
 							}
 						}
 					}
-					
-					Categories(book)
 					
 					if let rating = book.averageRating {
 						HStack {
@@ -83,6 +83,7 @@ struct DetailViewApi: View {
 				.padding(.horizontal)
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
+			.navigationBarTitleDisplayMode(.inline)
 			.task {
 				// TODO: - move to view model
 				if let imageLink = book.imageLink {

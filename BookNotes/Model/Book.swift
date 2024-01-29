@@ -26,13 +26,11 @@ class Book: BookDescription {
 	var rating: Int = 3
 	var title: String
 	
+	private(set) var finishDate: Date?
 	private(set) var image: Data?
 	private(set) var isFinished: Bool = false
-	private(set) var finishDate: Date?
-	
-	var joinedAuthors: String = ""
-	
-	var joinedCategories: String = ""
+	private(set) var joinedAuthors: String = ""
+	private(set) var joinedCategories: String = ""
 	
 	/// Init for unfinished books
 	init(title: String, author: String, genre: Genre) {

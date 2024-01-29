@@ -18,49 +18,62 @@ struct DetailView: View {
 	
 	var body: some View {
 		NavigationStack {
-			VStack(alignment: .leading) {
-				Title(book)
-				
-				HStack {
-					Authors(book)
-					
-					Spacer()
-					
-					Text(book.categories, format: .list(type: .and))
-				}
-				.foregroundStyle(.secondary)
-				.font(.headline)
-				.padding(.bottom, 20)
-				
-				Text("Notes")
-					.font(.headline)
-				
-				TextEditor(text: $book.notes)
-					.scrollContentBackground(.hidden)
-					.background(.textEditorBackground)
-					.clipShape(.rect(cornerRadius: 10))
-					.focused($textEditorFocused)
-				
-				HStack {
-					Spacer()
-					
-					if book.isFinished {
-						VStack {
-							RatingView(rating: .constant(book.rating))
+			ScrollView {
+				VStack(alignment: .leading) {
+					HStack {
+						VStack(alignment: .leading) {
+							Title(book)
 							
-							Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
+							Authors(book)
+							
+							Spacer()
+							
+							Categories(book)
 						}
-					} else {
-						Button("Mark as finished") {
-							showingSheet = true
+						
+						Spacer()
+						
+						if let imageData = book.image, let image = UIImage(data: imageData) {
+							CoverImage(image)
 						}
-						.buttonStyle(.borderedProminent)
 					}
 					
-					Spacer()
+					Divider()
+					
+					Text("Notes")
+						.font(.headline)
+					
+					TextEditor(text: $book.notes)
+						.scrollContentBackground(.hidden)
+						.background(.textEditorBackground)
+						.clipShape(.rect(cornerRadius: 10))
+						.focused($textEditorFocused)
+						.frame(height: 200)
+					
+					HStack {
+						Spacer()
+						
+						if book.isFinished {
+							VStack {
+								RatingView(rating: .constant(book.rating))
+								
+								Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
+							}
+						} else {
+							Button("Mark as finished") {
+								showingSheet = true
+							}
+							.buttonStyle(.borderedProminent)
+						}
+						
+						Spacer()
+					}
+					.padding(.vertical)
 				}
+				.padding(.horizontal)
 			}
-			.padding()
+			.frame(maxWidth: .infinity, alignment: .leading)
+			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					ShareLink(
@@ -90,7 +103,6 @@ struct DetailView: View {
 			.onAppear {
 				getSharedImage()
 			}
-			.navigationBarTitleDisplayMode(.inline)
 		}
 	}
 	

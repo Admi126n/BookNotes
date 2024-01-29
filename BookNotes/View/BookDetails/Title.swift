@@ -15,6 +15,7 @@ struct Title: View {
 			.font(.largeTitle)
 			.fontDesign(.serif)
 			.bold()
+			.fixedSize(horizontal: false, vertical: true)
 	}
 	
 	init(_ book: BookDescription) {
