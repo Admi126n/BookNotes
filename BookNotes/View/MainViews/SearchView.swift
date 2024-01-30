@@ -13,6 +13,7 @@ struct SearchView: View {
 	@Query var books: [Book]
 	@State private var searchText = ""
 	@State private var fetchedBooks: [APIBook] = []
+	@StateObject var networkMonitor = NetworkMonitor()
 	
 	var filteredBooks: [Book] {
 		books.filter {
@@ -71,6 +72,8 @@ struct SearchView: View {
 			.searchable(text: $searchText, prompt: "Search for a title, author or genre")
 			.navigationTitle("Search")
 			.onSubmit(of: .search) {
+				if !networkMonitor.isConnected { return }
+				
 				Task {
 					let results = await APIConnector.getApiResults(for: searchText)
 					
