@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct DetailViewApi: View {
+	@Environment(\.dismiss) var dismiss
 	@Environment(\.modelContext) var modelContext
 	@State private var imageData: Data?
+	@State private var showingSheet = false
+	@State private var showindDialog = false
+	@State private var newBook = Book(title: "", author: "", genre: .other)
 	let book: APIBook
 	
 	var body: some View {
@@ -67,18 +71,6 @@ struct DetailViewApi: View {
 					if let description = book.description {
 						Text(description)
 					}
-					
-					HStack {
-						Button("Add to wanted books") {
-							addToRead(book)
-						}
-						
-						Button("Add to finished books") {
-							
-						}
-						.disabled(true)
-					}
-					.buttonStyle(.borderedProminent)
 				}
 				.padding(.horizontal)
 			}
@@ -89,6 +81,30 @@ struct DetailViewApi: View {
 				if let imageLink = book.imageLink {
 					imageData = await APIConnector.getImageData(from: imageLink)
 				}
+			}
+			.sheet(isPresented: $showingSheet) {
+				MarkAsFinishedView(book: $newBook) {
+					dismiss()
+				}
+			}
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					Button("Add book", systemImage: "plus") {
+						showindDialog = true
+					}
+				}
+			}
+			.confirmationDialog("Add book", isPresented: $showindDialog) {
+				Button("Add to wanted books") {
+					addToRead(book)
+				}
+				
+				Button("Add to finished books") {
+					addRead(book)
+					showingSheet = true
+				}
+				
+				Button("Cancel", role: .cancel) { }
 			}
 		}
 	}
@@ -107,6 +123,23 @@ struct DetailViewApi: View {
 			newBook.set(image: data)
 		}
 		
+		modelContext.insert(newBook)
+	}
+	
+	private func addRead(_ book: APIBook) {
+		newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		
+		newBook.categories = book.categories.sorted()
+		
+		if let subtitle = book.subtitle {
+			newBook.notes = subtitle
+		}
+		
+		if let data = imageData {
+			newBook.set(image: data)
+		}
+		
+		newBook.markAsFinished()
 		modelContext.insert(newBook)
 	}
 }
