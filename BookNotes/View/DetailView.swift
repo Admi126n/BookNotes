@@ -96,7 +96,7 @@ struct DetailView: View {
 				}
 			}
 			.sheet(isPresented: $showingSheet) {
-				MarkAsFinishedView(book: book) {
+				MarkAsFinishedView(book: $book) {
 					dismiss()
 				}
 			}

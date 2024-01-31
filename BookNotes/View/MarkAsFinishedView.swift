@@ -11,7 +11,7 @@ import SwiftUI
 struct MarkAsFinishedView: View {
 	@Environment(\.dismiss) var dismiss
 	@FocusState var textEditorFocused: Bool
-	@State var book: Book
+	@Binding var book: Book
 	let onSaveAction: () -> Void
 	
 	var body: some View {
@@ -67,7 +67,7 @@ struct MarkAsFinishedView: View {
 		
 		let book = Book(title: "Example", author: "Example", genre: .other)
 		
-		return MarkAsFinishedView(book: book) { }
+		return MarkAsFinishedView(book: .constant(book)) { }
 			.modelContainer(container)
 	} catch {
 		return Text("Failed to create container, \(error.localizedDescription)")
