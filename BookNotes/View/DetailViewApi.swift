@@ -66,13 +66,23 @@ struct DetailViewApi: View {
 					if let subtitle = book.subtitle {
 						Text(subtitle)
 							.foregroundStyle(.secondary)
+							.padding(.bottom)
 					}
 					
 					if let description = book.description {
-						Text(description)
+						Description(description)
 					}
+					
+					if book.subtitle != nil || book.description != nil {
+						Divider()
+					}
+					
+					Button("Add book") {
+						showindDialog = true
+					}
+					.buttonStyle(.bordered)
 				}
-				.padding(.horizontal)
+				.padding()
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
 			.navigationBarTitleDisplayMode(.inline)
@@ -85,13 +95,6 @@ struct DetailViewApi: View {
 			.sheet(isPresented: $showingSheet) {
 				MarkAsFinishedView(book: $newBook) {
 					dismiss()
-				}
-			}
-			.toolbar {
-				ToolbarItem(placement: .topBarTrailing) {
-					Button("Add book", systemImage: "plus") {
-						showindDialog = true
-					}
 				}
 			}
 			.confirmationDialog("Add book", isPresented: $showindDialog) {
