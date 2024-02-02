@@ -61,7 +61,7 @@ struct SearchView: View {
 									NavigationLink {
 										DetailViewApi(book: book)
 									} label: {
-										Text(book.title)
+										CellView(of: book)
 									}
 								}
 							}

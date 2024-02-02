@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CellView: View {
 	@EnvironmentObject var favourites: Favourites
-	let book: Book
+	let book: BookDescription
 	
     var body: some View {
 		HStack {
@@ -26,29 +26,19 @@ struct CellView: View {
 			
 			Spacer()
 			
-			if favourites.contains(book) {
+			if let b = book as? Book, favourites.contains(b) {
 				Image(systemName: "heart.fill")
 					.foregroundStyle(.red)
 			}
 		}
     }
 	
-	init(of book: Book) {
+	init(of book: BookDescription) {
 		self.book = book
 	}
 }
 
 #Preview {
-	do {
-		let config = ModelConfiguration(isStoredInMemoryOnly: true)
-		let container = try ModelContainer(for: Book.self, configurations: config)
-		
-		let book = Book(title: "Example", author: "Example", genre: .scienceFiction)
-		
-		return CellView(of: book)
-			.modelContainer(container)
-			.environmentObject(Favourites())
-	} catch {
-		return Text("Failed to create container, \(error.localizedDescription)")
-	}
+	CellView(of: APIBook.example)
+		.environmentObject(Favourites())
 }

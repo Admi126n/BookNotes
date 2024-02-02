@@ -100,6 +100,7 @@ struct DetailViewApi: View {
 			.confirmationDialog("Add book", isPresented: $showindDialog) {
 				Button("Add to wanted books") {
 					addToRead(book)
+					dismiss()
 				}
 				
 				Button("Add to finished books") {
