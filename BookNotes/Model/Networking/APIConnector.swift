@@ -11,6 +11,8 @@ import Foundation
 ///
 /// Struct contains `title`, `authors` and `categories` but other fields are oprional.
 struct APIBook: BookDescription, Hashable {
+	private let id = UUID()
+	
 	private var amount: Float? = nil
 	private(set) var authors: [String]
 	private(set) var averageRating: Float? = nil
