@@ -166,7 +166,6 @@ struct APIConnector {
 			}
 		}
 		
-		// TODO: - filter results to avoid duplicates
 		return reduceFetched(output)
 	}
 	

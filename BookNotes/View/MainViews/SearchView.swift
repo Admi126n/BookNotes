@@ -59,7 +59,7 @@ struct SearchView: View {
 							Section("Books from internet") {
 								ForEach(fetchedBooks, id: \.self) { book in
 									NavigationLink {
-										DetailViewApi(book: book)
+										DetailViewApi(book: book, bookInCollection: checkIfBooksContains(book))
 									} label: {
 										CellView(of: book)
 									}
@@ -83,6 +83,12 @@ struct SearchView: View {
 				}
 			}
 		}
+	}
+	
+	private func checkIfBooksContains(_ book: APIBook) -> Bool {
+		let newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		
+		return books.contains(newBook)
 	}
 }
 

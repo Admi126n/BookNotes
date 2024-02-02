@@ -15,6 +15,7 @@ struct DetailViewApi: View {
 	@State private var showindDialog = false
 	@State private var newBook = Book(title: "", author: "", genre: .other)
 	let book: APIBook
+	let bookInCollection: Bool
 	
 	var body: some View {
 		NavigationStack {
@@ -77,10 +78,16 @@ struct DetailViewApi: View {
 						Divider()
 					}
 					
-					Button("Add book") {
-						showindDialog = true
+					if bookInCollection {
+						Text("You already have this book")
+							.font(.subheadline)
+							.foregroundStyle(.secondary)
+					} else {
+						Button("Add book") {
+							showindDialog = true
+						}
+						.buttonStyle(.bordered)
 					}
-					.buttonStyle(.bordered)
 				}
 				.padding()
 			}
@@ -149,5 +156,5 @@ struct DetailViewApi: View {
 }
 
 #Preview {
-	DetailViewApi(book: APIBook.example)
+	DetailViewApi(book: APIBook.example, bookInCollection: false)
 }
