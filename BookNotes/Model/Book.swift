@@ -9,27 +9,41 @@ import Foundation
 import SwiftData
 
 @Model
-class Book: Equatable {
-	var author: String
-	var genre: String
-	var title: String
+class Book: BookDescription {
+	var authors: [String] {
+		didSet {
+			joinedAuthors = newValue.joined()
+		}
+	}
+	
+	var categories: [String] {
+		didSet {
+			joinedCategories = newValue.joined()
+		}
+	}
+	
 	var notes: String = ""
-	private(set) var isFinished: Bool = false
-	private(set) var finishDate: Date?
 	var rating: Int = 3
+	var title: String
+	
+	private(set) var finishDate: Date?
+	private(set) var image: Data?
+	private(set) var isFinished: Bool = false
+	private(set) var joinedAuthors: String = ""
+	private(set) var joinedCategories: String = ""
 	
 	/// Init for unfinished books
 	init(title: String, author: String, genre: Genre) {
 		self.title = title
-		self.author = author
-		self.genre = genre.rawValue
+		self.authors = [author]
+		self.categories = [genre.rawValue]
 	}
 	
 	/// Init for finished books
 	init(title: String, author: String, genre: Genre, readDate: Date, notes: String = "", rating: Int = 1) {
 		self.title = title
-		self.author = author
-		self.genre = genre.rawValue
+		self.authors = [author]
+		self.categories = [genre.rawValue]
 		self.isFinished = true
 		self.notes = notes
 		self.rating = rating
@@ -41,7 +55,27 @@ class Book: Equatable {
 		isFinished = true
 	}
 	
+	func set(image data: Data) {
+		image = data
+	}
+	
+	func containsInTitle(_ text: String) -> Bool {
+		title.localizedCaseInsensitiveContains(text)
+	}
+	
+	func containsInAuthors(_ text: String) -> Bool {
+		authors.joined().localizedCaseInsensitiveContains(text)
+	}
+	
+	func containsInCategories(_ text: String) -> Bool {
+		categories.joined().localizedCaseInsensitiveContains(text)
+	}
+}
+
+// MARK: - Equatable protocol
+
+extension Book: Equatable {
 	static func ==(_ lhs: Book, _ rhs: Book) -> Bool {
-		lhs.author == rhs.author && lhs.title == rhs.title
+		lhs.authors == rhs.authors && lhs.title == rhs.title
 	}
 }

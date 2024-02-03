@@ -63,9 +63,9 @@ struct BooksListView: View {
 			if search.isEmpty {
 				return true
 			} else {
-				return book.title.localizedStandardContains(search)
-				|| book.author.localizedStandardContains(search)
-				|| book.genre.localizedStandardContains(search)
+				return book.title.contains(search)
+				|| book.joinedAuthors.localizedStandardContains(search)
+				|| book.joinedCategories.localizedStandardContains(search)
 			}
 		}, sort: [by])
 	}
@@ -77,8 +77,8 @@ struct BooksListView: View {
 			} else {
 				return book.isFinished
 				&& (book.title.localizedStandardContains(search)
-				|| book.author.localizedStandardContains(search)
-				|| book.genre.localizedStandardContains(search))
+				|| book.joinedAuthors.localizedStandardContains(search)
+				|| book.joinedCategories.localizedStandardContains(search))
 			}
 		}, sort: [by])
 	}
@@ -90,8 +90,8 @@ struct BooksListView: View {
 			} else {
 				return !book.isFinished
 				&& (book.title.localizedStandardContains(search)
-				|| book.author.localizedStandardContains(search)
-				|| book.genre.localizedStandardContains(search))
+				|| book.joinedAuthors.localizedStandardContains(search)
+				|| book.joinedCategories.localizedStandardContains(search))
 			}
 		}, sort: [by])
 	}

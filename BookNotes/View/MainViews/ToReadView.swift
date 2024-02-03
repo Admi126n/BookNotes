@@ -26,10 +26,10 @@ struct ToReadView: View {
 									.tag(SortDescriptor(\Book.title))
 								
 								Text("Author")
-									.tag(SortDescriptor(\Book.author))
+									.tag(SortDescriptor(\Book.joinedAuthors))
 								
 								Text("Genre")
-									.tag(SortDescriptor(\Book.genre))
+									.tag(SortDescriptor(\Book.joinedCategories))
 							}
 							.pickerStyle(.inline)
 						}

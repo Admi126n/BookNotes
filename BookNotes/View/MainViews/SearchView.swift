@@ -13,15 +13,16 @@ struct SearchView: View {
 	@Query var books: [Book]
 	@State private var searchText = ""
 	@State private var fetchedBooks: [APIBook] = []
+	@StateObject var networkMonitor = NetworkMonitor()
 	
 	var filteredBooks: [Book] {
 		books.filter {
 			if searchText.isEmpty {
 				return true
 			} else {
-				return $0.title.localizedCaseInsensitiveContains(searchText)
-				|| $0.author.localizedCaseInsensitiveContains(searchText)
-				|| $0.genre.localizedCaseInsensitiveContains(searchText)
+				return $0.containsInTitle(searchText)
+				|| $0.containsInAuthors(searchText)
+				|| $0.containsInCategories(searchText)
 			}
 		}
 	}
@@ -58,9 +59,9 @@ struct SearchView: View {
 							Section("Books from internet") {
 								ForEach(fetchedBooks, id: \.self) { book in
 									NavigationLink {
-										DetailViewApi(book: book)
+										DetailViewApi(book: book, bookInCollection: checkIfBooksContains(book))
 									} label: {
-										Text(book.title)
+										CellView(of: book)
 									}
 								}
 							}
@@ -71,6 +72,8 @@ struct SearchView: View {
 			.searchable(text: $searchText, prompt: "Search for a title, author or genre")
 			.navigationTitle("Search")
 			.onSubmit(of: .search) {
+				if !networkMonitor.isConnected { return }
+				
 				Task {
 					let results = await APIConnector.getApiResults(for: searchText)
 					
@@ -80,6 +83,12 @@ struct SearchView: View {
 				}
 			}
 		}
+	}
+	
+	private func checkIfBooksContains(_ book: APIBook) -> Bool {
+		let newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		
+		return books.contains(newBook)
 	}
 }
 

@@ -57,7 +57,7 @@
         }
       }
     },
-    "Average rating: " : {
+    "Average rating" : {
 
     },
     "Book already exist" : {
@@ -303,6 +303,9 @@
         }
       }
     },
+    "Tap to expand" : {
+
+    },
     "There are no books" : {
       "localizations" : {
         "pl" : {
@@ -332,6 +335,9 @@
           }
         }
       }
+    },
+    "You already have this book" : {
+
     },
     "Your books" : {
 
