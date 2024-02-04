@@ -86,7 +86,7 @@ struct SearchView: View {
 	}
 	
 	private func checkIfBooksContains(_ book: APIBook) -> Bool {
-		let newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		let newBook = Book(title: book.title, authors: book.authors)
 		
 		return books.contains(newBook)
 	}

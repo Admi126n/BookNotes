@@ -13,7 +13,7 @@ struct DetailViewApi: View {
 	@State private var imageData: Data?
 	@State private var showingSheet = false
 	@State private var showindDialog = false
-	@State private var newBook = Book(title: "", author: "", genre: .other)
+	@State private var newBook = Book(title: "Example", authors: "Example")
 	let book: APIBook
 	let bookInCollection: Bool
 	
@@ -122,32 +122,32 @@ struct DetailViewApi: View {
 	
 	// TODO: - move to view model
 	private func addToRead(_ book: APIBook) {
-		let newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		let newBook = Book(title: book.title, authors: book.authors)
 		
-		newBook.categories = book.categories.sorted()
+		newBook.setCategoreis(book.categories)
 		
 		if let subtitle = book.subtitle {
 			newBook.notes = subtitle
 		}
 		
 		if let data = imageData {
-			newBook.set(image: data)
+			newBook.setImageData(data)
 		}
 		
 		modelContext.insert(newBook)
 	}
 	
 	private func addRead(_ book: APIBook) {
-		newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		newBook = Book(title: book.title, authors: book.authors)
 		
-		newBook.categories = book.categories.sorted()
+		newBook.setCategoreis(book.categories)
 		
 		if let subtitle = book.subtitle {
 			newBook.notes = subtitle
 		}
 		
 		if let data = imageData {
-			newBook.set(image: data)
+			newBook.setImageData(data)
 		}
 		
 		newBook.markAsFinished()

@@ -80,7 +80,7 @@ struct MarkAsFinishedView: View {
 		let config = ModelConfiguration(isStoredInMemoryOnly: true)
 		let container = try ModelContainer(for: Book.self, configurations: config)
 		
-		let book = Book(title: "Example", author: "Example", genre: .other)
+		let book = Book(title: "Example", authors: "Example")
 		
 		return MarkAsFinishedView(book: .constant(book)) { }
 			.modelContainer(container)

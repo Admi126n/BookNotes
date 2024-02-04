@@ -80,7 +80,7 @@ struct AddBookView: View {
 		let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
 		let trimmedAuthor = author.trimmingCharacters(in: .whitespacesAndNewlines)
 		
-		let book = Book(title: trimmedTitle, author: trimmedAuthor, genre: genre)
+		let book = Book(title: trimmedTitle, authors: trimmedAuthor, categories: genre.rawValue)
 		
 		guard !books.contains(book) else {
 			message = "You already have book \"\(trimmedTitle)\" by \(trimmedAuthor)"

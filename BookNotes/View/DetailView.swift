@@ -33,7 +33,7 @@ struct DetailView: View {
 						
 						Spacer()
 						
-						if let imageData = book.image, let image = UIImage(data: imageData) {
+						if let imageData = book.imageData, let image = UIImage(data: imageData) {
 							CoverImage(image)
 						}
 					}
@@ -120,7 +120,7 @@ struct DetailView: View {
 		let config = ModelConfiguration(isStoredInMemoryOnly: true)
 		let container = try ModelContainer(for: Book.self, configurations: config)
 		
-		let book = Book(title: "Example", author: "Example", genre: .scienceFiction)
+		let book = Book(title: "Example", authors: "Example")
 		
 		return DetailView(book: book)
 			.modelContainer(container)
