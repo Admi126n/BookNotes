@@ -32,7 +32,6 @@ struct AddBookView: View {
     var body: some View {
 		NavigationStack {
 			Form {
-				
 				TextField("Title", text: $title)
 					.textInputAutocapitalization(.words)
 					.focused($focusedField, equals: .title)

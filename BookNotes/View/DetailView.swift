@@ -56,6 +56,7 @@ struct DetailView: View {
 						if book.isFinished {
 							VStack {
 								RatingView(rating: .constant(book.rating))
+									.padding(.bottom, 1)
 								
 								Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
 							}

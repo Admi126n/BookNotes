@@ -70,16 +70,6 @@
         }
       }
     },
-    "Book rating" : {
-      "localizations" : {
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ocena książki"
-          }
-        }
-      }
-    },
     "Books from internet" : {
 
     },
@@ -340,6 +330,9 @@
 
     },
     "Your books" : {
+
+    },
+    "Your rating" : {
 
     }
   },

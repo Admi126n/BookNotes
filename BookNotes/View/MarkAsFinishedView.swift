@@ -16,21 +16,36 @@ struct MarkAsFinishedView: View {
 	
 	var body: some View {
 		NavigationStack {
-			Form {
-				Section("Notes") {
-					TextEditor(text: $book.notes)
-						.focused($textEditorFocused)
+			VStack {
+				Divider()
+				
+				HStack {
+					Text("Your rating")
+						.font(.headline)
+					
+					RatingView(rating: $book.rating)
+				}
+				.padding(.vertical)
+				
+				Divider()
+				
+				HStack {
+					Text("Notes")
+						.font(.headline)
+					
+					Spacer()
 				}
 				
-				Section("Book rating") {
-					HStack {
-						Spacer()
-						RatingView(rating: $book.rating)
-						Spacer()
-					}
-				}
+				TextEditor(text: $book.notes)
+					.scrollContentBackground(.hidden)
+					.background(.textEditorBackground)
+					.clipShape(.rect(cornerRadius: 10))
+					.focused($textEditorFocused)
+					.frame(height: 200)
+				
+				Spacer()
 			}
-				
+			.padding(.horizontal)
 			.navigationTitle("Mark \(book.title) as finished")
 			.toolbarTitleDisplayMode(.inline)
 			.toolbar {
