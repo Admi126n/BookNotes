@@ -11,16 +11,6 @@
         }
       }
     },
-    "%@" : {
-      "localizations" : {
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        }
-      }
-    },
     "Add book" : {
       "localizations" : {
         "pl" : {
@@ -92,6 +82,9 @@
           }
         }
       }
+    },
+    "Category" : {
+
     },
     "Check out this book!" : {
       "localizations" : {
