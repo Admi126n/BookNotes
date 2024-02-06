@@ -1,5 +1,5 @@
 //
-//  Categories.swift
+//  CategoriesView.swift
 //  BookNotes
 //
 //  Created by Adam Tokarski on 28/01/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Categories: View {
+struct CategoriesView: View {
 	private let book: BookDescription
 	
 	var body: some View {
@@ -21,5 +21,5 @@ struct Categories: View {
 }
 
 #Preview {
-	Categories(APIBook.example)
+	CategoriesView(APIBook.example)
 }

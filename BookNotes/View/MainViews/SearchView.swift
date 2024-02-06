@@ -59,7 +59,7 @@ struct SearchView: View {
 							Section("Books from internet") {
 								ForEach(fetchedBooks, id: \.self) { book in
 									NavigationLink {
-										DetailViewApi(book: book, bookInCollection: checkIfBooksContains(book))
+										DetailViewAPI(book: book, bookInCollection: checkIfBooksContains(book))
 									} label: {
 										CellView(of: book)
 									}

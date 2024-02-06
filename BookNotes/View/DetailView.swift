@@ -22,19 +22,19 @@ struct DetailView: View {
 				VStack(alignment: .leading) {
 					HStack {
 						VStack(alignment: .leading) {
-							Title(book)
+							TitleView(book)
 							
-							Authors(book)
+							AuthorsView(book)
 							
 							Spacer()
 							
-							Categories(book)
+							CategoriesView(book)
 						}
 						
 						Spacer()
 						
 						if let imageData = book.imageData, let image = UIImage(data: imageData) {
-							CoverImage(image)
+							CoverImageView(image)
 						}
 					}
 					

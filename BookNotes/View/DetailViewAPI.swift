@@ -1,5 +1,5 @@
 //
-//  DetailViewApi.swift
+//  DetailViewAPI.swift
 //  BookNotes
 //
 //  Created by Adam Tokarski on 23/01/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailViewApi: View {
+struct DetailViewAPI: View {
 	@Environment(\.dismiss) var dismiss
 	@Environment(\.modelContext) var modelContext
 	@State private var imageData: Data?
@@ -23,9 +23,9 @@ struct DetailViewApi: View {
 				VStack(alignment: .leading) {
 					HStack {
 						VStack(alignment: .leading) {
-							Title(book)
+							TitleView(book)
 							
-							Authors(book)
+							AuthorsView(book)
 							
 							if let price = book.price {
 								Text("\(price.amount, specifier: "%.2f") \(price.currency)")
@@ -33,7 +33,7 @@ struct DetailViewApi: View {
 							
 							Spacer()
 							
-							Categories(book)
+							CategoriesView(book)
 						}
 						
 						Spacer()
@@ -44,7 +44,7 @@ struct DetailViewApi: View {
 								case .empty:
 									ProgressView()
 								case .success(let image):
-									CoverImage(image)
+									CoverImageView(image)
 								case .failure(_):
 									Image(systemName: "book.closed")
 								@unknown default:
@@ -71,7 +71,7 @@ struct DetailViewApi: View {
 					}
 					
 					if let description = book.description {
-						Description(description)
+						DescriptionView(description)
 					}
 					
 					if book.subtitle != nil || book.description != nil {
@@ -156,5 +156,5 @@ struct DetailViewApi: View {
 }
 
 #Preview {
-	DetailViewApi(book: APIBook.example, bookInCollection: false)
+	DetailViewAPI(book: APIBook.example, bookInCollection: false)
 }
