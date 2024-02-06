@@ -14,6 +14,7 @@ struct DetailViewAPI: View {
 	@State private var showingSheet = false
 	@State private var showindDialog = false
 	@State private var newBook = Book(title: "Example", authors: "Example")
+	@StateObject private var c = Categories()
 	let book: APIBook
 	let bookInCollection: Bool
 	
@@ -134,6 +135,7 @@ struct DetailViewAPI: View {
 			newBook.setImageData(data)
 		}
 		
+		c.add(book.categories)
 		modelContext.insert(newBook)
 	}
 	
@@ -150,6 +152,7 @@ struct DetailViewAPI: View {
 			newBook.setImageData(data)
 		}
 		
+		c.add(book.categories)
 		newBook.markAsFinished()
 		modelContext.insert(newBook)
 	}

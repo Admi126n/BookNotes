@@ -29,14 +29,15 @@ struct AddBookView: View {
 	@State private var showingAlert = false
 	@State private var message = ""
 	
+	@StateObject private var c = Categories()
+	
 	var disableSave: Bool {
 		title.isEmpty || author.isEmpty || categories.isEmpty
 	}
 	
 	var filteredCategories: [String] {
-		let genres = Genre.allCases.map { $0.rawValue }
-		return genres.filter { genre in
-			genre.localizedCaseInsensitiveContains(category) && !categories.contains(genre)
+		c.elements.filter { cat in
+			cat.localizedCaseInsensitiveContains(category)
 		}
 	}
 	
@@ -140,6 +141,7 @@ struct AddBookView: View {
 		}
 		
 		modelContext.insert(book)
+		c.add(categories)
 		dismiss()
 	}
 }

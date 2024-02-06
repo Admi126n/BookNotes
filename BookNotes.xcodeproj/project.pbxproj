@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6616A76E2B6307360065AB5D /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6616A76D2B6307360065AB5D /* RequestType.swift */; };
-		662C5DB22B51C517003DDA05 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662C5DB12B51C517003DDA05 /* Genre.swift */; };
 		664BEE462B696F680079D1FF /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BEE452B696F680079D1FF /* NetworkMonitor.swift */; };
 		664C9D012B4C5EB800D846F6 /* SharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C9D002B4C5EB800D846F6 /* SharedView.swift */; };
 		665F72FB2B49AD2B0000955D /* MarkAsFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */; };
@@ -57,7 +56,6 @@
 
 /* Begin PBXFileReference section */
 		6616A76D2B6307360065AB5D /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
-		662C5DB12B51C517003DDA05 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		664BEE452B696F680079D1FF /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		664C9D002B4C5EB800D846F6 /* SharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedView.swift; sourceTree = "<group>"; };
 		665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAsFinishedView.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 				66AFD5382B667DE300DCD013 /* BookDescription.swift */,
 				66B20D1C2B72A3C80081A301 /* Categories.swift */,
 				66CF06AE2B4B09B200DAB6AC /* Favourites.swift */,
-				662C5DB12B51C517003DDA05 /* Genre.swift */,
 				664BEE452B696F680079D1FF /* NetworkMonitor.swift */,
 				667ADCEF2B5AC1C6006A1313 /* Networking */,
 			);
@@ -366,7 +363,6 @@
 				66AFD5392B667DE300DCD013 /* BookDescription.swift in Sources */,
 				66AFD53E2B66922B00DCD013 /* AuthorsView.swift in Sources */,
 				66B20D1D2B72A3C80081A301 /* Categories.swift in Sources */,
-				662C5DB22B51C517003DDA05 /* Genre.swift in Sources */,
 				66CF06AF2B4B09B200DAB6AC /* Favourites.swift in Sources */,
 				669525F92B5413200005F422 /* CellView.swift in Sources */,
 				66CF06B42B4B49AF00DAB6AC /* AddToFavouritesButton.swift in Sources */,
