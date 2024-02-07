@@ -79,15 +79,21 @@ struct DetailViewAPI: View {
 						Divider()
 					}
 					
-					if bookInCollection {
-						Text("You already have this book")
-							.font(.subheadline)
-							.foregroundStyle(.secondary)
-					} else {
-						Button("Add book") {
-							showindDialog = true
+					HStack {
+						Spacer()
+						
+						if bookInCollection {
+							Text("You already have this book")
+								.font(.subheadline)
+								.foregroundStyle(.secondary)
+						} else {
+							Button("Add book") {
+								showindDialog = true
+							}
+							.buttonStyle(.bordered)
 						}
-						.buttonStyle(.bordered)
+						
+						Spacer()
 					}
 				}
 				.padding()
