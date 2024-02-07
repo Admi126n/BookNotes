@@ -13,6 +13,7 @@ struct SearchView: View {
 	@Query var books: [Book]
 	@State private var searchText = ""
 	@State private var fetchedBooks: [APIBook] = []
+	@State private var gettingResults = false
 	@StateObject var networkMonitor = NetworkMonitor()
 	
 	var filteredBooks: [Book] {
@@ -30,7 +31,7 @@ struct SearchView: View {
 	var body: some View {
 		NavigationStack {
 			Group {
-				if filteredBooks.isEmpty && fetchedBooks.isEmpty {
+				if filteredBooks.isEmpty && fetchedBooks.isEmpty && !gettingResults {
 					ContentUnavailableView("There are no books", systemImage: "book")
 				} else {
 					List {
@@ -55,7 +56,7 @@ struct SearchView: View {
 							}
 						}
 						
-						if !fetchedBooks.isEmpty {
+						if !fetchedBooks.isEmpty || gettingResults {
 							Section("Books from internet") {
 								ForEach(fetchedBooks, id: \.self) { book in
 									NavigationLink {
@@ -63,6 +64,10 @@ struct SearchView: View {
 									} label: {
 										CellView(of: book)
 									}
+								}
+								
+								if gettingResults {
+									ProgressView()
 								}
 							}
 						}
@@ -75,10 +80,17 @@ struct SearchView: View {
 				if !networkMonitor.isConnected { return }
 				
 				Task {
+					withAnimation {
+						gettingResults = true
+					}
+					
 					let results = await APIConnector.getApiResults(for: searchText)
 					
 					Task { @MainActor in
-						fetchedBooks = results
+						withAnimation {
+							gettingResults = false
+							fetchedBooks = results
+						}
 					}
 				}
 			}
