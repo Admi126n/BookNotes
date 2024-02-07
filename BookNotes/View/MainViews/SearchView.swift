@@ -57,7 +57,7 @@ struct SearchView: View {
 						}
 						
 						if !fetchedBooks.isEmpty || gettingResults {
-							Section("Books from internet") {
+							Section("Books from Google search") {
 								ForEach(fetchedBooks, id: \.self) { book in
 									NavigationLink {
 										DetailViewAPI(book: book, bookInCollection: checkIfBooksContains(book))

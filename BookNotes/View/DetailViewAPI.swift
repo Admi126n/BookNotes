@@ -112,12 +112,12 @@ struct DetailViewAPI: View {
 				}
 			}
 			.confirmationDialog("Add book", isPresented: $showindDialog) {
-				Button("Add to wanted books") {
+				Button("Add as wanted") {
 					addToRead(book)
 					dismiss()
 				}
 				
-				Button("Add to finished books") {
+				Button("Add as finished") {
 					addRead(book)
 					showingSheet = true
 				}

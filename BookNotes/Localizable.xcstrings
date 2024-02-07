@@ -8,6 +8,32 @@
             "state" : "new",
             "value" : "%1$.2f %2$@"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$.2f%2$@"
+          }
+        }
+      }
+    },
+    "Add as finished" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj jako przeczytaną"
+          }
+        }
+      }
+    },
+    "Add as wanted" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj do przeczytania"
+          }
         }
       }
     },
@@ -31,12 +57,6 @@
         }
       }
     },
-    "Add to finished books" : {
-
-    },
-    "Add to wanted books" : {
-
-    },
     "Author" : {
       "localizations" : {
         "pl" : {
@@ -48,7 +68,14 @@
       }
     },
     "Average rating" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Średnia ocena"
+          }
+        }
+      }
     },
     "Book already exist" : {
       "localizations" : {
@@ -60,8 +87,15 @@
         }
       }
     },
-    "Books from internet" : {
-
+    "Books from Google search" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Książki z wyszukiwarki Google"
+          }
+        }
+      }
     },
     "by %@" : {
       "localizations" : {
@@ -84,7 +118,14 @@
       }
     },
     "Category" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategoria"
+          }
+        }
+      }
     },
     "Check out this book!" : {
       "localizations" : {
@@ -287,7 +328,14 @@
       }
     },
     "Tap to expand" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozwiń"
+          }
+        }
+      }
     },
     "There are no books" : {
       "localizations" : {
@@ -320,13 +368,34 @@
       }
     },
     "You already have this book" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Już masz tę książkę"
+          }
+        }
+      }
     },
     "Your books" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twoje książki"
+          }
+        }
+      }
     },
     "Your rating" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twoja ocena"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
