@@ -73,26 +73,23 @@ struct SearchView: View {
 						}
 					}
 				}
+			}			
+			.searchable(
+				text: $searchText,
+				placement: .navigationBarDrawer(displayMode: .always),
+				prompt: "Search for a title, author or genre"
+			)
+			.onChange(of: searchText) {
+				if searchText.isEmpty {
+					clearResults()
+				}
 			}
-			.searchable(text: $searchText, prompt: "Search for a title, author or genre")
 			.navigationTitle("Search")
 			.onSubmit(of: .search) {
-				if !networkMonitor.isConnected { return }
-				
-				Task {
-					withAnimation {
-						gettingResults = true
-					}
-					
-					let results = await APIConnector.getApiResults(for: searchText)
-					
-					Task { @MainActor in
-						withAnimation {
-							gettingResults = false
-							fetchedBooks = results
-						}
-					}
+				withAnimation {
+					fetchedBooks = []
 				}
+				performRequest()
 			}
 		}
 	}
@@ -101,6 +98,31 @@ struct SearchView: View {
 		let newBook = Book(title: book.title, authors: book.authors)
 		
 		return books.contains(newBook)
+	}
+	
+	private func performRequest() {
+		if !networkMonitor.isConnected { return }
+		
+		Task {
+			withAnimation {
+				gettingResults = true
+			}
+			
+			let results = await APIConnector.getApiResults(for: searchText)
+			
+			Task { @MainActor in
+				withAnimation {
+					gettingResults = false
+					fetchedBooks = results
+				}
+			}
+		}
+	}
+	
+	private func clearResults() {
+		withAnimation {
+			fetchedBooks = []
+		}
 	}
 }
 
