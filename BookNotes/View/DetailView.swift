@@ -22,19 +22,19 @@ struct DetailView: View {
 				VStack(alignment: .leading) {
 					HStack {
 						VStack(alignment: .leading) {
-							Title(book)
+							TitleView(book)
 							
-							Authors(book)
+							AuthorsView(book)
 							
 							Spacer()
 							
-							Categories(book)
+							CategoriesView(book)
 						}
 						
 						Spacer()
 						
-						if let imageData = book.image, let image = UIImage(data: imageData) {
-							CoverImage(image)
+						if let imageData = book.imageData, let image = UIImage(data: imageData) {
+							CoverImageView(image)
 						}
 					}
 					
@@ -56,6 +56,7 @@ struct DetailView: View {
 						if book.isFinished {
 							VStack {
 								RatingView(rating: .constant(book.rating))
+									.padding(.bottom, 1)
 								
 								Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
 							}
@@ -119,7 +120,7 @@ struct DetailView: View {
 		let config = ModelConfiguration(isStoredInMemoryOnly: true)
 		let container = try ModelContainer(for: Book.self, configurations: config)
 		
-		let book = Book(title: "Example", author: "Example", genre: .scienceFiction)
+		let book = Book(title: "Example", authors: "Example")
 		
 		return DetailView(book: book)
 			.modelContainer(container)

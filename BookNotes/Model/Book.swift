@@ -10,15 +10,17 @@ import SwiftData
 
 @Model
 class Book: BookDescription {
-	var authors: [String] {
+	// MARK: - Properties
+	
+	private(set) var authors: [String] {
 		didSet {
-			joinedAuthors = newValue.joined()
+			joinedAuthors = newValue.joined(separator: ", ")
 		}
 	}
 	
-	var categories: [String] {
+	private(set) var categories: [String] {
 		didSet {
-			joinedCategories = newValue.joined()
+			joinedCategories = newValue.joined(separator: ", ")
 		}
 	}
 	
@@ -27,36 +29,44 @@ class Book: BookDescription {
 	var title: String
 	
 	private(set) var finishDate: Date?
-	private(set) var image: Data?
+	private(set) var imageData: Data?
 	private(set) var isFinished: Bool = false
+	
+	/// Property used in query predicate
 	private(set) var joinedAuthors: String = ""
+	
+	/// Property used in query predicate
 	private(set) var joinedCategories: String = ""
 	
+	// MARK: - Inits
+	
 	/// Init for unfinished books
-	init(title: String, author: String, genre: Genre) {
+	/// - Parameters:
+	///   - title: title
+	///   - authors: comma separated authors
+	///   - categories: comma separated categories
+	init(title: String, authors: String, categories: String = "Other") {
 		self.title = title
-		self.authors = [author]
-		self.categories = [genre.rawValue]
+		self.authors = authors.components(separatedBy: ", ")
+		self.categories = categories.components(separatedBy: ", ")
 	}
 	
-	/// Init for finished books
-	init(title: String, author: String, genre: Genre, readDate: Date, notes: String = "", rating: Int = 1) {
+	/// Init for unfinished books
+	/// - Parameters:
+	///   - title: title
+	///   - authors: list of authors
+	///   - categories: list of categories
+	init(title: String, authors: [String], categories: [String] = ["Other"]) {
 		self.title = title
-		self.authors = [author]
-		self.categories = [genre.rawValue]
-		self.isFinished = true
-		self.notes = notes
-		self.rating = rating
-		self.finishDate = readDate
+		self.authors = authors
+		self.categories = categories
 	}
+	
+	// MARK: - Methods
 	
 	func markAsFinished() {
 		finishDate = .now
 		isFinished = true
-	}
-	
-	func set(image data: Data) {
-		image = data
 	}
 	
 	func containsInTitle(_ text: String) -> Bool {
@@ -69,6 +79,20 @@ class Book: BookDescription {
 	
 	func containsInCategories(_ text: String) -> Bool {
 		categories.joined().localizedCaseInsensitiveContains(text)
+	}
+	
+	// MARK: - Setters
+	
+	func setCategories(_ categories: String) {
+		self.categories = categories.components(separatedBy: ", ").sorted()
+	}
+	
+	func setCategoreis(_ categories: [String]) {
+		self.categories = categories.sorted()
+	}
+	
+	func setImageData(_ data: Data) {
+		self.imageData = data
 	}
 }
 

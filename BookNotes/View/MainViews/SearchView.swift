@@ -13,6 +13,7 @@ struct SearchView: View {
 	@Query var books: [Book]
 	@State private var searchText = ""
 	@State private var fetchedBooks: [APIBook] = []
+	@State private var gettingResults = false
 	@StateObject var networkMonitor = NetworkMonitor()
 	
 	var filteredBooks: [Book] {
@@ -30,7 +31,7 @@ struct SearchView: View {
 	var body: some View {
 		NavigationStack {
 			Group {
-				if filteredBooks.isEmpty && fetchedBooks.isEmpty {
+				if filteredBooks.isEmpty && fetchedBooks.isEmpty && !gettingResults {
 					ContentUnavailableView("There are no books", systemImage: "book")
 				} else {
 					List {
@@ -55,40 +56,73 @@ struct SearchView: View {
 							}
 						}
 						
-						if !fetchedBooks.isEmpty {
-							Section("Books from internet") {
+						if !fetchedBooks.isEmpty || gettingResults {
+							Section("Books from Google search") {
 								ForEach(fetchedBooks, id: \.self) { book in
 									NavigationLink {
-										DetailViewApi(book: book, bookInCollection: checkIfBooksContains(book))
+										DetailViewAPI(book: book, bookInCollection: checkIfBooksContains(book))
 									} label: {
 										CellView(of: book)
 									}
+								}
+								
+								if gettingResults {
+									ProgressView()
 								}
 							}
 						}
 					}
 				}
+			}			
+			.searchable(
+				text: $searchText,
+				placement: .navigationBarDrawer(displayMode: .always),
+				prompt: "Search for a title, author or genre"
+			)
+			.onChange(of: searchText) {
+				if searchText.isEmpty {
+					clearResults()
+				}
 			}
-			.searchable(text: $searchText, prompt: "Search for a title, author or genre")
 			.navigationTitle("Search")
 			.onSubmit(of: .search) {
-				if !networkMonitor.isConnected { return }
-				
-				Task {
-					let results = await APIConnector.getApiResults(for: searchText)
-					
-					Task { @MainActor in
-						fetchedBooks = results
-					}
+				withAnimation {
+					fetchedBooks = []
 				}
+				performRequest()
 			}
 		}
 	}
 	
 	private func checkIfBooksContains(_ book: APIBook) -> Bool {
-		let newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		let newBook = Book(title: book.title, authors: book.authors)
 		
 		return books.contains(newBook)
+	}
+	
+	private func performRequest() {
+		if !networkMonitor.isConnected { return }
+		
+		Task {
+			withAnimation {
+				gettingResults = true
+			}
+			
+			let results = await APIConnector.getApiResults(for: searchText)
+			
+			Task { @MainActor in
+				withAnimation {
+					gettingResults = false
+					fetchedBooks = results
+				}
+			}
+		}
+	}
+	
+	private func clearResults() {
+		withAnimation {
+			fetchedBooks = []
+		}
 	}
 }
 

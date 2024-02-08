@@ -10,8 +10,9 @@ import SwiftUI
 
 @frozen
 fileprivate enum Field {
-	case title
 	case author
+	case category
+	case title
 }
 
 struct AddBookView: View {
@@ -19,20 +20,30 @@ struct AddBookView: View {
 	@Environment(\.modelContext) var modelContext
 	@FocusState private var focusedField: Field?
 	@Query var books: [Book]
+	
 	@State private var title = ""
 	@State private var author = ""
-	@State private var genre = Genre.other
+	@State private var category = ""
+	@State private var categories: [String] = []
+	
 	@State private var showingAlert = false
 	@State private var message = ""
 	
+	@StateObject private var c = Categories()
+	
 	var disableSave: Bool {
-		title.isEmpty || author.isEmpty
+		title.isEmpty || author.isEmpty || categories.isEmpty
+	}
+	
+	var filteredCategories: [String] {
+		c.elements.filter { cat in
+			cat.localizedCaseInsensitiveContains(category)
+		}
 	}
 	
     var body: some View {
 		NavigationStack {
 			Form {
-				
 				TextField("Title", text: $title)
 					.textInputAutocapitalization(.words)
 					.focused($focusedField, equals: .title)
@@ -41,12 +52,50 @@ struct AddBookView: View {
 				TextField("Author", text: $author)
 					.textInputAutocapitalization(.words)
 					.focused($focusedField, equals: .author)
-					.submitLabel(.done)
+					.submitLabel(.next)
 				
-				Picker("Genre", selection: $genre) {
-					ForEach(Genre.allCases, id: \.rawValue) { genre in
-						Text("\(genre.rawValue)")
-							.tag(genre)
+				if !categories.isEmpty {
+					Text(categories, format: .list(type: .and))
+				}
+				
+				Section {
+					TextField("Category", text: $category)
+						.focused($focusedField, equals: .category)
+						.submitLabel(.done)
+				}
+				
+				Section {
+					if !category.isEmpty {
+						Button {
+							withAnimation {
+								categories.append(category.trimmingCharacters(in: .whitespacesAndNewlines))
+								category = ""
+							}
+						} label: {
+							HStack {
+								Text(category)
+								Spacer()
+								Image(systemName: "plus")
+							}
+							.contentShape(.rect)
+						}
+						.disabled(categories.contains(category))
+					}
+					
+					ForEach(filteredCategories, id: \.self) { cat in
+						Button {
+							withAnimation {
+								categories.append(cat)
+								category = ""
+							}
+						} label: {
+							HStack {
+								Text(cat)
+								Spacer()
+								Image(systemName: "plus")
+							}
+							.contentShape(.rect)
+						}
 					}
 				}
 			}
@@ -64,6 +113,8 @@ struct AddBookView: View {
 				switch focusedField {
 				case .title:
 					focusedField = .author
+				case .author:
+					focusedField = .category
 				default:
 					return
 				}
@@ -81,7 +132,7 @@ struct AddBookView: View {
 		let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
 		let trimmedAuthor = author.trimmingCharacters(in: .whitespacesAndNewlines)
 		
-		let book = Book(title: trimmedTitle, author: trimmedAuthor, genre: genre)
+		let book = Book(title: trimmedTitle, authors: [trimmedAuthor], categories: categories)
 		
 		guard !books.contains(book) else {
 			message = "You already have book \"\(trimmedTitle)\" by \(trimmedAuthor)"
@@ -90,6 +141,7 @@ struct AddBookView: View {
 		}
 		
 		modelContext.insert(book)
+		c.add(categories)
 		dismiss()
 	}
 }

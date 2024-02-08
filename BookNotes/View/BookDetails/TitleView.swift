@@ -1,5 +1,5 @@
 //
-//  Authors.swift
+//  TitleView.swift
 //  BookNotes
 //
 //  Created by Adam Tokarski on 28/01/2024.
@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-struct Authors: View {
+struct TitleView: View {
 	private let book: BookDescription
 	
 	var body: some View {
-		Text(book.authors, format: .list(type: .and))
-			.foregroundStyle(.secondary)
-			.font(.headline)
+		Text(book.title)
+			.font(.largeTitle)
+			.fontDesign(.serif)
+			.bold()
+			.fixedSize(horizontal: false, vertical: true)
 	}
 	
 	init(_ book: BookDescription) {
@@ -22,5 +24,5 @@ struct Authors: View {
 }
 
 #Preview {
-	Authors(APIBook.example)
+	TitleView(APIBook.example)
 }

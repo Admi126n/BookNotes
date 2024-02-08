@@ -1,5 +1,5 @@
 //
-//  CoverImage.swift
+//  CoverImageView.swift
 //  BookNotes
 //
 //  Created by Adam Tokarski on 28/01/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CoverImage: View {
+struct CoverImageView: View {
 	private let image: Image
 	
     var body: some View {
@@ -26,5 +26,5 @@ struct CoverImage: View {
 }
 
 #Preview {
-    CoverImage(Image(systemName: "book.closed"))
+    CoverImageView(Image(systemName: "book.closed"))
 }

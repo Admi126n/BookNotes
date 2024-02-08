@@ -1,5 +1,5 @@
 //
-//  Description.swift
+//  DescriptionView.swift
 //  BookNotes
 //
 //  Created by Adam Tokarski on 01/02/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Description: View {
+struct DescriptionView: View {
 	@State private var lineLimit: Int? = 3
 	
 	let text: String
@@ -41,5 +41,5 @@ struct Description: View {
 }
 
 #Preview {
-    Description("Example desctiption")
+    DescriptionView("Example desctiption")
 }

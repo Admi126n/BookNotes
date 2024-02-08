@@ -1,5 +1,5 @@
 //
-//  DetailViewApi.swift
+//  DetailViewAPI.swift
 //  BookNotes
 //
 //  Created by Adam Tokarski on 23/01/2024.
@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct DetailViewApi: View {
+struct DetailViewAPI: View {
 	@Environment(\.dismiss) var dismiss
 	@Environment(\.modelContext) var modelContext
 	@State private var imageData: Data?
 	@State private var showingSheet = false
 	@State private var showindDialog = false
-	@State private var newBook = Book(title: "", author: "", genre: .other)
+	@State private var newBook = Book(title: "Example", authors: "Example")
+	@StateObject private var c = Categories()
 	let book: APIBook
 	let bookInCollection: Bool
 	
@@ -23,9 +24,9 @@ struct DetailViewApi: View {
 				VStack(alignment: .leading) {
 					HStack {
 						VStack(alignment: .leading) {
-							Title(book)
+							TitleView(book)
 							
-							Authors(book)
+							AuthorsView(book)
 							
 							if let price = book.price {
 								Text("\(price.amount, specifier: "%.2f") \(price.currency)")
@@ -33,7 +34,7 @@ struct DetailViewApi: View {
 							
 							Spacer()
 							
-							Categories(book)
+							CategoriesView(book)
 						}
 						
 						Spacer()
@@ -44,7 +45,7 @@ struct DetailViewApi: View {
 								case .empty:
 									ProgressView()
 								case .success(let image):
-									CoverImage(image)
+									CoverImageView(image)
 								case .failure(_):
 									Image(systemName: "book.closed")
 								@unknown default:
@@ -71,22 +72,28 @@ struct DetailViewApi: View {
 					}
 					
 					if let description = book.description {
-						Description(description)
+						DescriptionView(description)
 					}
 					
 					if book.subtitle != nil || book.description != nil {
 						Divider()
 					}
 					
-					if bookInCollection {
-						Text("You already have this book")
-							.font(.subheadline)
-							.foregroundStyle(.secondary)
-					} else {
-						Button("Add book") {
-							showindDialog = true
+					HStack {
+						Spacer()
+						
+						if bookInCollection {
+							Text("You already have this book")
+								.font(.subheadline)
+								.foregroundStyle(.secondary)
+						} else {
+							Button("Add book") {
+								showindDialog = true
+							}
+							.buttonStyle(.bordered)
 						}
-						.buttonStyle(.bordered)
+						
+						Spacer()
 					}
 				}
 				.padding()
@@ -105,12 +112,12 @@ struct DetailViewApi: View {
 				}
 			}
 			.confirmationDialog("Add book", isPresented: $showindDialog) {
-				Button("Add to wanted books") {
+				Button("Add as wanted") {
 					addToRead(book)
 					dismiss()
 				}
 				
-				Button("Add to finished books") {
+				Button("Add as finished") {
 					addRead(book)
 					showingSheet = true
 				}
@@ -122,39 +129,41 @@ struct DetailViewApi: View {
 	
 	// TODO: - move to view model
 	private func addToRead(_ book: APIBook) {
-		let newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		let newBook = Book(title: book.title, authors: book.authors)
 		
-		newBook.categories = book.categories.sorted()
+		newBook.setCategoreis(book.categories)
 		
 		if let subtitle = book.subtitle {
 			newBook.notes = subtitle
 		}
 		
 		if let data = imageData {
-			newBook.set(image: data)
+			newBook.setImageData(data)
 		}
 		
+		c.add(book.categories)
 		modelContext.insert(newBook)
 	}
 	
 	private func addRead(_ book: APIBook) {
-		newBook = Book(title: book.title, author: book.authors.joined(separator: ", "), genre: .other)
+		newBook = Book(title: book.title, authors: book.authors)
 		
-		newBook.categories = book.categories.sorted()
+		newBook.setCategoreis(book.categories)
 		
 		if let subtitle = book.subtitle {
 			newBook.notes = subtitle
 		}
 		
 		if let data = imageData {
-			newBook.set(image: data)
+			newBook.setImageData(data)
 		}
 		
+		c.add(book.categories)
 		newBook.markAsFinished()
 		modelContext.insert(newBook)
 	}
 }
 
 #Preview {
-	DetailViewApi(book: APIBook.example, bookInCollection: false)
+	DetailViewAPI(book: APIBook.example, bookInCollection: false)
 }
