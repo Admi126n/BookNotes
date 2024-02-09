@@ -12,6 +12,8 @@ struct CoverImageView: View {
 	
     var body: some View {
 		image
+			.resizable()
+			.scaledToFit()
 			.border(.textEditorBackground, width: 4)
 			.clipShape(.rect(cornerRadius: 5))
     }
