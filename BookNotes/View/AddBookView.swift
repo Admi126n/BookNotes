@@ -15,6 +15,27 @@ fileprivate enum Field {
 	case title
 }
 
+fileprivate struct CategoryButton: View {
+	let category: String
+	let action: () -> Void
+	
+	var body: some View {
+		Button(action: action) {
+			HStack {
+				Text(category)
+				Spacer()
+				Image(systemName: "plus")
+			}
+			.contentShape(.rect)
+		}
+	}
+	
+	init(title category: String, _ action: @escaping () -> Void) {
+		self.category = category
+		self.action = action
+	}
+}
+
 struct AddBookView: View {
 	@Environment(\.dismiss) var dismiss
 	@Environment(\.modelContext) var modelContext
@@ -31,13 +52,23 @@ struct AddBookView: View {
 	
 	@StateObject private var c = Categories()
 	
+	var trimmedCategory: String {
+		category.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
+	}
+	
 	var disableSave: Bool {
 		title.isEmpty || author.isEmpty || categories.isEmpty
 	}
 	
 	var filteredCategories: [String] {
-		c.elements.filter { cat in
-			cat.localizedCaseInsensitiveContains(category)
+		if categories.isEmpty {
+			c.elements.filter { cat in
+				!categories.contains(cat)
+			}
+		} else {
+			c.elements.filter { cat in
+				cat.localizedCaseInsensitiveContains(category) && !categories.contains(cat)
+			}
 		}
 	}
 	
@@ -66,35 +97,15 @@ struct AddBookView: View {
 				
 				Section {
 					if !category.isEmpty {
-						Button {
-							withAnimation {
-								categories.append(category.trimmingCharacters(in: .whitespacesAndNewlines))
-								category = ""
-							}
-						} label: {
-							HStack {
-								Text(category)
-								Spacer()
-								Image(systemName: "plus")
-							}
-							.contentShape(.rect)
+						CategoryButton(title: trimmedCategory) {
+							addCategory(trimmedCategory)
 						}
-						.disabled(categories.contains(category))
+						.disabled(categories.contains(trimmedCategory))
 					}
 					
 					ForEach(filteredCategories, id: \.self) { cat in
-						Button {
-							withAnimation {
-								categories.append(cat)
-								category = ""
-							}
-						} label: {
-							HStack {
-								Text(cat)
-								Spacer()
-								Image(systemName: "plus")
-							}
-							.contentShape(.rect)
+						CategoryButton(title: cat) {
+							addCategory(cat)
 						}
 					}
 				}
@@ -143,6 +154,13 @@ struct AddBookView: View {
 		modelContext.insert(book)
 		c.add(categories)
 		dismiss()
+	}
+	
+	private func addCategory(_ cat: String) {
+		withAnimation {
+			categories.append(cat)
+			category = ""
+		}
 	}
 }
 
