@@ -11,6 +11,7 @@ import SwiftUI
 /// Book detail view.
 struct DetailView: View {
 	@Environment(\.dismiss) var dismiss
+	@EnvironmentObject var favourites: Favourites
 	@FocusState var textEditorFocused: Bool
 	@State var book: Book
 	@State private var showingSheet = false
@@ -18,91 +19,103 @@ struct DetailView: View {
 	
 	var body: some View {
 		NavigationStack {
-			ScrollView {
-				VStack(alignment: .leading) {
-					HStack {
-						VStack(alignment: .leading) {
-							TitleView(book)
-							
-							AuthorsView(book)
+			GeometryReader { geo in
+				ScrollView {
+					VStack(alignment: .leading) {
+						HStack {
+							VStack(alignment: .leading) {
+								TitleView(book)
+								
+								AuthorsView(book)
+								
+								Spacer()
+								
+								CategoriesView(book)
+							}
 							
 							Spacer()
 							
-							CategoriesView(book)
+							if let imageData = book.imageData, let image = UIImage(data: imageData) {
+								CoverImageView(image)
+									.frame(width: geo.frame(in: .global).width / 3)
+							}
 						}
 						
-						Spacer()
+						Divider()
 						
-						if let imageData = book.imageData, let image = UIImage(data: imageData) {
-							CoverImageView(image)
-						}
-					}
-					
-					Divider()
-					
-					Text("Notes")
-						.font(.headline)
-					
-					TextEditor(text: $book.notes)
-						.scrollContentBackground(.hidden)
-						.background(.textEditorBackground)
-						.clipShape(.rect(cornerRadius: 10))
-						.focused($textEditorFocused)
-						.frame(height: 200)
-					
-					HStack {
-						Spacer()
-						
-						if book.isFinished {
-							VStack {
-								RatingView(rating: .constant(book.rating))
-									.padding(.bottom, 1)
+						HStack {
+							Text("Notes")
+								.font(.headline)
+							
+							if favourites.contains(book) {
+								Spacer()
 								
-								Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
+								Image(systemName: "heart.fill")
+									.foregroundStyle(.red)
 							}
-						} else {
-							Button("Mark as finished") {
-								showingSheet = true
-							}
-							.buttonStyle(.borderedProminent)
 						}
 						
-						Spacer()
+						TextEditor(text: $book.notes)
+							.scrollContentBackground(.hidden)
+							.background(.textEditorBackground)
+							.clipShape(.rect(cornerRadius: 10))
+							.focused($textEditorFocused)
+							.frame(height: 200)
+						
+						HStack {
+							Spacer()
+							
+							if book.isFinished {
+								VStack {
+									RatingView(rating: .constant(book.rating))
+										.padding(.bottom, 1)
+									
+									Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
+								}
+							} else {
+								Button("Mark as finished") {
+									showingSheet = true
+								}
+								.buttonStyle(.borderedProminent)
+							}
+							
+							Spacer()
+						}
+						.padding(.vertical)
 					}
-					.padding(.vertical)
+					.padding(.horizontal)
 				}
-				.padding(.horizontal)
-			}
-			.frame(maxWidth: .infinity, alignment: .leading)
-			.navigationBarTitleDisplayMode(.inline)
-			.toolbar {
-				ToolbarItem(placement: .topBarTrailing) {
-					ShareLink(
-						"Share",
-						item: renderedImage,
-						message: Text("Check out this book!"),
-						preview: SharePreview(
-							Text("My book"),
-							icon: renderedImage
+				.frame(maxWidth: .infinity, alignment: .leading)
+				.navigationBarTitleDisplayMode(.inline)
+				.toolbar {
+					ToolbarItem(placement: .topBarTrailing) {
+						ShareLink(
+							"Share",
+							item: renderedImage,
+							message: Text("Check out this book!"),
+							preview: SharePreview(
+								Text("My book"),
+								icon: renderedImage
+							)
 						)
-					)
-				}
-				
-				ToolbarItemGroup(placement: .keyboard) {
-					Spacer()
+					}
 					
-					Button("Done") {
-						textEditorFocused = false
+					ToolbarItemGroup(placement: .keyboard) {
+						Spacer()
+						
+						Button("Done") {
+							textEditorFocused = false
+						}
 					}
 				}
-			}
-			.sheet(isPresented: $showingSheet) {
-				MarkAsFinishedView(book: $book) {
-					dismiss()
+				.sheet(isPresented: $showingSheet) {
+					MarkAsFinishedView(book: $book) {
+						dismiss()
+					}
 				}
-			}
-			.onAppear {
-				getSharedImage()
+				.onAppear {
+					getSharedImage()
+				}
 			}
 		}
 	}
@@ -124,6 +137,7 @@ struct DetailView: View {
 		
 		return DetailView(book: book)
 			.modelContainer(container)
+			.environmentObject(Favourites())
 	} catch {
 		return Text("Failed to create container, \(error.localizedDescription)")
 	}

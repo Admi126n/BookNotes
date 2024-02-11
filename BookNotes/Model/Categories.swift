@@ -38,13 +38,13 @@ class Categories: ObservableObject {
 	
 	func add(_ category: String) {
 		objectWillChange.send()
-		elements.insert(category)
+		elements.insert(category.capitalized.trimmingCharacters(in: .whitespacesAndNewlines))
 		save()
 	}
 	
 	func add(_ categories: [String]) {
 		objectWillChange.send()
-		elements.formUnion(categories)
+		elements.formUnion(categories.map { $0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines) })
 		save()
 	}
 	
