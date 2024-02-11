@@ -46,9 +46,13 @@ class Book: BookDescription {
 	///   - authors: comma separated authors
 	///   - categories: comma separated categories
 	init(title: String, authors: String, categories: String = "Other") {
-		self.title = title
-		self.authors = authors.components(separatedBy: ", ")
-		self.categories = categories.components(separatedBy: ", ")
+		self.title = title.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
+		self.authors = authors.components(separatedBy: ", ").map {
+			$0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
+		}
+		self.categories = categories.components(separatedBy: ", ").map {
+			$0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
+		}
 		
 		self.joinedAuthors = self.authors.joined(separator: ", ")
 		self.joinedCategories = self.categories.joined(separator: ", ")
@@ -60,8 +64,8 @@ class Book: BookDescription {
 	///   - authors: list of authors
 	///   - categories: list of categories
 	init(title: String, authors: [String], categories: [String] = ["Other"]) {
-		self.title = title
-		self.authors = authors
+		self.title = title.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
+		self.authors = authors.map { $0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines) }
 		self.categories = categories
 		
 		self.joinedAuthors = self.authors.joined(separator: ", ")
