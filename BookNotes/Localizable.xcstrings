@@ -17,6 +17,16 @@
         }
       }
     },
+    "Add" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj"
+          }
+        }
+      }
+    },
     "Add as finished" : {
       "localizations" : {
         "pl" : {
@@ -287,6 +297,16 @@
         }
       }
     },
+    "Saved categories" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapisane kategorie"
+          }
+        }
+      }
+    },
     "Search" : {
       "localizations" : {
         "pl" : {
@@ -303,6 +323,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wyszukaj po tytule, autorze lub gatunku"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ustawienia"
           }
         }
       }

@@ -114,7 +114,7 @@ struct AddBookView: View {
 			.toolbarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
-					Button("Done") {
+					Button("Add") {
 						addBook()
 					}
 					.disabled(disableSave)
