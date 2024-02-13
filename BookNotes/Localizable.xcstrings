@@ -407,6 +407,9 @@
         }
       }
     },
+    "You saved %lld books" : {
+
+    },
     "Your books" : {
       "localizations" : {
         "pl" : {
