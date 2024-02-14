@@ -24,6 +24,7 @@ class Favourites: ObservableObject {
 		elements = []
 	}
 	
+	// TODO: mark favourites by title and author
 	func contains(_ book: Book) -> Bool {
 		elements.contains(book.title)
 	}
