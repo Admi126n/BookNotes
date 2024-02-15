@@ -14,13 +14,13 @@ class Book: BookDescription {
 	
 	private(set) var authors: [String] {
 		didSet {
-			joinedAuthors = newValue.joined(separator: ", ")
+			joinedAuthors = authors.joined(separator: ", ")
 		}
 	}
 	
 	private(set) var categories: [String] {
 		didSet {
-			joinedCategories = newValue.joined(separator: ", ")
+			joinedCategories = categories.joined(separator: ", ")
 		}
 	}
 	
@@ -49,6 +49,9 @@ class Book: BookDescription {
 		self.title = title
 		self.authors = authors.components(separatedBy: ", ")
 		self.categories = categories.components(separatedBy: ", ")
+		
+		self.joinedAuthors = self.authors.joined(separator: ", ")
+		self.joinedCategories = self.categories.joined(separator: ", ")
 	}
 	
 	/// Init for unfinished books
@@ -60,6 +63,9 @@ class Book: BookDescription {
 		self.title = title
 		self.authors = authors
 		self.categories = categories
+		
+		self.joinedAuthors = self.authors.joined(separator: ", ")
+		self.joinedCategories = self.categories.joined(separator: ", ")
 	}
 	
 	// MARK: - Methods
