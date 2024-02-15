@@ -35,10 +35,10 @@ struct BooksStatisticsView: View {
 	}
 	
 	private var favouritesText: Text {
-		if favourites.elements.isEmpty {
+		if favourites.count == 0 {
 			Text("")
 		} else {
-			Text(" and \(favourites.elements.count) are marked as favoutites")
+			Text(" and \(favourites.count) are marked as favoutites")
 		}
 	}
 	
