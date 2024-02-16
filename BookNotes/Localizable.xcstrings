@@ -11,7 +11,7 @@
         }
       }
     },
-    " and %lld are marked as favoutites" : {
+    " and %lld are marked as favoutites!" : {
       "localizations" : {
         "en" : {
           "variations" : {
@@ -19,13 +19,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : " and %lld is marked as favoutite"
+                  "value" : " and %lld is marked as favoutite!"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : " and %lld are marked as favoutites"
+                  "state" : "translated",
+                  "value" : " and %lld are marked as favoutites!"
                 }
               }
             }
@@ -37,25 +37,25 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : " i %lld są oznaczone jako ulubione"
+                  "value" : " i %lld są oznaczone jako ulubione!"
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : " i %lld jest oznaczonych jako ulubione"
+                  "value" : " i %lld jest oznaczonych jako ulubione!"
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : " i %lld jest oznaczona jako ulubiona"
+                  "value" : " i %lld jest oznaczona jako ulubiona!"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : " i %lld jest oznaczonych jako ulubione"
+                  "value" : " i %lld jest oznaczonych jako ulubione!"
                 }
               }
             }

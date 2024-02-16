@@ -38,7 +38,7 @@ struct BooksStatisticsView: View {
 		if favourites.count == 0 {
 			Text("")
 		} else {
-			Text(" and \(favourites.count) are marked as favoutites")
+			Text(" and \(favourites.count) are marked as favoutites!")
 		}
 	}
 	
