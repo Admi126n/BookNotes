@@ -7,17 +7,25 @@
 
 import SwiftUI
 
+@frozen
+fileprivate enum SelectedLink {
+	case savedCategories
+}
+
 struct SettingsView: View {
 	var body: some View {
 		NavigationStack {
 			Form {
-				
 				Section("Settings") {
-					NavigationLink {
-						CategoriesListView()
-					} label: {
+					NavigationLink(value: SelectedLink.savedCategories) {
 						Text("Saved categories")
 					}
+				}
+			}
+			.navigationDestination(for: SelectedLink.self) { selection in
+				switch selection {
+				case .savedCategories:
+					CategoriesListView()
 				}
 			}
 		}

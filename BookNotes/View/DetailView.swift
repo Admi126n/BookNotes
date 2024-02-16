@@ -18,104 +18,102 @@ struct DetailView: View {
 	@State private var renderedImage = Image(systemName: "book")
 	
 	var body: some View {
-		NavigationStack {
-			GeometryReader { geo in
-				ScrollView {
-					VStack(alignment: .leading) {
-						HStack {
-							VStack(alignment: .leading) {
-								TitleView(book)
-								
-								AuthorsView(book)
-								
-								Spacer()
-								
-								CategoriesView(book)
-							}
+		GeometryReader { geo in
+			ScrollView {
+				VStack(alignment: .leading) {
+					HStack {
+						VStack(alignment: .leading) {
+							TitleView(book)
+							
+							AuthorsView(book)
 							
 							Spacer()
 							
-							if let imageData = book.imageData, let image = UIImage(data: imageData) {
-								CoverImageView(image)
-									.frame(width: geo.frame(in: .global).width / 3)
-							}
+							CategoriesView(book)
 						}
 						
-						Divider()
-						
-						HStack {
-							Text("Notes")
-								.font(.headline)
-							
-							if favourites.contains(book) {
-								Spacer()
-								
-								Image(systemName: "heart.fill")
-									.foregroundStyle(.red)
-							}
-						}
-						
-						TextEditor(text: $book.notes)
-							.scrollContentBackground(.hidden)
-							.background(.textEditorBackground)
-							.clipShape(.rect(cornerRadius: 10))
-							.focused($textEditorFocused)
-							.frame(height: 200)
-						
-						HStack {
-							Spacer()
-							
-							if book.isFinished {
-								VStack {
-									RatingView(rating: .constant(book.rating))
-										.padding(.bottom, 1)
-									
-									Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
-								}
-							} else {
-								Button("Mark as finished") {
-									showingSheet = true
-								}
-								.buttonStyle(.borderedProminent)
-							}
-							
-							Spacer()
-						}
-						.padding(.vertical)
-					}
-					.padding(.horizontal)
-				}
-				.frame(maxWidth: .infinity, alignment: .leading)
-				.navigationBarTitleDisplayMode(.inline)
-				.toolbar {
-					ToolbarItem(placement: .topBarTrailing) {
-						ShareLink(
-							"Share",
-							item: renderedImage,
-							message: Text("Check out this book!"),
-							preview: SharePreview(
-								Text("My book"),
-								icon: renderedImage
-							)
-						)
-					}
-					
-					ToolbarItemGroup(placement: .keyboard) {
 						Spacer()
 						
-						Button("Done") {
-							textEditorFocused = false
+						if let imageData = book.imageData, let image = UIImage(data: imageData) {
+							CoverImageView(image)
+								.frame(width: geo.frame(in: .global).width / 3)
 						}
 					}
+					
+					Divider()
+					
+					HStack {
+						Text("Notes")
+							.font(.headline)
+						
+						if favourites.contains(book) {
+							Spacer()
+							
+							Image(systemName: "heart.fill")
+								.foregroundStyle(.red)
+						}
+					}
+					
+					TextEditor(text: $book.notes)
+						.scrollContentBackground(.hidden)
+						.background(.textEditorBackground)
+						.clipShape(.rect(cornerRadius: 10))
+						.focused($textEditorFocused)
+						.frame(height: 200)
+					
+					HStack {
+						Spacer()
+						
+						if book.isFinished {
+							VStack {
+								RatingView(rating: .constant(book.rating))
+									.padding(.bottom, 1)
+								
+								Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
+							}
+						} else {
+							Button("Mark as finished") {
+								showingSheet = true
+							}
+							.buttonStyle(.borderedProminent)
+						}
+						
+						Spacer()
+					}
+					.padding(.vertical)
 				}
-				.sheet(isPresented: $showingSheet) {
-					MarkAsFinishedView(book: $book) {
-						dismiss()
+				.padding(.horizontal)
+			}
+			.frame(maxWidth: .infinity, alignment: .leading)
+			.navigationBarTitleDisplayMode(.inline)
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					ShareLink(
+						"Share",
+						item: renderedImage,
+						message: Text("Check out this book!"),
+						preview: SharePreview(
+							Text("My book"),
+							icon: renderedImage
+						)
+					)
+				}
+				
+				ToolbarItemGroup(placement: .keyboard) {
+					Spacer()
+					
+					Button("Done") {
+						textEditorFocused = false
 					}
 				}
-				.onAppear {
-					getSharedImage()
+			}
+			.sheet(isPresented: $showingSheet) {
+				MarkAsFinishedView(book: $book) {
+					dismiss()
 				}
+			}
+			.onAppear {
+				getSharedImage()
 			}
 		}
 	}

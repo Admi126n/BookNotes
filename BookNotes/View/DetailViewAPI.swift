@@ -19,114 +19,112 @@ struct DetailViewAPI: View {
 	let bookInCollection: Bool
 	
 	var body: some View {
-		NavigationStack {
-			GeometryReader { geo in
-				ScrollView {
-					VStack(alignment: .leading) {
-						HStack {
-							VStack(alignment: .leading) {
-								TitleView(book)
-								
-								AuthorsView(book)
-								
-								if let price = book.price {
-									Text("\(price.amount, specifier: "%.2f") \(price.currency)")
-								}
-								
-								Spacer()
-								
-								CategoriesView(book)
+		GeometryReader { geo in
+			ScrollView {
+				VStack(alignment: .leading) {
+					HStack {
+						VStack(alignment: .leading) {
+							TitleView(book)
+							
+							AuthorsView(book)
+							
+							if let price = book.price {
+								Text("\(price.amount, specifier: "%.2f") \(price.currency)")
 							}
 							
 							Spacer()
 							
-							if let imageLink = book.imageLink {
-								AsyncImage(url: imageLink, transaction: .init(animation: .easeIn)) { phase in
-									switch phase {
-									case .empty:
-										ProgressView()
-									case .success(let image):
-										CoverImageView(image)
-									case .failure(_):
-										Image(systemName: "book.closed")
-									@unknown default:
-										Image(systemName: "book.closed")
-									}
+							CategoriesView(book)
+						}
+						
+						Spacer()
+						
+						if let imageLink = book.imageLink {
+							AsyncImage(url: imageLink, transaction: .init(animation: .easeIn)) { phase in
+								switch phase {
+								case .empty:
+									ProgressView()
+								case .success(let image):
+									CoverImageView(image)
+								case .failure(_):
+									Image(systemName: "book.closed")
+								@unknown default:
+									Image(systemName: "book.closed")
 								}
-								.frame(width: geo.frame(in: .global).width / 3)
 							}
+							.frame(width: geo.frame(in: .global).width / 3)
 						}
-						
-						if let rating = book.averageRating {
-							HStack {
-								Text("Average rating")
-								
-								RatingView(rating: .constant(Int(rating)))
-							}
+					}
+					
+					if let rating = book.averageRating {
+						HStack {
+							Text("Average rating")
+							
+							RatingView(rating: .constant(Int(rating)))
 						}
-						
+					}
+					
+					Divider()
+					
+					if let subtitle = book.subtitle {
+						Text(subtitle)
+							.foregroundStyle(.secondary)
+							.padding(.bottom)
+					}
+					
+					if let description = book.description {
+						DescriptionView(description)
+					}
+					
+					if book.subtitle != nil || book.description != nil {
 						Divider()
+					}
+					
+					HStack {
+						Spacer()
 						
-						if let subtitle = book.subtitle {
-							Text(subtitle)
+						if bookInCollection {
+							Text("You already have this book")
+								.font(.subheadline)
 								.foregroundStyle(.secondary)
-								.padding(.bottom)
-						}
-						
-						if let description = book.description {
-							DescriptionView(description)
-						}
-						
-						if book.subtitle != nil || book.description != nil {
-							Divider()
-						}
-						
-						HStack {
-							Spacer()
-							
-							if bookInCollection {
-								Text("You already have this book")
-									.font(.subheadline)
-									.foregroundStyle(.secondary)
-							} else {
-								Button("Add book") {
-									showindDialog = true
-								}
-								.buttonStyle(.bordered)
+						} else {
+							Button("Add book") {
+								showindDialog = true
 							}
-							
-							Spacer()
+							.buttonStyle(.bordered)
 						}
-					}
-					.padding()
-				}
-				.frame(maxWidth: .infinity, alignment: .leading)
-				.navigationBarTitleDisplayMode(.inline)
-				.task {
-					// TODO: - move to view model
-					if let imageLink = book.imageLink {
-						imageData = await APIConnector.getImageData(from: imageLink)
+						
+						Spacer()
 					}
 				}
-				.sheet(isPresented: $showingSheet) {
-					MarkAsFinishedView(book: $newBook) {
-						dismiss()
-						modelContext.insert(newBook)
-					}
+				.padding()
+			}
+			.frame(maxWidth: .infinity, alignment: .leading)
+			.navigationBarTitleDisplayMode(.inline)
+			.task {
+				// TODO: - move to view model
+				if let imageLink = book.imageLink {
+					imageData = await APIConnector.getImageData(from: imageLink)
 				}
-				.confirmationDialog("Add book", isPresented: $showindDialog) {
-					Button("Add as wanted") {
-						addToRead(book)
-						dismiss()
-					}
-					
-					Button("Add as finished") {
-						addRead(book)
-						showingSheet = true
-					}
-					
-					Button("Cancel", role: .cancel) { }
+			}
+			.sheet(isPresented: $showingSheet) {
+				MarkAsFinishedView(book: $newBook) {
+					dismiss()
+					modelContext.insert(newBook)
 				}
+			}
+			.confirmationDialog("Add book", isPresented: $showindDialog) {
+				Button("Add as wanted") {
+					addToRead(book)
+					dismiss()
+				}
+				
+				Button("Add as finished") {
+					addRead(book)
+					showingSheet = true
+				}
+				
+				Button("Cancel", role: .cancel) { }
 			}
 		}
 	}
