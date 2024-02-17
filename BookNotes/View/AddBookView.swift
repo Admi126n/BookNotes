@@ -62,11 +62,11 @@ struct AddBookView: View {
 	
 	var filteredCategories: [String] {
 		if categories.isEmpty {
-			c.elements.filter { cat in
+			c.sortedElements.filter { cat in
 				!categories.contains(cat)
 			}
 		} else {
-			c.elements.filter { cat in
+			c.sortedElements.filter { cat in
 				cat.localizedCaseInsensitiveContains(category) && !categories.contains(cat)
 			}
 		}
@@ -114,7 +114,7 @@ struct AddBookView: View {
 			.toolbarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
-					Button("Done") {
+					Button("Add") {
 						addBook()
 					}
 					.disabled(disableSave)

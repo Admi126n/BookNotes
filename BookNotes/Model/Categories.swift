@@ -11,7 +11,11 @@ class Categories: ObservableObject {
 	private let saveKey = "Categories"
 	private let dataPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 	
-	private(set) var elements: Set<String> = []
+	private var elements: Set<String> = []
+
+	var sortedElements: [String] {
+		elements.sorted()
+	}
 	
 	init() {
 		if let data = try? Data(contentsOf: dataPath.appending(path: saveKey)) {

@@ -11,11 +11,15 @@ class Favourites: ObservableObject {
 	private let saveKey = "Favorites"
 	private let dataPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 	
-	private(set) var elements: Set<String> = []
+	private var elements: Set<Element> = []
+	
+	var count: Int {
+		elements.count
+	}
 	
 	init() {
 		if let data = try? Data(contentsOf: dataPath.appending(path: saveKey)) {
-			if let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
+			if let decoded = try? JSONDecoder().decode(Set<Element>.self, from: data) {
 				elements = decoded
 				return
 			}
@@ -25,18 +29,18 @@ class Favourites: ObservableObject {
 	}
 	
 	func contains(_ book: Book) -> Bool {
-		elements.contains(book.title)
+		elements.contains(.init(book.title, book.joinedAuthors))
 	}
 	
 	func add(_ book: Book) {
 		objectWillChange.send()
-		elements.insert(book.title)
+		elements.insert(.init(book.title, book.joinedAuthors))
 		save()
 	}
 	
 	func remove(_ book: Book) {
 		objectWillChange.send()
-		elements.remove(book.title)
+		elements.remove(.init(book.title, book.joinedAuthors))
 		save()
 	}
 	
@@ -47,5 +51,18 @@ class Favourites: ObservableObject {
 		} catch {
 			print(error.localizedDescription)
 		}
+	}
+}
+
+// MARK: - Helper struct
+
+/// Contains `title` and `author` properties. Instances of this structs are used for saving favourites books
+fileprivate struct Element: Codable, Hashable {
+	let title: String
+	let author: String
+	
+	init(_ title: String, _ author: String) {
+		self.title = title
+		self.author = author
 	}
 }
