@@ -169,6 +169,16 @@
         }
       }
     },
+    "Books statistics" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statystyki książek"
+          }
+        }
+      }
+    },
     "by %@" : {
       "localizations" : {
         "pl" : {

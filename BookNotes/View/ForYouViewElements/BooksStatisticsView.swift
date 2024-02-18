@@ -43,31 +43,38 @@ struct BooksStatisticsView: View {
 	}
 	
 	var body: some View {
-		HStack {
-			Group {
-				Text("You saved \(books.count) books") + favouritesText
-			}
-			.font(.headline)
-			.padding()
+		VStack(alignment: .leading) {
+			Text("Books statistics")
+				.font(.title2)
+				.bold()
+				.padding(.leading, 5)
 			
-			if !books.isEmpty {
-				Chart(booksData) { data in
-					if data.value != 0 {
-						SectorMark(angle: .value(Text(verbatim: data.label), data.value),
-								   innerRadius: .ratio(0.6),
-								   angularInset: 5
-						)
-						.annotation(position: .overlay) {
-							Text(data.label)
-								.padding(3)
-								.background(.thinMaterial)
-								.clipShape(.rect(cornerRadius: 5))
-						}
-						.foregroundStyle(by: .value(Text(verbatim: data.label), data.label))
-					}
+			HStack {
+				Group {
+					Text("You saved \(books.count) books") + favouritesText
 				}
-				.chartLegend(.hidden)
+				.font(.headline)
 				.padding()
+				
+				if !books.isEmpty {
+					Chart(booksData) { data in
+						if data.value != 0 {
+							SectorMark(angle: .value(Text(verbatim: data.label), data.value),
+									   innerRadius: .ratio(0.6),
+									   angularInset: 5
+							)
+							.annotation(position: .overlay) {
+								Text(data.label)
+									.padding(3)
+									.background(.thinMaterial)
+									.clipShape(.rect(cornerRadius: 5))
+							}
+							.foregroundStyle(by: .value(Text(verbatim: data.label), data.label))
+						}
+					}
+					.chartLegend(.hidden)
+					.padding()
+				}
 			}
 		}
 	}
