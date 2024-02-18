@@ -19,12 +19,7 @@ struct ForYouView: View {
 						BooksStatisticsView()
 							.frame(height: geo.frame(in: .global).width / 2)
 						
-						Text("For You")
-							.italic()
-							.padding()
-						
-						Image(systemName: "books.vertical")
-							.font(.title)
+						FavouritesListView()
 					}
 					.toolbar {
 						Button("Settings", systemImage: "person.crop.circle") {

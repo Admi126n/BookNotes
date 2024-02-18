@@ -479,6 +479,16 @@
         }
       }
     },
+    "You have no favourite books!" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie masz ulubionych książek!"
+          }
+        }
+      }
+    },
     "You saved %lld books" : {
       "localizations" : {
         "en" : {
@@ -537,6 +547,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Twoje książki"
+          }
+        }
+      }
+    },
+    "Your favourite books" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twoje ulubione książki"
           }
         }
       }
