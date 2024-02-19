@@ -27,6 +27,8 @@
 		66AFD53E2B66922B00DCD013 /* AuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AFD53D2B66922B00DCD013 /* AuthorsView.swift */; };
 		66AFD5402B66923100DCD013 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AFD53F2B66923100DCD013 /* CategoriesView.swift */; };
 		66B20D1D2B72A3C80081A301 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B20D1C2B72A3C80081A301 /* Categories.swift */; };
+		66BF967F2B837A7F008090CA /* SuggestionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BF967E2B837A7F008090CA /* SuggestionsListView.swift */; };
+		66BF96812B837F5D008090CA /* HorizontalScrollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BF96802B837F5D008090CA /* HorizontalScrollViewCell.swift */; };
 		66C37FD52B5848BF00C5AA7B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 66C37FD42B5848BF00C5AA7B /* Localizable.xcstrings */; };
 		66CF06AF2B4B09B200DAB6AC /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06AE2B4B09B200DAB6AC /* Favourites.swift */; };
 		66CF06B12B4B492E00DAB6AC /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06B02B4B492E00DAB6AC /* DeleteButton.swift */; };
@@ -79,6 +81,8 @@
 		66AFD53D2B66922B00DCD013 /* AuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsView.swift; sourceTree = "<group>"; };
 		66AFD53F2B66923100DCD013 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		66B20D1C2B72A3C80081A301 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		66BF967E2B837A7F008090CA /* SuggestionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsListView.swift; sourceTree = "<group>"; };
+		66BF96802B837F5D008090CA /* HorizontalScrollViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollViewCell.swift; sourceTree = "<group>"; };
 		66C37FD42B5848BF00C5AA7B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		66CF06AE2B4B09B200DAB6AC /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		66CF06B02B4B492E00DAB6AC /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
@@ -251,6 +255,8 @@
 			children = (
 				662175B42B7A9D130062C50B /* BooksStatisticsView.swift */,
 				66E801BD2B82956F00C31F2D /* FavouritesListView.swift */,
+				66BF967E2B837A7F008090CA /* SuggestionsListView.swift */,
+				66BF96802B837F5D008090CA /* HorizontalScrollViewCell.swift */,
 			);
 			path = ForYouViewElements;
 			sourceTree = "<group>";
@@ -376,6 +382,7 @@
 				66DDF5732B474F8C00355825 /* Book.swift in Sources */,
 				664BEE462B696F680079D1FF /* NetworkMonitor.swift in Sources */,
 				66DDF55C2B47105600355825 /* BookNotesApp.swift in Sources */,
+				66BF967F2B837A7F008090CA /* SuggestionsListView.swift in Sources */,
 				66E801BE2B82956F00C31F2D /* FavouritesListView.swift in Sources */,
 				669525FD2B541FE20005F422 /* BooksListView.swift in Sources */,
 				66DDF56D2B47129700355825 /* FinishedView.swift in Sources */,
@@ -389,6 +396,7 @@
 				669525F92B5413200005F422 /* CellView.swift in Sources */,
 				66CF06B42B4B49AF00DAB6AC /* AddToFavouritesButton.swift in Sources */,
 				66A552EE2B4F23F500577A3A /* RatingView.swift in Sources */,
+				66BF96812B837F5D008090CA /* HorizontalScrollViewCell.swift in Sources */,
 				667ADCEE2B5AC1B7006A1313 /* URL+fetchData.swift in Sources */,
 				665F72FB2B49AD2B0000955D /* MarkAsFinishedView.swift in Sources */,
 				66D678172B66F16900395880 /* CoverImageView.swift in Sources */,
