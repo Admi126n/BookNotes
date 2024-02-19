@@ -20,6 +20,8 @@ struct ForYouView: View {
 							.frame(height: geo.frame(in: .global).width / 2)
 						
 						FavouritesListView()
+						
+						SuggestionsListView()
 					}
 					.toolbar {
 						Button("Settings", systemImage: "person.crop.circle") {

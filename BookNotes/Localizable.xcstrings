@@ -149,6 +149,16 @@
         }
       }
     },
+    "Based on your favourites" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na podstawie twoich ulubionych"
+          }
+        }
+      }
+    },
     "Book already exist" : {
       "localizations" : {
         "pl" : {
@@ -475,16 +485,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Już masz tę książkę"
-          }
-        }
-      }
-    },
-    "You have no favourite books!" : {
-      "localizations" : {
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie masz ulubionych książek!"
           }
         }
       }
