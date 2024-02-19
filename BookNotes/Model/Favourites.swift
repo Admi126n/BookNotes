@@ -17,6 +17,11 @@ class Favourites: ObservableObject {
 		elements.count
 	}
 	
+	/// Sorted set of authors of books saved as favourite
+	var favouriteAuthors: [String] {
+		Set(elements.map { $0.author }).sorted()
+	}
+	
 	init() {
 		if let data = try? Data(contentsOf: dataPath.appending(path: saveKey)) {
 			if let decoded = try? JSONDecoder().decode(Set<Element>.self, from: data) {
