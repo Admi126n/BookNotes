@@ -27,6 +27,8 @@
 		66AFD53E2B66922B00DCD013 /* AuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AFD53D2B66922B00DCD013 /* AuthorsView.swift */; };
 		66AFD5402B66923100DCD013 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AFD53F2B66923100DCD013 /* CategoriesView.swift */; };
 		66B20D1D2B72A3C80081A301 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B20D1C2B72A3C80081A301 /* Categories.swift */; };
+		66BF967F2B837A7F008090CA /* SuggestionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BF967E2B837A7F008090CA /* SuggestionsListView.swift */; };
+		66BF96812B837F5D008090CA /* HorizontalScrollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BF96802B837F5D008090CA /* HorizontalScrollViewCell.swift */; };
 		66C37FD52B5848BF00C5AA7B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 66C37FD42B5848BF00C5AA7B /* Localizable.xcstrings */; };
 		66CF06AF2B4B09B200DAB6AC /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06AE2B4B09B200DAB6AC /* Favourites.swift */; };
 		66CF06B12B4B492E00DAB6AC /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF06B02B4B492E00DAB6AC /* DeleteButton.swift */; };
@@ -44,6 +46,7 @@
 		66DDF5732B474F8C00355825 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF5722B474F8C00355825 /* Book.swift */; };
 		66DDF5782B4756D900355825 /* ToReadView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF5772B4756D900355825 /* ToReadView-ViewModel.swift */; };
 		66DDF57B2B47582200355825 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF57A2B47582200355825 /* DetailView.swift */; };
+		66E801BE2B82956F00C31F2D /* FavouritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E801BD2B82956F00C31F2D /* FavouritesListView.swift */; };
 		66FCDC052B5D55EF0055910F /* BookNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FCDC042B5D55EF0055910F /* BookNotesTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +81,8 @@
 		66AFD53D2B66922B00DCD013 /* AuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsView.swift; sourceTree = "<group>"; };
 		66AFD53F2B66923100DCD013 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		66B20D1C2B72A3C80081A301 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		66BF967E2B837A7F008090CA /* SuggestionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsListView.swift; sourceTree = "<group>"; };
+		66BF96802B837F5D008090CA /* HorizontalScrollViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollViewCell.swift; sourceTree = "<group>"; };
 		66C37FD42B5848BF00C5AA7B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		66CF06AE2B4B09B200DAB6AC /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		66CF06B02B4B492E00DAB6AC /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
@@ -96,6 +101,7 @@
 		66DDF5722B474F8C00355825 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		66DDF5772B4756D900355825 /* ToReadView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToReadView-ViewModel.swift"; sourceTree = "<group>"; };
 		66DDF57A2B47582200355825 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		66E801BD2B82956F00C31F2D /* FavouritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListView.swift; sourceTree = "<group>"; };
 		66FCDC022B5D55EF0055910F /* BookNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FCDC042B5D55EF0055910F /* BookNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNotesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +152,8 @@
 				66AFD53F2B66923100DCD013 /* CategoriesView.swift */,
 				66D678162B66F16900395880 /* CoverImageView.swift */,
 				669135D82B6C391F0064C9BA /* DescriptionView.swift */,
+				66A552ED2B4F23F500577A3A /* RatingView.swift */,
+				664C9D002B4C5EB800D846F6 /* SharedView.swift */,
 				66AFD53A2B66921100DCD013 /* TitleView.swift */,
 			);
 			path = BookDetails;
@@ -206,18 +214,16 @@
 			children = (
 				66DDF55D2B47105600355825 /* ContentView.swift */,
 				66AFD53C2B66921B00DCD013 /* BookDetails */,
+				66E801BC2B82954400C31F2D /* ForYouViewElements */,
 				665F72F92B49ABF50000955D /* MainViews */,
 				669AF26B2B4883DC00310430 /* AddBookView.swift */,
 				669525FC2B541FE20005F422 /* BooksListView.swift */,
-				662175B42B7A9D130062C50B /* BooksStatisticsView.swift */,
 				660703402B794F0400E778A0 /* CategoriesListView.swift */,
 				669525F82B5413200005F422 /* CellView.swift */,
 				66DDF57A2B47582200355825 /* DetailView.swift */,
 				667DC4152B6060160040550C /* DetailViewAPI.swift */,
 				665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */,
-				66A552ED2B4F23F500577A3A /* RatingView.swift */,
 				6607033E2B7923F600E778A0 /* SettingsView.swift */,
-				664C9D002B4C5EB800D846F6 /* SharedView.swift */,
 				66CF06B22B4B498E00DAB6AC /* SwipeButtons */,
 			);
 			path = View;
@@ -242,6 +248,17 @@
 				66DDF5772B4756D900355825 /* ToReadView-ViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		66E801BC2B82954400C31F2D /* ForYouViewElements */ = {
+			isa = PBXGroup;
+			children = (
+				662175B42B7A9D130062C50B /* BooksStatisticsView.swift */,
+				66E801BD2B82956F00C31F2D /* FavouritesListView.swift */,
+				66BF967E2B837A7F008090CA /* SuggestionsListView.swift */,
+				66BF96802B837F5D008090CA /* HorizontalScrollViewCell.swift */,
+			);
+			path = ForYouViewElements;
 			sourceTree = "<group>";
 		};
 		66FCDC032B5D55EF0055910F /* BookNotesTests */ = {
@@ -365,6 +382,8 @@
 				66DDF5732B474F8C00355825 /* Book.swift in Sources */,
 				664BEE462B696F680079D1FF /* NetworkMonitor.swift in Sources */,
 				66DDF55C2B47105600355825 /* BookNotesApp.swift in Sources */,
+				66BF967F2B837A7F008090CA /* SuggestionsListView.swift in Sources */,
+				66E801BE2B82956F00C31F2D /* FavouritesListView.swift in Sources */,
 				669525FD2B541FE20005F422 /* BooksListView.swift in Sources */,
 				66DDF56D2B47129700355825 /* FinishedView.swift in Sources */,
 				667DC4162B6060160040550C /* DetailViewAPI.swift in Sources */,
@@ -377,6 +396,7 @@
 				669525F92B5413200005F422 /* CellView.swift in Sources */,
 				66CF06B42B4B49AF00DAB6AC /* AddToFavouritesButton.swift in Sources */,
 				66A552EE2B4F23F500577A3A /* RatingView.swift in Sources */,
+				66BF96812B837F5D008090CA /* HorizontalScrollViewCell.swift in Sources */,
 				667ADCEE2B5AC1B7006A1313 /* URL+fetchData.swift in Sources */,
 				665F72FB2B49AD2B0000955D /* MarkAsFinishedView.swift in Sources */,
 				66D678172B66F16900395880 /* CoverImageView.swift in Sources */,
@@ -551,7 +571,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.BookNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -582,7 +602,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.BookNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

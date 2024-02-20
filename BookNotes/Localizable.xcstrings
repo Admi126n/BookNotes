@@ -149,6 +149,16 @@
         }
       }
     },
+    "Based on your favourites" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na podstawie twoich ulubionych"
+          }
+        }
+      }
+    },
     "Book already exist" : {
       "localizations" : {
         "pl" : {
@@ -165,6 +175,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Książki z wyszukiwarki Google"
+          }
+        }
+      }
+    },
+    "Books statistics" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statystyki książek"
           }
         }
       }
@@ -527,6 +547,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Twoje książki"
+          }
+        }
+      }
+    },
+    "Your favourite books" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twoje ulubione książki"
           }
         }
       }
