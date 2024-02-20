@@ -219,6 +219,38 @@
         }
       }
     },
+    "chart.finished" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finished"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przeczytane"
+          }
+        }
+      }
+    },
+    "chart.unfinished" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To read"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do przeczytania"
+          }
+        }
+      }
+    },
     "Check out this book!" : {
       "localizations" : {
         "pl" : {
@@ -475,6 +507,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Do przeczytania"
+          }
+        }
+      }
+    },
+    "You already have book \"%@\" by %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You already have book \"%1$@\" by %2$@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masz już książkę \"%1$@\" autora %2$@"
           }
         }
       }
