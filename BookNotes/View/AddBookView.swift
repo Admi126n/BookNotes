@@ -61,7 +61,7 @@ struct AddBookView: View {
 	}
 	
 	var filteredCategories: [String] {
-		if categories.isEmpty {
+		if category.isEmpty {
 			c.sortedElements.filter { cat in
 				!categories.contains(cat)
 			}
