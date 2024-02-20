@@ -17,7 +17,7 @@ struct SuggestionsListView: View {
 	
 	var filteredResults: [APIBook] {
 		fetchedBooks.filter { book in
-			let b = Book(title: book.title, authors: book.authors)
+			let b = Book(book)
 			
 			return !books.contains(b)
 		}

@@ -131,7 +131,7 @@ struct DetailViewAPI: View {
 	
 	// TODO: - move to view model
 	private func addToRead(_ book: APIBook) {
-		let newBook = Book(title: book.title, authors: book.authors)
+		newBook = Book(book)
 		
 		newBook.setCategoreis(book.categories)
 		
@@ -148,7 +148,7 @@ struct DetailViewAPI: View {
 	}
 	
 	private func addRead(_ book: APIBook) {
-		newBook = Book(title: book.title, authors: book.authors)
+		newBook = Book(book)
 		
 		newBook.setCategoreis(book.categories)
 		

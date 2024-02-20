@@ -24,19 +24,27 @@ class Book: BookDescription {
 		}
 	}
 	
+	private var finishDate: Date? {
+		didSet {
+			safeFinishDate = finishDate ?? Date.now
+		}
+	}
+	
 	var notes: String = ""
 	var rating: Int = 3
 	var title: String
 	
-	private(set) var finishDate: Date?
 	private(set) var imageData: Data?
 	private(set) var isFinished: Bool = false
 	
-	/// Property used in query predicate
+	/// Property used in query predicate. Contains comma separated authors list
 	private(set) var joinedAuthors: String = ""
 	
-	/// Property used in query predicate
+	/// Property used in query predicate. Contains comma separated categoreis list
 	private(set) var joinedCategories: String = ""
+	
+	/// Property used in query predicate. Contains finish date or `Date.now`
+	private(set) var safeFinishDate: Date = Date.now
 	
 	// MARK: - Inits
 	
@@ -72,8 +80,21 @@ class Book: BookDescription {
 		self.joinedCategories = self.categories.joined(separator: ", ")
 	}
 	
+	/// Init for unfinished books
+	///  - Parameters:
+	///   - book: APIBook object
+	init(_ book: APIBook) {
+		self.title = book.title
+		self.authors = book.authors.map { $0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines) }
+		self.categories = book.categories.map { $0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines) }
+		
+		self.joinedAuthors = self.authors.joined(separator: ", ")
+		self.joinedCategories = self.categories.joined(separator: ", ")
+	}
+	
 	// MARK: - Methods
 	
+	/// Sets book `finishDate` to `.now` and  `isFinished` to `true`
 	func markAsFinished() {
 		finishDate = .now
 		isFinished = true
@@ -84,11 +105,11 @@ class Book: BookDescription {
 	}
 	
 	func containsInAuthors(_ text: String) -> Bool {
-		authors.joined().localizedCaseInsensitiveContains(text)
+		joinedAuthors.localizedCaseInsensitiveContains(text)
 	}
 	
 	func containsInCategories(_ text: String) -> Bool {
-		categories.joined().localizedCaseInsensitiveContains(text)
+		joinedCategories.localizedCaseInsensitiveContains(text)
 	}
 	
 	// MARK: - Setters

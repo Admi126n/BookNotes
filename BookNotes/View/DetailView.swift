@@ -69,7 +69,7 @@ struct DetailView: View {
 								RatingView(rating: .constant(book.rating))
 									.padding(.bottom, 1)
 								
-								Text("Finished on \(book.finishDate!.formatted(date: .abbreviated, time: .omitted))")
+								Text("Finished on \(book.safeFinishDate.formatted(date: .abbreviated, time: .omitted))")
 							}
 						} else {
 							Button("Mark as finished") {
