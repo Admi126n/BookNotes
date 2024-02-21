@@ -26,12 +26,19 @@ struct SuggestionsListView: View {
 	var body: some View {
 		Group {
 			if fetchedBooks.isEmpty && favourites.count == 0 {
-				EmptyView()
+				HStack {
+					Text("Mark books as favourite to get some suggestions")
+						.font(.title2)
+						.bold()
+						.padding(.leading, 5)
+					
+					Spacer()
+				}
 			} else {
 				VStack(alignment: .leading) {
 					Divider()
 					
-					Text("Based on your favourites")
+					Text("Similar to your favourites")
 						.font(.title2)
 						.bold()
 						.padding(.leading, 5)
