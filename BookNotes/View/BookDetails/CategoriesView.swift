@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Formatted text with all categories joined
+///
+/// Categories are joined using `format: .list(type: .and)`
 struct CategoriesView: View {
 	private let book: BookDescription
 	

@@ -61,19 +61,45 @@ struct DetailView: View {
 						.focused($textEditorFocused)
 						.frame(height: 200)
 					
-					HStack {
-						Spacer()
-						
-						if book.isFinished {
+					if book.isFinished {
+						HStack {
+							Spacer()
+							
 							VStack {
 								RatingView(rating: .constant(book.rating))
 									.padding(.bottom, 1)
 								
 								Text("Finished on \(book.safeFinishDate.formatted(date: .abbreviated, time: .omitted))")
 							}
-						} else {
+							
+							Spacer()
+						}
+					}
+					
+					HStack(spacing: 0) {
+						Spacer()
+						
+						if !book.isFinished {
 							Button("Mark as finished") {
 								showingSheet = true
+							}
+							.buttonStyle(.borderedProminent)
+							
+							Spacer()
+						}
+						
+						if !favourites.contains(book) {
+							Button("Add to favourites") {
+								withAnimation {
+									favourites.add(book)
+								}
+							}
+							.buttonStyle(.borderedProminent)
+						} else {
+							Button("Remove from favourites", role: .destructive) {
+								withAnimation {
+									favourites.remove(book)
+								}
 							}
 							.buttonStyle(.borderedProminent)
 						}

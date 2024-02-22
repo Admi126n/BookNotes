@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Formatted text with all authors joined
+///
+/// Authors are joined using `format: .list(type: .and)`
 struct AuthorsView: View {
 	private let book: BookDescription
 	
