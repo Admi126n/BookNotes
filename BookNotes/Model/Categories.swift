@@ -13,6 +13,7 @@ class Categories: ObservableObject {
 	
 	private var elements: Set<String> = []
 
+	/// List of sorted categories
 	var sortedElements: [String] {
 		elements.sorted()
 	}
@@ -52,7 +53,8 @@ class Categories: ObservableObject {
 		save()
 	}
 	
-	func save() {
+	/// Saves `elements` in app storage
+	private func save() {
 		do {
 			let encoded = try JSONEncoder().encode(elements)
 			try encoded.write(to: dataPath.appending(path: saveKey), options: [.atomic])

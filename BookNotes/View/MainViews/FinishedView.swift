@@ -31,7 +31,7 @@ struct FinishedView: View {
 									.tag(SortDescriptor(\Book.joinedCategories))
 								
 								Text("Date")
-									.tag(SortDescriptor(\Book.finishDate!, order: .reverse))
+									.tag(SortDescriptor(\Book.safeFinishDate, order: .reverse))
 								
 								Text("Rating")
 									.tag(SortDescriptor(\Book.rating, order: .reverse))

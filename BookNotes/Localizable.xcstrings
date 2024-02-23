@@ -149,16 +149,6 @@
         }
       }
     },
-    "Based on your favourites" : {
-      "localizations" : {
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Na podstawie twoich ulubionych"
-          }
-        }
-      }
-    },
     "Book already exist" : {
       "localizations" : {
         "pl" : {
@@ -215,6 +205,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kategoria"
+          }
+        }
+      }
+    },
+    "chart.finished" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finished"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przeczytane"
+          }
+        }
+      }
+    },
+    "chart.unfinished" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To read"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do przeczytania"
           }
         }
       }
@@ -329,6 +351,16 @@
         }
       }
     },
+    "Mark books as favourite to get some suggestions" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj książki do ulubionych aby otrzymać sugestie"
+          }
+        }
+      }
+    },
     "My book" : {
       "localizations" : {
         "pl" : {
@@ -409,6 +441,9 @@
         }
       }
     },
+    "Second tip" : {
+
+    },
     "Settings" : {
       "localizations" : {
         "pl" : {
@@ -425,6 +460,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Udostępnij"
+          }
+        }
+      }
+    },
+    "Similar to your favourites" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podobne do twoich ulubionych"
           }
         }
       }
@@ -475,6 +520,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Do przeczytania"
+          }
+        }
+      }
+    },
+    "You already have book \"%@\" by %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You already have book \"%1$@\" by %2$@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masz już książkę \"%1$@\" autora %2$@"
           }
         }
       }

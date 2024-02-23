@@ -48,7 +48,7 @@ struct AddBookView: View {
 	@State private var categories: [String] = []
 	
 	@State private var showingAlert = false
-	@State private var message = ""
+	@State private var message: Text = Text("")
 	
 	@StateObject private var c = Categories()
 	
@@ -61,7 +61,7 @@ struct AddBookView: View {
 	}
 	
 	var filteredCategories: [String] {
-		if categories.isEmpty {
+		if category.isEmpty {
 			c.sortedElements.filter { cat in
 				!categories.contains(cat)
 			}
@@ -134,7 +134,7 @@ struct AddBookView: View {
 				focusedField = .title
 			}
 			.alert("Book already exist", isPresented: $showingAlert) { } message: {
-				Text(message)
+				message
 			}
 		}
     }
@@ -146,7 +146,7 @@ struct AddBookView: View {
 		let book = Book(title: trimmedTitle, authors: [trimmedAuthor], categories: categories)
 		
 		guard !books.contains(book) else {
-			message = "You already have book \"\(trimmedTitle)\" by \(trimmedAuthor)"
+			message = Text("You already have book \"\(trimmedTitle)\" by \(trimmedAuthor)")
 			showingAlert = true
 			return
 		}

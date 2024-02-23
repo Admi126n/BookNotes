@@ -30,8 +30,8 @@ struct BooksStatisticsView: View {
 	
 	// TODO: translate labels
 	private var booksData: [BooksData] {
-		[BooksData(label: "Finished", value: finishedBooksCount),
-		 BooksData(label: "To read", value: unfinishedBooksCount)]
+		[BooksData(label: String(localized: "chart.finished"), value: finishedBooksCount),
+		 BooksData(label: String(localized: "chart.unfinished"), value: unfinishedBooksCount)]
 	}
 	
 	private var favouritesText: Text {
