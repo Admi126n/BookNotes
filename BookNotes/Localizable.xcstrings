@@ -119,6 +119,16 @@
         }
       }
     },
+    "Add cover" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj okładkę"
+          }
+        }
+      }
+    },
     "Add to favourites" : {
       "localizations" : {
         "pl" : {
@@ -277,6 +287,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gotowe"
+          }
+        }
+      }
+    },
+    "Edit cover" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj okładkę"
           }
         }
       }
@@ -440,9 +460,6 @@
           }
         }
       }
-    },
-    "Second tip" : {
-
     },
     "Settings" : {
       "localizations" : {
