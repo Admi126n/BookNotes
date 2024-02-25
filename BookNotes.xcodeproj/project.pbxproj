@@ -10,6 +10,7 @@
 		6607033F2B7923F600E778A0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6607033E2B7923F600E778A0 /* SettingsView.swift */; };
 		660703412B794F0400E778A0 /* CategoriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660703402B794F0400E778A0 /* CategoriesListView.swift */; };
 		6616A76E2B6307360065AB5D /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6616A76D2B6307360065AB5D /* RequestType.swift */; };
+		66187D602B8B9B7A0054FF0C /* EditBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66187D5F2B8B9B7A0054FF0C /* EditBookView.swift */; };
 		662175B52B7A9D130062C50B /* BooksStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662175B42B7A9D130062C50B /* BooksStatisticsView.swift */; };
 		664BEE462B696F680079D1FF /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664BEE452B696F680079D1FF /* NetworkMonitor.swift */; };
 		664C9D012B4C5EB800D846F6 /* SharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C9D002B4C5EB800D846F6 /* SharedView.swift */; };
@@ -64,6 +65,7 @@
 		6607033E2B7923F600E778A0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		660703402B794F0400E778A0 /* CategoriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListView.swift; sourceTree = "<group>"; };
 		6616A76D2B6307360065AB5D /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		66187D5F2B8B9B7A0054FF0C /* EditBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBookView.swift; sourceTree = "<group>"; };
 		662175B42B7A9D130062C50B /* BooksStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksStatisticsView.swift; sourceTree = "<group>"; };
 		664BEE452B696F680079D1FF /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		664C9D002B4C5EB800D846F6 /* SharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedView.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				669525F82B5413200005F422 /* CellView.swift */,
 				66DDF57A2B47582200355825 /* DetailView.swift */,
 				667DC4152B6060160040550C /* DetailViewAPI.swift */,
+				66187D5F2B8B9B7A0054FF0C /* EditBookView.swift */,
 				665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */,
 				6607033E2B7923F600E778A0 /* SettingsView.swift */,
 				66CF06B22B4B498E00DAB6AC /* SwipeButtons */,
@@ -386,6 +389,7 @@
 				66E801BE2B82956F00C31F2D /* FavouritesListView.swift in Sources */,
 				669525FD2B541FE20005F422 /* BooksListView.swift in Sources */,
 				66DDF56D2B47129700355825 /* FinishedView.swift in Sources */,
+				66187D602B8B9B7A0054FF0C /* EditBookView.swift in Sources */,
 				667DC4162B6060160040550C /* DetailViewAPI.swift in Sources */,
 				664C9D012B4C5EB800D846F6 /* SharedView.swift in Sources */,
 				667ADCF12B5AC253006A1313 /* APIConnector.swift in Sources */,
