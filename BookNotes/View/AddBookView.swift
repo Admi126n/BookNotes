@@ -16,7 +16,7 @@ fileprivate enum Field {
 	case title
 }
 
-fileprivate struct CategoryButton: View {
+struct CategoryButton: View {
 	let category: String
 	let action: () -> Void
 	

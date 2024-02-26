@@ -135,6 +135,17 @@ class Book: BookDescription {
 	func setImageData(_ data: Data?) {
 		self.imageData = data
 	}
+	
+	func deleteCategory(_ category: String) {
+		let index = self.categories.firstIndex(of: category)
+		if let index {
+			self.categories.remove(at: index)
+		}
+	}
+	
+	func addCategory(_ category: String) {
+		self.categories.append(category)
+	}
 }
 
 // MARK: - Equatable protocol

@@ -209,6 +209,16 @@
         }
       }
     },
+    "Categories" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie"
+          }
+        }
+      }
+    },
     "Category" : {
       "localizations" : {
         "pl" : {
@@ -261,6 +271,16 @@
         }
       }
     },
+    "Cover" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okładka"
+          }
+        }
+      }
+    },
     "Date" : {
       "localizations" : {
         "pl" : {
@@ -287,6 +307,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gotowe"
+          }
+        }
+      }
+    },
+    "Edit" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj"
           }
         }
       }
@@ -387,6 +417,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moja książka"
+          }
+        }
+      }
+    },
+    "New category" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowa kategoria"
           }
         }
       }

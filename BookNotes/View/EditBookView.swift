@@ -16,6 +16,25 @@ struct EditBookView: View {
 	
 	@State private var pickerItem: PhotosPickerItem?
 	@State private var imageData: Data?
+	@State private var newCategory = ""
+	
+	@StateObject private var c = Categories()
+	
+	var trimmedCategory: String {
+		newCategory.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
+	}
+	
+	var filteredCategories: [String] {
+		if newCategory.isEmpty {
+			c.sortedElements.filter { cat in
+				!book.categories.contains(cat)
+			}
+		} else {
+			c.sortedElements.filter { cat in
+				cat.localizedCaseInsensitiveContains(newCategory) && !book.categories.contains(cat)
+			}
+		}
+	}
 	
 	var body: some View {
 		NavigationStack {
@@ -55,7 +74,41 @@ struct EditBookView: View {
 					}
 				}
 				
-				// Categories
+				Section("Categories") {
+					ForEach(book.categories, id: \.self) { category in
+						HStack {
+							Text(category)
+							
+							Spacer()
+							
+							Button {
+								withAnimation {
+									book.deleteCategory(category)
+								}
+							} label: {
+								Image(systemName: "trash")
+									.foregroundStyle(.red)
+							}
+						}
+					}
+				}
+				
+				Section {
+					TextField("New category", text: $newCategory)
+					
+					if !newCategory.isEmpty {
+						CategoryButton(title: trimmedCategory) {
+							addCategory(trimmedCategory)
+						}
+						.disabled(book.categories.contains(trimmedCategory))
+					}
+					
+					ForEach(filteredCategories, id: \.self) { cat in
+						CategoryButton(title: cat) {
+							addCategory(cat)
+						}
+					}
+				}
 				
 				if book.isFinished {
 					Section("Rating") {
@@ -83,6 +136,13 @@ struct EditBookView: View {
 	init(book: Binding<Book>) {
 		self._book = book
 		self._authors = State(initialValue: book.wrappedValue.joinedAuthors)
+	}
+	
+	private func addCategory(_ cat: String) {
+		withAnimation {
+			book.addCategory(cat)
+			newCategory = ""
+		}
 	}
 }
 
