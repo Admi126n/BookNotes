@@ -36,6 +36,10 @@ struct EditBookView: View {
 		}
 	}
 	
+	var deletingCategoryDisabled: Bool {
+		book.categories.count == 1
+	}
+	
 	var body: some View {
 		NavigationStack {
 			Form {
@@ -87,15 +91,16 @@ struct EditBookView: View {
 								}
 							} label: {
 								Image(systemName: "trash")
-									.foregroundStyle(.red)
+									.foregroundStyle(deletingCategoryDisabled ? .gray : .red)
 							}
+							.disabled(deletingCategoryDisabled)
 						}
 					}
+					
+					TextField("New category", text: $newCategory)
 				}
 				
 				Section {
-					TextField("New category", text: $newCategory)
-					
 					if !newCategory.isEmpty {
 						CategoryButton(title: trimmedCategory) {
 							addCategory(trimmedCategory)
