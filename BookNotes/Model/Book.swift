@@ -30,7 +30,9 @@ class Book: BookDescription {
 		}
 	}
 	
+	var currentPage: Int = 0
 	var notes: String = ""
+	var pagesCount: Int = 0
 	var rating: Int = 3
 	var title: String
 	
@@ -114,6 +116,14 @@ class Book: BookDescription {
 	
 	// MARK: - Setters
 	
+	func setTitle(_ title: String) {
+		self.title = title
+	}
+	
+	func setAuthors(_ authors: String) {
+		self.authors = authors.components(separatedBy: ", ").sorted()
+	}
+	
 	func setCategories(_ categories: String) {
 		self.categories = categories.components(separatedBy: ", ").sorted()
 	}
@@ -122,8 +132,19 @@ class Book: BookDescription {
 		self.categories = categories.sorted()
 	}
 	
-	func setImageData(_ data: Data) {
+	func setImageData(_ data: Data?) {
 		self.imageData = data
+	}
+	
+	func deleteCategory(_ category: String) {
+		let index = self.categories.firstIndex(of: category)
+		if let index {
+			self.categories.remove(at: index)
+		}
+	}
+	
+	func addCategory(_ category: String) {
+		self.categories.append(category)
 	}
 }
 

@@ -15,6 +15,7 @@ struct DetailView: View {
 	@FocusState var textEditorFocused: Bool
 	@State var book: Book
 	@State private var showingSheet = false
+	@State private var showingEditSheet = false
 	@State private var renderedImage = Image(systemName: "book")
 	
 	var body: some View {
@@ -125,6 +126,12 @@ struct DetailView: View {
 					)
 				}
 				
+				ToolbarItem(placement: .topBarTrailing) {
+					Button("Edit", systemImage: "square.and.pencil") {
+						showingEditSheet = true
+					}
+				}
+				
 				ToolbarItemGroup(placement: .keyboard) {
 					Spacer()
 					
@@ -137,6 +144,9 @@ struct DetailView: View {
 				MarkAsFinishedView(book: $book) {
 					dismiss()
 				}
+			}
+			.sheet(isPresented: $showingEditSheet) {
+				EditBookView(book: $book)
 			}
 			.onAppear {
 				getSharedImage()

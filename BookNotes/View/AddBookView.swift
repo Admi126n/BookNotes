@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import PhotosUI
 
 @frozen
 fileprivate enum Field {
@@ -15,7 +16,7 @@ fileprivate enum Field {
 	case title
 }
 
-fileprivate struct CategoryButton: View {
+struct CategoryButton: View {
 	let category: String
 	let action: () -> Void
 	
@@ -50,6 +51,10 @@ struct AddBookView: View {
 	@State private var showingAlert = false
 	@State private var message: Text = Text("")
 	
+	@State private var pickerItem: PhotosPickerItem?
+	@State private var selectedImage: Image?
+	@State private var imageData: Data?
+	
 	@StateObject private var c = Categories()
 	
 	var trimmedCategory: String {
@@ -72,7 +77,7 @@ struct AddBookView: View {
 		}
 	}
 	
-    var body: some View {
+	var body: some View {
 		NavigationStack {
 			Form {
 				TextField("Title", text: $title)
@@ -84,6 +89,30 @@ struct AddBookView: View {
 					.textInputAutocapitalization(.words)
 					.focused($focusedField, equals: .author)
 					.submitLabel(.next)
+				
+				PhotosPicker(selection: $pickerItem,
+							 matching: .any(of: [.images, .screenshots])) {
+					if let safeImage = selectedImage {
+						HStack(spacing: 10) {
+							safeImage
+								.resizable()
+								.scaledToFit()
+								.frame(width: 100)
+								.clipShape(.rect(cornerRadius: 5))
+							
+							Label("Edit cover", systemImage: "photo.on.rectangle")
+						}
+					} else {
+						Label("Add cover", systemImage: "photo.badge.plus")
+					}
+				}
+				.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+					if selectedImage != nil {
+						DeleteButton {
+							pickerItem = nil
+						}
+					}
+				}
 				
 				if !categories.isEmpty {
 					Text(categories, format: .list(type: .and))
@@ -136,8 +165,14 @@ struct AddBookView: View {
 			.alert("Book already exist", isPresented: $showingAlert) { } message: {
 				message
 			}
+			.onChange(of: pickerItem) {
+				Task {
+					selectedImage = try await pickerItem?.loadTransferable(type: Image.self)
+					imageData = try await pickerItem?.loadTransferable(type: Data.self)
+				}
+			}
 		}
-    }
+	}
 	
 	private func addBook() {
 		let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -149,6 +184,10 @@ struct AddBookView: View {
 			message = Text("You already have book \"\(trimmedTitle)\" by \(trimmedAuthor)")
 			showingAlert = true
 			return
+		}
+		
+		if let safeData = imageData {
+			book.setImageData(safeData)
 		}
 		
 		modelContext.insert(book)
@@ -165,5 +204,5 @@ struct AddBookView: View {
 }
 
 #Preview {
-    AddBookView()
+	AddBookView()
 }
