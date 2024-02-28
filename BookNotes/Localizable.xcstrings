@@ -11,58 +11,6 @@
         }
       }
     },
-    " and %lld are marked as favoutites!" : {
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : " and %lld is marked as favoutite!"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : " and %lld are marked as favoutites!"
-                }
-              }
-            }
-          }
-        },
-        "pl" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : " i %lld są oznaczone jako ulubione!"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : " i %lld jest oznaczonych jako ulubione!"
-                }
-              },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : " i %lld jest oznaczona jako ulubiona!"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : " i %lld jest oznaczonych jako ulubione!"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "%.2f %@" : {
       "localizations" : {
         "en" : {
@@ -75,6 +23,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$.2f%2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
           }
         }
       }
@@ -603,6 +561,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Już masz tę książkę"
+          }
+        }
+      }
+    },
+    "You marked %lld books as favourite!" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "You marked %lld book as favourite!"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "You marked %lld books as favourite!"
+                }
+              }
+            }
+          }
+        },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Masz %lld książki oznaczone jako ulubione!"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Masz %lld książek oznaczonych jako ulubione!"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Masz %lld książkę oznaczoną jako ulubioną!"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Masz %lld książek oznaczonych jako ulubione!"
+                }
+              }
+            }
           }
         }
       }

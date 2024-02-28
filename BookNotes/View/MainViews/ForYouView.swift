@@ -17,7 +17,7 @@ struct ForYouView: View {
 				ScrollView {
 					VStack {
 						BooksStatisticsView()
-							.frame(height: geo.frame(in: .global).width / 2)
+							.frame(height: geo.frame(in: .global).width * 0.6)
 						
 						FavouritesListView()
 						

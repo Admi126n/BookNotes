@@ -13,12 +13,11 @@ fileprivate struct BooksData: Identifiable {
 	let id = UUID()
 	let label: String
 	let value: Int
+	let color: Color
 }
 
 struct BooksStatisticsView: View {
-	@EnvironmentObject var favourites: Favourites
 	@Query var books: [Book]
-	
 	
 	var finishedBooksCount: Int {
 		books.filter { $0.isFinished }.count
@@ -28,18 +27,9 @@ struct BooksStatisticsView: View {
 		books.filter { !$0.isFinished }.count
 	}
 	
-	// TODO: translate labels
 	private var booksData: [BooksData] {
-		[BooksData(label: String(localized: "chart.finished"), value: finishedBooksCount),
-		 BooksData(label: String(localized: "chart.unfinished"), value: unfinishedBooksCount)]
-	}
-	
-	private var favouritesText: Text {
-		if favourites.count == 0 {
-			Text("")
-		} else {
-			Text(" and \(favourites.count) are marked as favoutites!")
-		}
+		[BooksData(label: String(localized: "chart.finished"), value: finishedBooksCount, color: .green),
+		 BooksData(label: String(localized: "chart.unfinished"), value: unfinishedBooksCount, color: .blue)]
 	}
 	
 	var body: some View {
@@ -47,33 +37,54 @@ struct BooksStatisticsView: View {
 			Text("Books statistics")
 				.font(.title2)
 				.bold()
-				.padding(.leading, 5)
+				.padding(.leading, 10)
 			
 			HStack {
-				Group {
-					Text("You saved \(books.count) books") + favouritesText
-				}
-				.font(.headline)
-				.padding()
+				Text("You saved \(books.count) books")
+					.font(.headline)
+					.padding(.leading, 20)
 				
 				if !books.isEmpty {
-					Chart(booksData) { data in
-						if data.value != 0 {
-							SectorMark(angle: .value(Text(verbatim: data.label), data.value),
-									   innerRadius: .ratio(0.6),
-									   angularInset: 5
-							)
-							.annotation(position: .overlay) {
-								Text(data.label)
-									.padding(3)
-									.background(.thinMaterial)
-									.clipShape(.rect(cornerRadius: 5))
+					VStack {
+						Chart(booksData) { data in
+							if data.value != 0 {
+								SectorMark(angle: .value(Text(verbatim: data.label), data.value),
+										   innerRadius: .ratio(0.6),
+										   angularInset: 5
+								)
+								.annotation(position: .overlay) {
+									Text("\(data.value)")
+										.padding(.vertical, 3)
+										.padding(.horizontal, 8)
+										.background(.thinMaterial)
+										.clipShape(.rect(cornerRadius: 5))
+								}
+								.foregroundStyle(data.color)
 							}
-							.foregroundStyle(by: .value(Text(verbatim: data.label), data.label))
 						}
+						.chartLegend(.hidden)
+						.padding()
+						
+						HStack(spacing: 3) {
+							if booksData[1].value > 0 {
+								Circle()
+									.foregroundStyle(booksData[1].color)
+									.frame(width: 10)
+								
+								Text("To read")
+									.padding(.trailing, 10)
+							}
+							
+							if booksData[0].value > 0 {
+								Circle()
+									.foregroundStyle(booksData[0].color)
+									.frame(width: 10)
+								
+								Text("Finished")
+							}
+						}
+						.font(.footnote)
 					}
-					.chartLegend(.hidden)
-					.padding()
 				}
 			}
 		}

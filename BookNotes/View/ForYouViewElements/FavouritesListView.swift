@@ -22,8 +22,12 @@ struct FavouritesListView: View {
 				Text("Your favourite books")
 					.font(.title2)
 					.bold()
-					.padding(.leading, 5)
+					.padding(.leading, 10)
 					.padding(.bottom, 5)
+				
+				Text("You marked \(favourites.count) books as favourite!")
+					.font(.headline)
+					.padding(.leading, 20)
 				
 				ScrollView(.horizontal) {
 					HStack {

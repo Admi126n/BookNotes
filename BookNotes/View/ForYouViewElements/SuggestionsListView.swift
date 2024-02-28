@@ -30,7 +30,7 @@ struct SuggestionsListView: View {
 					Text("Mark books as favourite to get some suggestions")
 						.font(.title2)
 						.bold()
-						.padding(.leading, 5)
+						.padding(.leading, 10)
 					
 					Spacer()
 				}
@@ -41,7 +41,7 @@ struct SuggestionsListView: View {
 					Text("Similar to your favourites")
 						.font(.title2)
 						.bold()
-						.padding(.leading, 5)
+						.padding(.leading, 10)
 						.padding(.bottom, 5)
 					
 					ScrollView(.horizontal) {
