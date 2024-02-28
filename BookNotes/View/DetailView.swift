@@ -62,54 +62,45 @@ struct DetailView: View {
 						.focused($textEditorFocused)
 						.frame(height: 200)
 					
-					if book.isFinished {
-						HStack {
-							Spacer()
-							
-							VStack {
-								RatingView(rating: .constant(book.rating))
-									.padding(.bottom, 1)
-								
-								Text("Finished on \(book.safeFinishDate.formatted(date: .abbreviated, time: .omitted))")
-							}
-							
-							Spacer()
-						}
-					}
-					
-					HStack(spacing: 0) {
+					HStack {
 						Spacer()
 						
-						if !book.isFinished {
-							Button("Mark as finished") {
-								showingSheet = true
+						VStack {
+							if book.isFinished {
+								VStack {
+									RatingView(rating: .constant(book.rating))
+										.padding(.bottom, 1)
+									
+									Text("Finished on \(book.safeFinishDate.formatted(date: .abbreviated, time: .omitted))")
+								}
+							} else {
+								Button("Mark as finished", systemImage: "checkmark") {
+									showingSheet = true
+								}
 							}
-							.buttonStyle(.borderedProminent)
 							
-							Spacer()
-						}
-						
-						if !favourites.contains(book) {
-							Button("Add to favourites") {
-								withAnimation {
-									favourites.add(book)
+							Group {
+								if favourites.contains(book) {
+									Button("Remove from favourites", systemImage: "star.slash", role: .destructive) {
+										withAnimation {
+											favourites.remove(book)
+										}
+									}
+								} else {
+									Button("Add to favourites", systemImage: "star") {
+										withAnimation {
+											favourites.add(book)
+										}
+									}
 								}
 							}
-							.buttonStyle(.borderedProminent)
-						} else {
-							Button("Remove from favourites", role: .destructive) {
-								withAnimation {
-									favourites.remove(book)
-								}
-							}
-							.buttonStyle(.borderedProminent)
+							.padding(.vertical)
 						}
+						.buttonStyle(.bordered)
 						
 						Spacer()
 					}
-					.padding(.vertical)
 				}
-				.padding(.horizontal)
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
 			.navigationBarTitleDisplayMode(.inline)
@@ -152,6 +143,7 @@ struct DetailView: View {
 				getSharedImage()
 			}
 		}
+		.padding(.horizontal)
 	}
 	
 	@MainActor func getSharedImage() {
