@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
 		TabView {
 			ForYouView()
-				.tabItem { Label("For You", systemImage: "books.vertical.fill") }
+				.tabItem { Label("For You", systemImage: "house.fill") }
 			
 			SearchView()
 				.tabItem { Label("Search", systemImage: "doc.text.magnifyingglass") }
