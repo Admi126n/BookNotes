@@ -11,7 +11,7 @@ struct RemoveFromFavouritesButton: View {
 	let action: () -> Void
 	
     var body: some View {
-        Button("Remove from favourites", systemImage: "star.slash.fill", action: action)
+        Button("Remove from favourites", systemImage: "heart.slash.fill", action: action)
 			.tint(.gray)
     }
 }

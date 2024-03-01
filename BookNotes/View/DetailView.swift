@@ -51,7 +51,7 @@ struct DetailView: View {
 							Spacer()
 							
 							Image(systemName: "heart.fill")
-								.foregroundStyle(.red)
+								.foregroundStyle(.pink)
 						}
 					}
 					
@@ -81,13 +81,13 @@ struct DetailView: View {
 							
 							Group {
 								if favourites.contains(book) {
-									Button("Remove from favourites", systemImage: "star.slash", role: .destructive) {
+									Button("Remove from favourites", systemImage: "heart.slash", role: .destructive) {
 										withAnimation {
 											favourites.remove(book)
 										}
 									}
 								} else {
-									Button("Add to favourites", systemImage: "star") {
+									Button("Add to favourites", systemImage: "heart") {
 										withAnimation {
 											favourites.add(book)
 										}

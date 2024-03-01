@@ -28,7 +28,7 @@ struct CellView: View {
 			
 			if let b = book as? Book, favourites.contains(b) {
 				Image(systemName: "heart.fill")
-					.foregroundStyle(.red)
+					.foregroundStyle(.pink)
 			}
 		}
     }
