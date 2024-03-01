@@ -48,6 +48,9 @@
 		66DDF5782B4756D900355825 /* ToReadView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF5772B4756D900355825 /* ToReadView-ViewModel.swift */; };
 		66DDF57B2B47582200355825 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDF57A2B47582200355825 /* DetailView.swift */; };
 		66E801BE2B82956F00C31F2D /* FavouritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E801BD2B82956F00C31F2D /* FavouritesListView.swift */; };
+		66EE048C2B8F7D5600CF2E68 /* WelcomeTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE048B2B8F7D5600CF2E68 /* WelcomeTip.swift */; };
+		66EE048F2B8F7D6C00CF2E68 /* FavouritesTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE048E2B8F7D6C00CF2E68 /* FavouritesTip.swift */; };
+		66EE04912B8F7D8200CF2E68 /* AddBooksTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE04902B8F7D8200CF2E68 /* AddBooksTip.swift */; };
 		66FCDC052B5D55EF0055910F /* BookNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FCDC042B5D55EF0055910F /* BookNotesTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +107,9 @@
 		66DDF5772B4756D900355825 /* ToReadView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToReadView-ViewModel.swift"; sourceTree = "<group>"; };
 		66DDF57A2B47582200355825 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		66E801BD2B82956F00C31F2D /* FavouritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListView.swift; sourceTree = "<group>"; };
+		66EE048B2B8F7D5600CF2E68 /* WelcomeTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTip.swift; sourceTree = "<group>"; };
+		66EE048E2B8F7D6C00CF2E68 /* FavouritesTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTip.swift; sourceTree = "<group>"; };
+		66EE04902B8F7D8200CF2E68 /* AddBooksTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBooksTip.swift; sourceTree = "<group>"; };
 		66FCDC022B5D55EF0055910F /* BookNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FCDC042B5D55EF0055910F /* BookNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNotesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,6 +234,7 @@
 				665F72FA2B49AD2B0000955D /* MarkAsFinishedView.swift */,
 				6607033E2B7923F600E778A0 /* SettingsView.swift */,
 				66CF06B22B4B498E00DAB6AC /* SwipeButtons */,
+				66EE048D2B8F7D5C00CF2E68 /* Tips */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -262,6 +269,16 @@
 				66BF96802B837F5D008090CA /* HorizontalScrollViewCell.swift */,
 			);
 			path = ForYouViewElements;
+			sourceTree = "<group>";
+		};
+		66EE048D2B8F7D5C00CF2E68 /* Tips */ = {
+			isa = PBXGroup;
+			children = (
+				66EE04902B8F7D8200CF2E68 /* AddBooksTip.swift */,
+				66EE048E2B8F7D6C00CF2E68 /* FavouritesTip.swift */,
+				66EE048B2B8F7D5600CF2E68 /* WelcomeTip.swift */,
+			);
+			path = Tips;
 			sourceTree = "<group>";
 		};
 		66FCDC032B5D55EF0055910F /* BookNotesTests */ = {
@@ -376,7 +393,9 @@
 			files = (
 				66DDF5782B4756D900355825 /* ToReadView-ViewModel.swift in Sources */,
 				66AFD5402B66923100DCD013 /* CategoriesView.swift in Sources */,
+				66EE04912B8F7D8200CF2E68 /* AddBooksTip.swift in Sources */,
 				66DDF57B2B47582200355825 /* DetailView.swift in Sources */,
+				66EE048F2B8F7D6C00CF2E68 /* FavouritesTip.swift in Sources */,
 				669135D92B6C391F0064C9BA /* DescriptionView.swift in Sources */,
 				66DDF56F2B4712F500355825 /* ToReadView.swift in Sources */,
 				66DDF55E2B47105600355825 /* ContentView.swift in Sources */,
@@ -410,6 +429,7 @@
 				66DDF5712B47162D00355825 /* SearchView.swift in Sources */,
 				66DDF56B2B47120B00355825 /* ForYouView.swift in Sources */,
 				669AF26C2B4883DC00310430 /* AddBookView.swift in Sources */,
+				66EE048C2B8F7D5600CF2E68 /* WelcomeTip.swift in Sources */,
 				6616A76E2B6307360065AB5D /* RequestType.swift in Sources */,
 				660703412B794F0400E778A0 /* CategoriesListView.swift in Sources */,
 			);
@@ -564,6 +584,7 @@
 				DEVELOPMENT_TEAM = 8M6629LY4U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Books Notes";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -575,7 +596,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.BookNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -598,6 +619,7 @@
 				DEVELOPMENT_TEAM = 8M6629LY4U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Books Notes";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -609,7 +631,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.admi126n.BookNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -87,6 +87,26 @@
         }
       }
     },
+    "Add some books!" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj książki!"
+          }
+        }
+      }
+    },
+    "Add some favourite books!" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oznacz książki jako ulubione!"
+          }
+        }
+      }
+    },
     "Add to favourites" : {
       "localizations" : {
         "pl" : {
@@ -399,6 +419,16 @@
         }
       }
     },
+    "Press %@ to add some books. Then you can *swipe them left* to mark them as favourite or *swipe them right* to delete them." : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naciśnij %@ żeby dodać książki. Później możesz *przesunąć je w lewo* żeby oznaczyć je jako ulubione albo *przesunąć w prawo* żeby je usunąć."
+          }
+        }
+      }
+    },
     "Rating" : {
       "localizations" : {
         "pl" : {
@@ -539,6 +569,30 @@
         }
       }
     },
+    "Welcome in BooksNotes!" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Witaj w BooksNotes!"
+          }
+        }
+      }
+    },
+    "When you add favourite books here will be some suggested books based on your preferences" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiedy oznaczysz książki jako ulubione tutaj pojawią się sugestie na podstawie twoich preferencji."
+          }
+        }
+      }
+    },
+    "When you add favourite books here will be some suggested books based on your preferences." : {
+
+    },
     "You already have book \"%@\" by %@" : {
       "localizations" : {
         "en" : {
@@ -561,6 +615,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Już masz tę książkę"
+          }
+        }
+      }
+    },
+    "You can go to *Search* or *To read* tab and add some books." : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Możesz przejść do zakładki *Wyszukiwarka* lub *Do przeczytania* żeby dodać książki."
           }
         }
       }
