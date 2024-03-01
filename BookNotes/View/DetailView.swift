@@ -94,7 +94,6 @@ struct DetailView: View {
 									}
 								}
 							}
-							.padding(.vertical)
 						}
 						.buttonStyle(.bordered)
 						

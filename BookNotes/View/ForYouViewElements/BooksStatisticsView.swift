@@ -65,22 +65,25 @@ struct BooksStatisticsView: View {
 						.chartLegend(.hidden)
 						.padding()
 						
-						HStack(spacing: 3) {
+						VStack(spacing: 2) {
 							if booksData[1].value > 0 {
-								Circle()
-									.foregroundStyle(booksData[1].color)
-									.frame(width: 10)
-								
-								Text("To read")
-									.padding(.trailing, 10)
+								HStack(spacing: 4) {
+									Circle()
+										.foregroundStyle(booksData[1].color)
+										.frame(width: 10)
+									
+									Text("To read")
+								}
 							}
 							
 							if booksData[0].value > 0 {
-								Circle()
-									.foregroundStyle(booksData[0].color)
-									.frame(width: 10)
-								
-								Text("Finished")
+								HStack(spacing: 4) {
+									Circle()
+										.foregroundStyle(booksData[0].color)
+										.frame(width: 10)
+									
+									Text("Finished")
+								}
 							}
 						}
 						.font(.footnote)
