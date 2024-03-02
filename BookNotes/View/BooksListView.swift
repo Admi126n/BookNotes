@@ -7,16 +7,30 @@
 
 import SwiftData
 import SwiftUI
+import TipKit
+
+fileprivate enum Tab {
+	case search
+	case toRead
+	case finished
+}
 
 struct BooksListView: View {
 	@Environment(\.modelContext) var modelContext
 	@EnvironmentObject var favourites: Favourites
 	@Query var books: [Book]
-	private var searchTab = false
+	private let addBooksTip = AddBooksTip()
+	private var tab: Tab
 	
 	var body: some View {
 		if books.count == 0 {
-			ContentUnavailableView("There are no books", systemImage: "book")
+			VStack {
+				if tab == .toRead {
+					TipView(addBooksTip)
+				}
+				
+				ContentUnavailableView("There are no books", systemImage: "book")
+			}
 		} else {
 			List {
 				ForEach(books) { book in
@@ -26,7 +40,7 @@ struct BooksListView: View {
 						HStack {
 							CellView(of: book)
 							
-							if searchTab, book.isFinished {
+							if tab == .search, book.isFinished {
 								Spacer()
 								
 								Image(systemName: "checkmark")
@@ -57,7 +71,7 @@ struct BooksListView: View {
 	}
 	
 	init(sortAll by: SortDescriptor<Book>, search: String) {
-		self.searchTab = true
+		self.tab = .search
 		
 		_books = Query(filter: #Predicate { book in
 			if search.isEmpty {
@@ -71,6 +85,8 @@ struct BooksListView: View {
 	}
 	
 	init(sortFinished by: SortDescriptor<Book>, search: String) {
+		self.tab = .finished
+		
 		_books = Query(filter: #Predicate { book in
 			if search.isEmpty {
 				return book.isFinished
@@ -84,6 +100,8 @@ struct BooksListView: View {
 	}
 	
 	init(sortUnfinished by: SortDescriptor<Book>, search: String) {
+		self.tab = .toRead
+		
 		_books = Query(filter: #Predicate { book in
 			if search.isEmpty {
 				return !book.isFinished

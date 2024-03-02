@@ -11,8 +11,8 @@ struct AddToFavouritesButton: View {
 	let action: () -> Void
 	
     var body: some View {
-		Button("Add to favourites", systemImage: "star.fill", action: action)
-			.tint(.yellow)
+		Button("Add to favourites", systemImage: "heart.fill", action: action)
+			.tint(.pink)
     }
 }
 
