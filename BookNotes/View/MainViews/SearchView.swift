@@ -77,7 +77,7 @@ struct SearchView: View {
 			.searchable(
 				text: $searchText,
 				placement: .navigationBarDrawer(displayMode: .always),
-				prompt: "Search for a title, author or genre"
+				prompt: "Search for a title, author or category"
 			)
 			.onChange(of: searchText) {
 				if searchText.isEmpty {

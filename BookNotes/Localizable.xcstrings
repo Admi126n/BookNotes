@@ -349,16 +349,6 @@
         }
       }
     },
-    "Genre" : {
-      "localizations" : {
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gatunek"
-          }
-        }
-      }
-    },
     "Mark %@ as finished" : {
       "localizations" : {
         "pl" : {
@@ -479,12 +469,12 @@
         }
       }
     },
-    "Search for a title, author or genre" : {
+    "Search for a title, author or category" : {
       "localizations" : {
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyszukaj po tytule, autorze lub gatunku"
+            "value" : "Wyszukaj po tytule, autorze lub kategorii"
           }
         }
       }
@@ -579,8 +569,7 @@
         }
       }
     },
-    "When you add favourite books here will be some suggested books based on your preferences" : {
-      "extractionState" : "stale",
+    "When you add favourite books here will be some suggested books based on your preferences." : {
       "localizations" : {
         "pl" : {
           "stringUnit" : {
@@ -589,9 +578,6 @@
           }
         }
       }
-    },
-    "When you add favourite books here will be some suggested books based on your preferences." : {
-
     },
     "You already have book \"%@\" by %@" : {
       "localizations" : {
