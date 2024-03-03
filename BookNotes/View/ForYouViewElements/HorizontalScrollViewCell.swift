@@ -7,17 +7,12 @@
 
 import SwiftUI
 
-fileprivate struct ImageFrame: ViewModifier {
-	func body(content: Content) -> some View {
-		content
-			.scaledToFit()
-			.frame(width: 100, height: 150)
-	}
-}
-
-extension View {
+extension Image {
 	func scaledCover() -> some View {
-		modifier(ImageFrame())
+		self
+			.resizable()
+			.scaledToFit()
+			.frame(width: 130, height: 180)
 	}
 }
 
@@ -41,13 +36,13 @@ struct HorizontalScrollViewCell: View {
 							ProgressView()
 						case .success(let image):
 							image
+								.scaledCover()
 						case .failure(_):
 							Image(systemName: "text.book.closed")
 						@unknown default:
 							Image(systemName: "text.book.closed")
 						}
 					}
-					.scaledCover()
 				} else {
 					Spacer()
 					
