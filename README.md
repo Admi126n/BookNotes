@@ -11,6 +11,8 @@ App is divided into four sections:
 
 With this app you will also be able to mark your favourite books, get a description of the book and share books.
 
+[<img src=Documentation/AppStore.png width=100>](https://apps.apple.com/pl/app/booksnotes/id6476230743)
+
 ### Details
 
 <details>
