@@ -15,7 +15,7 @@ struct FinishedView: View {
 	var body: some View {
 		NavigationStack {
 			BooksListView(sortFinished: sortOrder, search: searchText)
-				.searchable(text: $searchText, prompt: "Search for a title, author or genre")
+				.searchable(text: $searchText, prompt: "Search for a title, author or category")
 				.navigationTitle("Finished")
 				.toolbar {
 					ToolbarItem(placement: .topBarTrailing) {
@@ -27,7 +27,7 @@ struct FinishedView: View {
 								Text("Author")
 									.tag(SortDescriptor(\Book.joinedAuthors))
 								
-								Text("Genre")
+								Text("Category")
 									.tag(SortDescriptor(\Book.joinedCategories))
 								
 								Text("Date")

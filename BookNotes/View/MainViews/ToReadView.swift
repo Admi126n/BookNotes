@@ -16,7 +16,7 @@ struct ToReadView: View {
 	var body: some View {
 		NavigationStack {
 			BooksListView(sortUnfinished: sortOrder, search: searchText)
-				.searchable(text: $searchText, prompt: "Search for a title, author or genre")
+				.searchable(text: $searchText, prompt: "Search for a title, author or category")
 				.navigationTitle("To read")
 				.toolbar {
 					ToolbarItem(placement: .topBarTrailing) {
@@ -28,7 +28,7 @@ struct ToReadView: View {
 								Text("Author")
 									.tag(SortDescriptor(\Book.joinedAuthors))
 								
-								Text("Genre")
+								Text("Category")
 									.tag(SortDescriptor(\Book.joinedCategories))
 							}
 							.pickerStyle(.inline)
