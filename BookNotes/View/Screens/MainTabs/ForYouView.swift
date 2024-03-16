@@ -8,10 +8,11 @@
 import SwiftUI
 import TipKit
 
-/// Books propositions based on finished and favourite books (provided by Google Books API).
+/// Books propositions based on favourite books and books statistics.
 struct ForYouView: View {
-	private let welcomeTip = WelcomeTip()
+	
 	private let favouritesTip = FavouritesTip()
+	private let welcomeTip = WelcomeTip()
 	
 	@State private var showingSheet = false
 	

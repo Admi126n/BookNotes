@@ -1,5 +1,5 @@
 //
-//  ToReadView.swift
+//  FinishedView.swift
 //  BookNotes
 //
 //  Created by Adam Tokarski on 04/01/2024.
@@ -7,17 +7,20 @@
 
 import SwiftUI
 
-/// List of books to read.
-struct ToReadView: View {
-	@State private var showingSheet = false
+/// List of all finished books.
+///
+/// View has search bar and button for changing sort order.
+/// Available sort orders: `.authors`, `.categories`, `'.finishDate`, `.title`, `.rating`
+struct FinishedView: View {
+	
 	@State private var searchText = ""
 	@State private var sortOrder = SortDescriptor(\Book.title)
 	
 	var body: some View {
 		NavigationStack {
-			BooksListView(sortUnfinished: sortOrder, search: searchText)
+			BooksListView(sortFinished: sortOrder, search: searchText)
 				.searchable(text: $searchText, prompt: "Search for a title, author or category")
-				.navigationTitle("To read")
+				.navigationTitle("Finished")
 				.toolbar {
 					ToolbarItem(placement: .topBarTrailing) {
 						Menu("Sort", systemImage: "arrow.up.arrow.down") {
@@ -30,24 +33,21 @@ struct ToReadView: View {
 								
 								Text("Category")
 									.tag(SortDescriptor(\Book.joinedCategories))
+								
+								Text("Date")
+									.tag(SortDescriptor(\Book.safeFinishDate, order: .reverse))
+								
+								Text("Rating")
+									.tag(SortDescriptor(\Book.rating, order: .reverse))
 							}
 							.pickerStyle(.inline)
 						}
 					}
-					
-					ToolbarItem(placement: .topBarTrailing) {
-						Button("Add book", systemImage: "plus") {
-							showingSheet = true
-						}
-					}
-				}
-				.sheet(isPresented: $showingSheet) {
-					AddBookView()
 				}
 		}
 	}
 }
 
 #Preview {
-	ToReadView()
+    FinishedView()
 }
